@@ -5,13 +5,15 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router'; 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
+
+import { DataService } from './services/data.service'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    IndexComponent,
     LoginComponent
   ],
   imports: [
@@ -20,10 +22,10 @@ import { LoginComponent } from './login/login.component';
     HttpModule, 
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
-      { path: 'home', component: HomeComponent }
+      { path: 'home', component: IndexComponent }
     ])
   ],
-  providers: [],
+  providers: [ DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
