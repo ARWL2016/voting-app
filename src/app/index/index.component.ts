@@ -7,13 +7,13 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-exampleTopics = []; 
+  exampleTopics = []; 
 
   constructor(private _data: DataService) { }
 
   ngOnInit() {
-    let exampleTopics = this._data.fetchTopics();
-    console.log(exampleTopics);
+    this.exampleTopics = this._data.fetchTopics();
+    console.log(this.exampleTopics);
 
   }
 

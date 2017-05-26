@@ -9,11 +9,13 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 
 import { DataService } from './services/data.service'; 
+import { TopicComponent } from "app/topic/topic.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
+    TopicComponent,
     LoginComponent
   ],
   imports: [
@@ -21,8 +23,10 @@ import { DataService } from './services/data.service';
     FormsModule,
     HttpModule, 
     RouterModule.forRoot([
+      { path: 'topic/:id', component: TopicComponent }, 
       { path: 'login', component: LoginComponent },
-      { path: 'home', component: IndexComponent }
+      { path: 'home', component: IndexComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
   providers: [ DataService ],

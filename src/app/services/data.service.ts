@@ -9,6 +9,7 @@ export class DataService {
       topicName: "Javascript Frameworks", 
       topicQuestion: "What is your preferred Javascript framework?",
       author: "Alistair Willis",
+      id: 1, 
       options: {
         "Angular": 9, 
         "React": 5, 
@@ -20,6 +21,7 @@ export class DataService {
       topicName: "Server Side Frameworks", 
       topicQuestion: "What is your preferred backend framework?",
       author: "Alistair Willis",
+      id: 2, 
       options: {
         "CNET": 9, 
         "Ruby on Rails": 5, 
@@ -30,7 +32,7 @@ export class DataService {
       }
     }
   ]; 
-  num = 3; 
+
 
   fetchTopics() {
     // console.log('fetch', this.exampleTopics); 
