@@ -1,3 +1,31 @@
 <p>
   topic component
 </p>
+
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ topic.topicName }}</h3>
+  </div>
+  <div class="panel-body">
+    <p>Author: {{ topic.author }}</p>
+    <p>Question: {{ topic.topicQuestion }}
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of topic.results"> 
+        <td>{{ result.option }}</td>
+        <td>{{ result.votes }}</td>
+        <td>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
