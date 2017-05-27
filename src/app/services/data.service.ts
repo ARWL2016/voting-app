@@ -6,22 +6,22 @@ export class DataService {
 
   exampleTopics = [
     {
-      topicName: "Javascript Frameworks", 
+      topicName: "Javascript Frameworks",
       topicQuestion: "What is your preferred Javascript framework?",
       author: "Alistair Willis",
-      id: '1', 
+      id: '1',
       results: [
-        { option: "Angular", votes: 9 }, 
-        { option: "React", votes: 5 }, 
-        { option: "JQuery", votes: 12 }, 
-        { option: "Vue", votes: 15 }, 
-      ], 
-    }, 
+        { option: "Angular", votes: 9 },
+        { option: "React", votes: 5 },
+        { option: "JQuery", votes: 12 },
+        { option: "Vue", votes: 15 },
+      ],
+    },
     {
-      topicName: "Server Side Frameworks", 
+      topicName: "Server Side Frameworks",
       topicQuestion: "What is your preferred backend framework?",
       author: "Alistair Willis",
-      id: '2', 
+      id: '2',
       results: [
         { option: "C#/.NET", votes: 9 },
         { option: "Ruby on Rails", votes: 5 },
@@ -31,25 +31,35 @@ export class DataService {
         { option: "Java / JSP", votes: 6 }
       ]
     }
-  ]; 
+  ];
 
 
   fetchTopics() {
-    // console.log('fetch', this.exampleTopics); 
-    return this.exampleTopics; 
+    // console.log('fetch', this.exampleTopics);
+    return this.exampleTopics;
   }
 
   fetchTopic(id: string) {
-    return this.exampleTopics.filter(topic => topic.id === id); 
+    return this.exampleTopics.filter(topic => topic.id === id);
   }
 
   getTotalVotesById(id: string): number {
-    let totalVotes = 0; 
-    this.fetchTopic(id)[0].results 
+    let totalVotes = 0;
+    this.fetchTopic(id)[0].results
       .forEach(result => totalVotes += result.votes);
-    return totalVotes; 
+    return totalVotes;
   }
-    
-  
+
+  castVote(id: string, option: string) {
+    let topic = this.fetchTopic(id)[0];
+    topic.results.forEach(result => {
+      if (result.option === option) {
+        result.votes += 1;
+      }
+    })
+    console.log("cast vote", topic);
+  }
+
+
 
 }
