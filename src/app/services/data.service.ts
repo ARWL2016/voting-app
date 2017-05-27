@@ -6,7 +6,7 @@ export class DataService {
 
   exampleTopics = [
     {
-      topicName: "Javascript Frameworks",
+      topicTitle: "Javascript Frameworks",
       topicQuestion: "What is your preferred Javascript framework?",
       author: "Alistair Willis",
       id: '1',
@@ -18,7 +18,7 @@ export class DataService {
       ],
     },
     {
-      topicName: "Server Side Frameworks",
+      topicTitle: "Server Side Frameworks",
       topicQuestion: "What is your preferred backend framework?",
       author: "Alistair Willis",
       id: '2',

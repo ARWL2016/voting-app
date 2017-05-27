@@ -1,0 +1,65 @@
+<form #form="ngForm" (submit)="submitForm(form)">
+
+  <div class="panel panel-default login-form">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Topic</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="form-group">
+          <label class="control-label">Topic Title</label>
+          <input
+            [(ngModel)]="newTopic.topicTitle"
+            class="form-control"
+            name="topicTitle"
+            placeholder="enter a title for your voting topic"
+            type="text">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Topic Question</label>
+          <input
+            [(ngModel)]="newTopic.topicQuestion"
+
+            class="form-control"
+            name="topicQuestion"
+            placeholder="enter a question for your voting topic"
+            type="text">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Options</label>
+
+
+          <input *ngFor="let option of newTopic.options; let i = index;"
+            [(ngModel)]="newTopic.options[i]"
+            (keyup)="keyup($event)"
+            class="form-control topic-option"
+            name="newTopic.options"
+            placeholder="enter an option"
+            type="text">
+
+
+        </div>
+
+          <button
+          class="btn btn-default topic-option-button"
+          (click)="addOption($event)">
+            add option
+          </button>
+          <button
+          class="btn btn-default topic-option-button"
+          (click)="removeOption($event)">
+            remove option
+          </button>
+
+
+
+        <button type="submit" class="btn btn-primary pull-right">Create</button>
+
+
+    </div>
+  </div>
+
+</form>
