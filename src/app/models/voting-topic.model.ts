@@ -1,8 +1,8 @@
 export interface IVotingTopic {
 
-    topicName: string, 
+    topicTitle: string,
     topicQuestion: string
-    author: string, 
-    options: object 
+    author: string,
+    options: object
 
 }

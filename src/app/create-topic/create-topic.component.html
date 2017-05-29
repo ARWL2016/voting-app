@@ -1,0 +1,66 @@
+<form #form="ngForm" (submit)="submitForm(form)">
+
+  <div class="panel panel-default login-form">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Topic</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="form-group">
+          <label class="control-label">Topic Title</label>
+          <input
+            [(ngModel)]="newTopic.topicTitle"
+
+            class="form-control"
+            name="topicTitle"
+            placeholder="enter a title for your voting topic"
+            type="text">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Topic Question</label>
+          <input
+            [(ngModel)]="newTopic.topicQuestion"
+
+            class="form-control"
+            name="topicQuestion"
+            placeholder="enter a question for your voting topic"
+            type="text">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Options</label>
+          <input
+            [(ngModel)]="newOption"
+            class="form-control"
+            name="option"
+            placeholder="enter an option"
+            type="text">
+        </div>
+        <div>
+          <span class="option-badge" *ngFor="let option of newTopic.options">{{option}}</span>
+        </div>
+
+          <button class="btn btn-default option-button" (click)="addOption($event)">
+            Add another option
+          </button>
+          <button class="btn btn-default option-button" (click)="removeOption()">
+            Undo
+          </button>
+
+
+
+
+        <button type="submit" class="btn btn-primary pull-right">Create</button>
+
+
+    </div>
+  </div>
+
+</form>
+<div class="output">
+Model: {{ model | json}}
+<br>
+Angular: {{ form.value | json}}
+</div>
