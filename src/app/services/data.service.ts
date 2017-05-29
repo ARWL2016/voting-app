@@ -12,7 +12,6 @@ export class DataService {
 
   exampleTopics = [
     {
-<<<<<<< HEAD
       topicTitle: 'Javascript Frameworks',
       topicQuestion: 'What is your preferred Javascript framework?',
       author: 'Alistair Willis',
@@ -28,23 +27,6 @@ export class DataService {
       topicTitle: 'Server Side Frameworks',
       topicQuestion: 'What is your preferred backend framework?',
       author: 'Alistair Willis',
-=======
-      topicTitle: "Javascript Frameworks",
-      topicQuestion: "What is your preferred Javascript framework?",
-      author: "Alistair Willis",
-      id: '1',
-      results: [
-        { option: "Angular", votes: 9 },
-        { option: "React", votes: 5 },
-        { option: "JQuery", votes: 12 },
-        { option: "Vue", votes: 15 },
-      ],
-    },
-    {
-      topicTitle: "Server Side Frameworks",
-      topicQuestion: "What is your preferred backend framework?",
-      author: "Alistair Willis",
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
       id: '2',
       results: [
         { option: 'C#/.NET', votes: 9 },
@@ -56,7 +38,7 @@ export class DataService {
       ]
     }
   ];
-<<<<<<< HEAD
+
 
   constructor(private _http: Http) {}
 
@@ -65,9 +47,6 @@ export class DataService {
       .map((res: Response) => res.json())
       .do(data => console.log('Observable response', data));
   }
-=======
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
-
 
   fetchTopics() {
     // console.log('fetch', this.exampleTopics);
@@ -75,23 +54,18 @@ export class DataService {
   }
 
   fetchTopic(id: string) {
-<<<<<<< HEAD
     console.log('data fetch', this.exampleTopics);
-=======
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
+
     return this.exampleTopics.filter(topic => topic.id === id);
   }
 
   getTotalVotesById(id: string): number {
-<<<<<<< HEAD
     console.log('get total');
-=======
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
+
     let totalVotes = 0;
     this.fetchTopic(id)[0].results
       .forEach(result => totalVotes += result.votes);
     return totalVotes;
-<<<<<<< HEAD
   }
 
   addNewTopic(newTopic) {
@@ -116,20 +90,5 @@ export class DataService {
     });
     console.log('cast vote', topic);
   }
-=======
-  }
-
-  castVote(id: string, option: string) {
-    let topic = this.fetchTopic(id)[0];
-    topic.results.forEach(result => {
-      if (result.option === option) {
-        result.votes += 1;
-      }
-    })
-    console.log("cast vote", topic);
-  }
-
-
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
 
 }

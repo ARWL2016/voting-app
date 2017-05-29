@@ -11,10 +11,7 @@
           <label class="control-label">Topic Title</label>
           <input
             [(ngModel)]="newTopic.topicTitle"
-<<<<<<< HEAD
 
-=======
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
             class="form-control"
             name="topicTitle"
             placeholder="enter a title for your voting topic"
@@ -34,7 +31,6 @@
 
         <div class="form-group">
           <label class="control-label">Options</label>
-<<<<<<< HEAD
           <input
             [(ngModel)]="newOption"
             class="form-control"
@@ -51,38 +47,11 @@
           </button>
           <button class="btn btn-default option-button" (click)="removeOption()">
             Undo
-=======
-
-
-          <input *ngFor="let option of newTopic.options; let i = index;"
-            [(ngModel)]="newTopic.options[i]"
-            (keyup)="keyup($event)"
-            class="form-control topic-option"
-            name="newTopic.options"
-            placeholder="enter an option"
-            type="text">
-
-
-        </div>
-
-          <button
-          class="btn btn-default topic-option-button"
-          (click)="addOption($event)">
-            add option
-          </button>
-          <button
-          class="btn btn-default topic-option-button"
-          (click)="removeOption($event)">
-            remove option
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
           </button>
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
         <button type="submit" class="btn btn-primary pull-right">Create</button>
 
 
@@ -90,11 +59,8 @@
   </div>
 
 </form>
-<<<<<<< HEAD
 <div class="output">
 Model: {{ model | json}}
 <br>
 Angular: {{ form.value | json}}
 </div>
-=======
->>>>>>> b55c54070b06667646259546f7c1bff78a285950
