@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const routes = require('./routes');
 
+const { mongoose, VotingTopic } = require('./db'); 
+
 let port = process.env.PORT || 3000;
 
 

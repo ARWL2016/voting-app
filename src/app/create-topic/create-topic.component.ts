@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from 'app/services/data.service';
 import { Router } from '@angular/router';
+import { INewTopic } from "app/models/new-topic.model";
 
 @Component({
   selector: 'app-create-topic',
@@ -10,11 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CreateTopicComponent implements OnInit {
   newOption: string;
-  newTopic = {
-    topicTitle: '',
-    topicQuestion: '',
-    options: []
-  };
+  newTopic: INewTopic;  
 
   constructor(
     private _data: DataService,

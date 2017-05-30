@@ -5,7 +5,7 @@ module.exports = (app) => {
     res.send('API root');
   })
 
-  app.get('/api/data', DataController.greeting);
+  app.get('/api/test', DataController.greeting);
 
   app.get('*', (req, res) => {
     res.status(404).send({message: 'Page not found'});

@@ -8,6 +8,7 @@ import 'rxjs/add/operator/do';
 
 export class DataService {
 
+  private _testUrl = 'http://localhost:3000/api/test';
   private _dataUrl = 'http://localhost:3000/api/data';
 
   exampleTopics = [
@@ -43,7 +44,7 @@ export class DataService {
   constructor(private _http: Http) {}
 
   testHttp(): Observable<any> {
-    return this._http.get(this._dataUrl)
+    return this._http.get(this._testUrl)
       .map((res: Response) => res.json())
       .do(data => console.log('Observable response', data));
   }
