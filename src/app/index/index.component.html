@@ -1,7 +1,7 @@
 <h2>Voting Topics</h2>
 
 <section *ngFor="let topic of exampleTopics">
-  <a [routerLink]="['/topic', topic.id]">
+  <a [routerLink]="['/topic', topic._id]">
     <div class="panel panel-success">
       <div class="panel-heading">
         <h3 class="panel-title">{{ topic.topicTitle }}</h3>
@@ -15,6 +15,6 @@
 </section>
 
 <button (click)="testHttp()">Test API</button>
-<button (click)="seedDB()">SeedDB</button>
+
 
 

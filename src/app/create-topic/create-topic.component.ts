@@ -11,7 +11,11 @@ import { INewTopic } from "app/models/new-topic.model";
 })
 export class CreateTopicComponent implements OnInit {
   newOption: string;
-  newTopic: INewTopic;  
+  newTopic: INewTopic = {
+      topicTitle: '',
+      topicQuestion: '',
+      options: []
+    };
 
   constructor(
     private _data: DataService,

@@ -12,8 +12,8 @@ export class IndexComponent implements OnInit {
   constructor(private _data: DataService) { }
 
   ngOnInit() {
-    this.exampleTopics = this._data.fetchTopics();
-    console.log('index', this.exampleTopics);
+    this._data.fetchTopicIndex()
+      .subscribe(topics => this.exampleTopics = topics);
   }
 
   testHttp() {
@@ -22,8 +22,5 @@ export class IndexComponent implements OnInit {
     .subscribe(data => console.log('subscribe', data));
   }
 
-  seedDB() {
-    this._data.seedDB().subscribe(); 
-  }
 
 }

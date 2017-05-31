@@ -9,7 +9,7 @@ import { DataService } from 'app/services/data.service';
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent implements OnInit {
-  id: string;
+  _id: string;
   topic: object;
   totalVotes: number;
   hasVoted = false;
@@ -18,17 +18,23 @@ export class TopicComponent implements OnInit {
     private _route: ActivatedRoute,
     private _data: DataService
     ) {
-      this.id = this._route.snapshot.params['id'];
+      console.log('snapshot' + this._route.snapshot.params['id']);
+      this._id = this._route.snapshot.params['id'];
+
     }
 
   ngOnInit(): void {
-    this.topic = this._data.fetchTopic(this.id)[0];
-    this.totalVotes = this._data.getTotalVotesById(this.id);
+    console.log(this._id);
+    this._data.fetchTopicById(this._id)
+      .subscribe(topic => this.topic = topic);
+
+
+    // this.totalVotes = this._data.getTotalVotesById(this._id);
   }
 
   castVote(event: any) {
     if (!this.hasVoted) {
-      this._data.castVote(this.id, event.target.value);
+      this._data.castVote(this._id, event.target.value);
       this.hasVoted = true;
     }
 
