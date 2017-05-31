@@ -49,6 +49,14 @@ export class DataService {
       .do(data => console.log('Observable response', data));
   }
 
+  seedDB() {
+    console.log('seedDB'); 
+    return this._http.get(this._testUrl + '/seed')
+      .map((res: Response) => res.json())
+      .do(data => console.log('Observable response', data)); 
+     
+  }
+
   fetchTopics() {
     // console.log('fetch', this.exampleTopics);
     return this.exampleTopics;

@@ -22,4 +22,8 @@ export class IndexComponent implements OnInit {
     .subscribe(data => console.log('subscribe', data));
   }
 
+  seedDB() {
+    this._data.seedDB().subscribe(); 
+  }
+
 }

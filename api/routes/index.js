@@ -6,6 +6,7 @@ module.exports = (app) => {
   })
 
   app.get('/api/test', DataController.greeting);
+  app.get('/api/test/seed', DataController.seedDatabase);
 
   app.get('*', (req, res) => {
     res.status(404).send({message: 'Page not found'});
