@@ -32,20 +32,20 @@
         <div class="form-group">
           <label class="control-label">Options</label>
           <input
-            [(ngModel)]="newOption"
+            [(ngModel)]="option"
             class="form-control"
             name="option"
             placeholder="enter an option"
             type="text">
         </div>
         <div>
-          <span class="option-badge" *ngFor="let option of newTopic.options">{{option}}</span>
+          <span class="option-badge" *ngFor="let option of options">{{ option }}</span>
         </div>
 
           <button class="btn btn-default option-button" (click)="addOption($event)">
             Add another option
           </button>
-          <button class="btn btn-default option-button" (click)="removeOption()">
+          <button class="btn btn-default option-button" (click)="removeOption($event)">
             Undo
           </button>
 

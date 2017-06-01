@@ -9,7 +9,7 @@
     <p>Authors: {{ topic.author }}</p>
     <p>Question: {{ topic.topicQuestion }}</p>
     <p>Total Votes: {{ totalVotes }}</p>
-    
+
   </div>
 
   <table class="table">
@@ -45,6 +45,7 @@
         (click)="castVote($event)">
         {{ result.option }}
         </button>
+        <div>Has voted: {{hasVoted}}</div>
     </div>
   </div>
 

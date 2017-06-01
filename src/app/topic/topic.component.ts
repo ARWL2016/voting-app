@@ -11,7 +11,7 @@ import { Topic } from '../models/topic';
 })
 export class TopicComponent implements OnInit {
   _id: string;
-  topic = new Topic();
+  topic = new Topic('', '', '', []);
   totalVotes: number;
   hasVoted = false;
 
@@ -25,31 +25,31 @@ export class TopicComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    console.log(this._id); 
+    console.log(this._id);
     this._data.fetchTopicById(this._id)
       .subscribe(topic => {
         this.topic = topic;
-        this.totalVotes = this.getTotalVotes(); 
+        this.totalVotes = this.getTotalVotes();
       })
   }
 
   getTotalVotes(): number {
     return this.topic.results.map(result => result.votes)
-      .reduce((a, b) => a + b); 
+      .reduce((a, b) => a + b);
   }
-    
+
   castVote(event) {
     if (!this.hasVoted) {
-     console.log(this.topic.results); 
+     console.log(this.topic.results);
       this.topic.results.forEach(result => {
         if (result.option === event.target.value) {
-          result.votes += 1; 
+          result.votes += 1;
         }
       })
-      
+
       this.hasVoted = true;
-      this.totalVotes = this.getTotalVotes(); 
-      this._data.castVote(this._id, this.topic).subscribe(); 
+      this.totalVotes = this.getTotalVotes();
+      this._data.castVote(this._id, this.topic).subscribe();
 
     }
 
