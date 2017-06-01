@@ -15,14 +15,20 @@ module.exports = {
       .then(topic => res.send(topic));
   },
 
+  create(req, res) {
+    const payload = req.body;
+    VotingTopic.create(payload)
+      .then(topic => res.send(topic))
+  },
+
   addVote(req, res) {
-    const payload = req.body; 
-    const id = req.params.id; 
+    const payload = req.body;
+    const id = req.params.id;
 
     VotingTopic.findByIdAndUpdate(id, payload)
       .then(() => VotingTopic.findById(id))
-      .then(topic => res.send(topic)); 
-  
+      .then(topic => res.send(topic));
+
   }
 };
 

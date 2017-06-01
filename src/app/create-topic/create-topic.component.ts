@@ -25,22 +25,22 @@ export class CreateTopicComponent implements OnInit {
   ngOnInit() {
     console.log('INIT: ', this.result);
     console.log('INIT: ', this.newTopic);
+    this.newTopic.author = 'Alistair Willis';
   }
 
   addOption(e): void {
     e.preventDefault();
     if (this.option) {
       const result = new Result(this.option, 0);
-      this.options.push(this.option);
       this.newTopic.results.push(result);
+      this.options.push(this.option);
       this.option = '';
       this.result = new Result('', 0);
     }
   }
 
   submitForm(): void {
-    console.log(this.newTopic);
-    // this._data.addNewTopic(this.newTopic);
+    this._data.addNewTopic(this.newTopic).subscribe();
     // this.newTopic = new Topic();
     // this._router.navigate(['/home']);
   }
