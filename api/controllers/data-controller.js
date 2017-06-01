@@ -3,20 +3,16 @@ const { VotingTopic } = require('../db');
 
 module.exports = {
 
-  fetchTopicIndex(req, res) {
+  getTopicIndex(req, res) {
     VotingTopic.find()
-      .then(topics => {  
-        res.send(topics);
-      });
+      .then(topics => res.send(topics));
   },
 
-  fetchTopicById(req, res) {
+  getTopicById(req, res) {
     const id = req.params.id;
 
     VotingTopic.findById(id)
-      .then(topic => {
-        res.send(topic);
-      })
+      .then(topic => res.send(topic));
   },
 
   addVote(req, res) {

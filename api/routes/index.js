@@ -5,8 +5,8 @@ module.exports = (app) => {
     res.redirect('/'); 
   })
 
-  app.get('/api/data', DataController.fetchTopicIndex);
-  app.get('/api/data/:id', DataController.fetchTopicById);
+  app.get('/api/data', DataController.getTopicIndex);
+  app.get('/api/data/:id', DataController.getTopicById);
   app.put('/api/data/vote/:id', DataController.addVote); 
 
   app.get('*', (req, res) => {
