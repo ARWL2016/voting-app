@@ -13,6 +13,7 @@ export class TopicComponent implements OnInit {
   topic: object;
   totalVotes: number;
   hasVoted = false;
+  results = []; 
 
   constructor(
     private _route: ActivatedRoute,
@@ -26,12 +27,18 @@ export class TopicComponent implements OnInit {
   ngOnInit(): void {
     console.log(this._id);
     this._data.fetchTopicById(this._id)
-      .subscribe(topic => this.topic = topic);
-
-
-    // this.totalVotes = this._data.getTotalVotesById(this._id);
+      .subscribe(topic => {
+        this.topic = topic;
+        this.results = topic.results; 
+        this.totalVotes = this.getTotalVotes(); 
+      })
   }
 
+  getTotalVotes(): number {
+    return this.results.map((result) =>  +result.votes)
+      .reduce((a, b) => a + b); 
+  }
+    
   castVote(event: any) {
     if (!this.hasVoted) {
       this._data.castVote(this._id, event.target.value);

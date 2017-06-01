@@ -5,9 +5,9 @@ const VotingTopic = require('./models/voting-topic');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(mongoLocal);
+mongoose.connect(mlabURI);
 mongoose.connection.on('connected', () => {
-  console.log(chalk.green('mongoose connected to: ' + mongoLocal));
+  console.log(chalk.green('mongoose connected to: ' + mlabURI));
 });
 
 mongoose.connection.on('error', (err) => {

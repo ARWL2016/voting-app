@@ -32,15 +32,6 @@ export class DataService {
       .do(data => console.log(data));
   }
 
-  getTotalVotesById(id: string): number {
-    console.log('get total');
-
-    let totalVotes = 0;
-    this.fetchTopicById(id)[0].results
-      .forEach(result => totalVotes += result.votes);
-    return totalVotes;
-  }
-
   addNewTopic(newTopic) {
     const topic = newTopic;
     topic.id = (this.exampleTopics.length + 1).toString();

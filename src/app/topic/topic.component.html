@@ -1,13 +1,15 @@
 
 <div>
 
-<div class="panel panel-success voting-panel">
+<div *ngIf="topic" class="panel panel-success voting-panel">
   <div class="panel-heading">
     <h2 class="panel-title">{{ topic.topicTitle }}</h2>
   </div>
   <div class="panel-body">
     <p>Author: {{ topic.author }}</p>
-    <p>Question: {{ topic.topicQuestion }}
+    <p>Question: {{ topic.topicQuestion }}</p>
+    <p>Total Votes: {{ totalVotes }}</p>
+    
   </div>
 
   <table class="table">
@@ -19,7 +21,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let result of topic.results">
+      <tr *ngFor="let result of results">
         <td class="option-cell">{{ result.option }}</td>
         <td>{{ result.votes }}</td>
 
@@ -37,7 +39,7 @@
   <div class="panel-body">
     <div class="btn-group" role="group">
       <button
-        *ngFor="let result of topic.results"
+        *ngFor="let result of results"
         class="btn btn-default"
         value="{{ result.option }}"
         (click)="castVote($event)">
