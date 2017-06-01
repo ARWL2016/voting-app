@@ -1,14 +1,16 @@
 const express = require('express');
-const app = express();
+const path = require('path'); 
 const bodyParser = require('body-parser');
-const routes = require('./routes');
+const routes = require('./api/routes');
+const { mongoose, VotingTopic } = require('./api/db');
 
-
-const { mongoose, VotingTopic } = require('./db');
+const app = express();
 
 let port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, 'dist'))); 
 
 
 routes(app);

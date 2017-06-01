@@ -41,8 +41,8 @@ export class TopicComponent implements OnInit {
     
   castVote(event: any) {
     if (!this.hasVoted) {
-      this._data.castVote(this._id, event.target.value);
-      this.hasVoted = true;
+      this._data.castVote(this._id, event.target.value).subscribe(); 
+      // this.hasVoted = true;
     }
 
   }

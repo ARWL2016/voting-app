@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -45,14 +45,17 @@ export class DataService {
     console.log(this.exampleTopics);
   }
 
-  castVote(id: string, option: string) {
-    const topic = this.fetchTopicById(id)[0];
-    topic.results.forEach(result => {
-      if (result.option === option) {
-        result.votes += 1;
-      }
-    });
-    console.log('cast vote', topic);
+  castVote(id: string, vote: string): Observable<any> {
+    console.log('CAST VOTE');
+    const url = this._dataUrl + 'vote/' + id;
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http.post(url, { vote }, options)
+      .map(res => res.json())
+      .do(data => console.log(data));
+
+
   }
 
     exampleTopics = [
