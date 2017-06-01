@@ -5,7 +5,6 @@ const exampleTopics = [
       topicTitle: 'Javascript Frameworks',
       topicQuestion: 'What is your preferred Javascript framework?',
       author: 'Alistair Willis',
-      id: '1',
       results: [
         { option: 'Angular', votes: 9 },
         { option: 'React', votes: 5 },
@@ -17,7 +16,6 @@ const exampleTopics = [
       topicTitle: 'Server Side Frameworks',
       topicQuestion: 'What is your preferred backend framework?',
       author: 'Alistair Willis',
-      id: '2',
       results: [
         { option: 'C#/.NET', votes: 9 },
         { option: 'Ruby on Rails', votes: 5 },

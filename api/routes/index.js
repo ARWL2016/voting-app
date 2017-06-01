@@ -5,13 +5,13 @@ module.exports = (app) => {
     res.redirect('/'); 
   })
 
-  app.get('/api/test', DataController.greeting);
   app.get('/api/data', DataController.fetchTopicIndex);
   app.get('/api/data/:id', DataController.fetchTopicById);
-  app.post('/api/data/vote/:id', DataController.addVote); 
+  app.put('/api/data/vote/:id', DataController.addVote); 
 
   app.get('*', (req, res) => {
-    res.status(404).send({message: 'Page not found'});
+    res.redirect('/'); 
+    // res.status(404).send({message: 'Page not found'});
   })
 
 }

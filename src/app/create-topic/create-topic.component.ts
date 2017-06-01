@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from 'app/services/data.service';
 import { Router } from '@angular/router';
-import { INewTopic } from "app/models/new-topic.model";
+import { Topic } from "app/models/topic";
 
 @Component({
   selector: 'app-create-topic',
@@ -11,11 +11,13 @@ import { INewTopic } from "app/models/new-topic.model";
 })
 export class CreateTopicComponent implements OnInit {
   newOption: string;
-  newTopic: INewTopic = {
-      topicTitle: '',
-      topicQuestion: '',
-      options: []
-    };
+  newTopic = new Topic(); 
+  
+  // INewTopic = {
+  //     topicTitle: '',
+  //     topicQuestion: '',
+  //     options: []
+  //   };
 
   constructor(
     private _data: DataService,
@@ -25,25 +27,25 @@ export class CreateTopicComponent implements OnInit {
   ngOnInit() {
   }
 
-  addOption(e): void {
-    e.preventDefault();
-    this.newTopic.options.push(this.newOption);
-    this.newOption = '';
-  }
+  // addOption(e): void {
+  //   e.preventDefault();
+  //   this.newTopic.options.push(this.newOption);
+  //   this.newOption = '';
+  // }
 
-  submitForm(): void {
-    this._data.addNewTopic(this.newTopic);
-    this.newTopic = {
-      topicTitle: '',
-      topicQuestion: '',
-      options: []
-    };
-    this._router.navigate(['/home']);
-  }
+  // submitForm(): void {
+  //   this._data.addNewTopic(this.newTopic);
+  //   this.newTopic = {
+  //     topicTitle: '',
+  //     topicQuestion: '',
+  //     options: []
+  //   };
+  //   this._router.navigate(['/home']);
+  // }
 
-  removeOption(e): void {
-    e.preventDefault();
-    this.newTopic.options.pop();
-  }
+  // removeOption(e): void {
+  //   e.preventDefault();
+  //   this.newTopic.options.pop();
+  // }
 
 }

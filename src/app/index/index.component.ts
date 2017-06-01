@@ -16,11 +16,4 @@ export class IndexComponent implements OnInit {
       .subscribe(topics => this.exampleTopics = topics);
   }
 
-  testHttp() {
-    console.log('test Http');
-    this._data.testHttp()
-    .subscribe(data => console.log('subscribe', data));
-  }
-
-
 }

@@ -21,7 +21,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let result of results">
+      <tr *ngFor="let result of topic.results">
         <td class="option-cell">{{ result.option }}</td>
         <td>{{ result.votes }}</td>
 
@@ -39,7 +39,7 @@
   <div class="panel-body">
     <div class="btn-group" role="group">
       <button
-        *ngFor="let result of results"
+        *ngFor="let result of topic.results"
         class="btn btn-default"
         value="{{ result.option }}"
         (click)="castVote($event)">

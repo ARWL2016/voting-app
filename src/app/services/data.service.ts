@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import { Topic } from '../models/topic'; 
 
 @Injectable()
 
@@ -12,12 +13,6 @@ export class DataService {
   private _dataUrl = 'http://localhost:3000/api/data/';
 
   constructor(private _http: Http) {}
-
-  testHttp(): Observable<any> {
-    return this._http.get(this._testUrl)
-      .map((res: Response) => res.json())
-      .do(data => console.log('Observable response', data));
-  }
 
   fetchTopicIndex(): Observable<any> {
     return this._http.get(this._dataUrl)
@@ -45,17 +40,16 @@ export class DataService {
     console.log(this.exampleTopics);
   }
 
-  castVote(id: string, vote: string): Observable<any> {
+  castVote(id: string, topic: Topic): Observable<any> {
     console.log('CAST VOTE');
-    const url = this._dataUrl + 'vote/' + id;
+    let url = `http://localhost:3000/api/data/vote/${id}`; 
+    // const url = this._dataUrl + 'vote/' + id;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this._http.post(url, { vote }, options)
+    return this._http.put(url, topic, options)
       .map(res => res.json())
       .do(data => console.log(data));
-
-
   }
 
     exampleTopics = [
