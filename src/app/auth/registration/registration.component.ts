@@ -1,33 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'; 
-import { User } from "app/models/user";
-
+import { NgForm } from '@angular/forms';
+import { IUser } from 'app/models/user';
+import { AuthService } from 'app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registration', 
-  templateUrl: './registration.component.html', 
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  firstName: string; 
-  lastName: string; 
-  username: string; 
-  password_1: string; 
-  password_2: string; 
-  error: string; 
-  user: User; 
+  username: string;
+  password: string;
+  passwordRepeat: string;
+  error: string;
+  user: IUser;
 
-  constructor() {}
+  constructor(private _auth: AuthService, private _router: Router ) {}
 
   ngOnInit() {
 
   }
 
   submitForm() {
-    if (this.username && this.password_1 === this.password_2 ) {
-      // submit form to auth service 
+    if (this.username && this.password === this.passwordRepeat) {
+      this.user = {
+        username: this.username,
+        password: this.password
+      };
+      this._auth.register(this.user).subscribe(
+        res => {
+            console.log('user created');
+            this._router.navigate(['/login']);
+        },
+        err => this.error = 'username already exists');
+
     }
 
-  
+
   }
 }

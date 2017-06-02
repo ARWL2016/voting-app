@@ -9,9 +9,10 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './auth/login/login.component';
 
 import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
 import { TopicComponent } from 'app/topic/topic.component';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
-import { RegistrationComponent } from "./auth/registration/registration.component";
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { RegistrationComponent } from "./auth/registration/registration.componen
     IndexComponent,
     TopicComponent,
     LoginComponent,
-    CreateTopicComponent, 
+    CreateTopicComponent,
     RegistrationComponent
   ],
   imports: [
@@ -35,7 +36,7 @@ import { RegistrationComponent } from "./auth/registration/registration.componen
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [ DataService ],
+  providers: [ DataService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

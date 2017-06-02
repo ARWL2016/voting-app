@@ -7,28 +7,8 @@
 
     <div class="panel-body">
 
-      <div class="form-group">
-          <label class="control-label">First name</label> 
-          <input
-            [(ngModel)]="firstName"
-            class="form-control"
-            name="firstName"
-            placeholder="first name"
-            type="text">
-        </div>
-
         <div class="form-group">
-          <label class="control-label">Last name</label> 
-          <input
-            [(ngModel)]="lastName"
-            class="form-control"
-            name="lastName"
-            placeholder="last name"
-            type="text">
-        </div>
-
-        <div class="form-group">
-          <label class="control-label">Enter a unique username</label> 
+          <label class="control-label">Enter a unique username</label>
           <input
             [(ngModel)]="username"
             class="form-control"
@@ -40,7 +20,7 @@
         <div class="form-group">
           <label class="control-label">Password <i>(minimum 3 characters)</i></label>
           <input
-            [(ngModel)]="password_1"
+            [(ngModel)]="password"
             class="form-control"
             name="password"
             placeholder="password"
@@ -50,7 +30,7 @@
         <div class="form-group">
           <label class="control-label">Re-enter password</label>
           <input
-            [(ngModel)]="password_2"
+            [(ngModel)]="passwordRepeat"
             class="form-control"
             name="password"
             placeholder="password"
@@ -59,7 +39,7 @@
         <div>{{error}}</div>
 
         <button type="submit" class="btn btn-primary">Register</button>
-        
+
 
 
     </div>

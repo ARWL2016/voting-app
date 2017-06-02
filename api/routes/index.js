@@ -10,9 +10,9 @@ module.exports = (app) => {
   app.get('/api/data/:id', DataController.getTopicById);
   app.put('/api/data/vote/:id', DataController.addVote);
   app.post('/api/data', DataController.create);
-  app.delete('/api/data/:id', DataController.delete); 
+  app.delete('/api/data/:id', DataController.delete);
 
-  //app.post('/api/auth/register', AuthController.register); 
+  app.post('/api/auth/register', AuthController.register);
 
   app.get('*', (req, res) => {
     res.redirect('/');
