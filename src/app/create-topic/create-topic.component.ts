@@ -41,8 +41,8 @@ export class CreateTopicComponent implements OnInit {
 
   submitForm(): void {
     this._data.addNewTopic(this.newTopic).subscribe();
-    // this.newTopic = new Topic();
-    // this._router.navigate(['/home']);
+    this.newTopic = new Topic('', '', '', []);
+    this._router.navigate(['/home']);
   }
 
   removeOption(e): void {

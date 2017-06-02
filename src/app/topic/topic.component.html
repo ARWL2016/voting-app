@@ -1,6 +1,4 @@
 
-<div>
-
 <div *ngIf="topic" class="panel panel-success voting-panel">
   <div class="panel-heading">
     <h2 class="panel-title">{{ topic.topicTitle }}</h2>
@@ -9,7 +7,6 @@
     <p>Authors: {{ topic.author }}</p>
     <p>Question: {{ topic.topicQuestion }}</p>
     <p>Total Votes: {{ totalVotes }}</p>
-
   </div>
 
   <table class="table">
@@ -44,14 +41,20 @@
         value="{{ result.option }}"
         (click)="castVote($event)">
         {{ result.option }}
-        </button>
-        <div>Has voted: {{hasVoted}}</div>
+      </button>
+      <div>Has voted: {{hasVoted}}</div>
     </div>
   </div>
 
-
-
 </div>
+
+<div class="panel panel-success voting-panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">Manage</h3>
+  </div>
+  <div class="panel-body">
+      <button (click)="deleteTopic(_id)" class="btn btn-danger">Delete this Topic</button>
+    </div>
 </div>
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'app/services/data.service';
 import { Topic } from '../models/topic';
 
@@ -17,6 +17,7 @@ export class TopicComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router, 
     private _data: DataService
     ) {
       console.log('snapshot' + this._route.snapshot.params['id']);
@@ -30,7 +31,8 @@ export class TopicComponent implements OnInit {
       .subscribe(topic => {
         this.topic = topic;
         this.totalVotes = this.getTotalVotes();
-      })
+      });
+    console.log(this.topic); 
   }
 
   getTotalVotes(): number {
@@ -40,19 +42,21 @@ export class TopicComponent implements OnInit {
 
   castVote(event) {
     if (!this.hasVoted) {
-     console.log(this.topic.results);
       this.topic.results.forEach(result => {
         if (result.option === event.target.value) {
           result.votes += 1;
         }
-      })
-
+      });
       this.hasVoted = true;
       this.totalVotes = this.getTotalVotes();
       this._data.castVote(this._id, this.topic).subscribe();
-
     }
+  }
 
+  deleteTopic(id: string) {
+    console.log('delete', id);
+    this._data.deleteTopic(id).subscribe(); 
+    this._router.navigate(['/home']); 
   }
 
 }

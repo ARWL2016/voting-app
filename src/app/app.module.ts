@@ -9,7 +9,7 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 
 import { DataService } from './services/data.service';
-import { TopicComponent } from "app/topic/topic.component";
+import { TopicComponent } from 'app/topic/topic.component';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
 
 @NgModule({

@@ -43,4 +43,9 @@ export class DataService {
       .do(data => console.log(data));
   }
 
+  deleteTopic(id: string): Observable<any> {
+    let url = `http://localhost:3000/api/data/${id}`;
+    return this._http.delete(url); 
+  }
+
 }

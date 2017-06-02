@@ -28,7 +28,13 @@ module.exports = {
     VotingTopic.findByIdAndUpdate(id, payload)
       .then(() => VotingTopic.findById(id))
       .then(topic => res.send(topic));
+  },
 
+  delete(req, res) {
+    const id = req.params.id; 
+
+    VotingTopic.findByIdAndRemove(id)
+      .then(topic => res.status(202).send(topic)); 
   }
 };
 
