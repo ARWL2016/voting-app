@@ -12,7 +12,7 @@ module.exports = (app) => {
   app.post('/api/data', DataController.create);
   app.delete('/api/data/:id', DataController.delete); 
 
-  app.post('/api/auth/register', AuthController.register); 
+  //app.post('/api/auth/register', AuthController.register); 
 
   app.get('*', (req, res) => {
     res.redirect('/');

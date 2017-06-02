@@ -4,14 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { IUser } from '../models/user';
+import { User } from '../models/user';
 
 @Injectable()
 
 export class UserService {
-  currentUser: IUser; 
+  currentUser: User; 
 
-  register(user: IUser, password: string) {
+  register(user: User, password: string) {
     // http.post 
   }
 }
