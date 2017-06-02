@@ -10,7 +10,7 @@ const VotingTopicSchema = new mongoose.Schema({
     type: String, 
     required: true
   }, 
-  author: {
+  username: {
     type: String, 
     required: true
   }, 

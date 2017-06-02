@@ -4,11 +4,11 @@ export class Topic {
 
   topicQuestion: string;
   topicTitle: string;
-  author: string;
+  username: string;
   results: Result[];
 
-  constructor(author, topicTitle, topicQuestion, results) {
-    this.author = author;
+  constructor(username, topicTitle, topicQuestion, results) {
+    this.username = username;
     this.topicTitle = topicTitle;
     this.topicQuestion = topicQuestion;
     this.results = results;

@@ -1,0 +1,48 @@
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+
+  <div class="panel panel-default login-form">
+    <div class="panel-heading">
+      <h3 class="panel-title">Register</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="form-group">
+          <label class="control-label">Enter a unique username</label> 
+          <input
+            [(ngModel)]="username"
+            class="form-control"
+            name="username"
+            placeholder="username"
+            type="text">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Password <i>(minimum 3 characters)</i></label>
+          <input
+            [(ngModel)]="password_1"
+            class="form-control"
+            name="password"
+            placeholder="password"
+            type="text">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Re-enter password</label>
+          <input
+            [(ngModel)]="password_2"
+            class="form-control"
+            name="password"
+            placeholder="password"
+            type="text">
+        </div>
+        <div>{{error}}</div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+        
+
+
+    </div>
+  </div>
+
+</form>

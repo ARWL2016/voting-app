@@ -1,4 +1,5 @@
 const DataController = require('../controllers/data-controller');
+const AuthController = require('../controllers/auth-controller');
 
 module.exports = (app) => {
   app.get('/home', (req, res) => {
@@ -10,6 +11,8 @@ module.exports = (app) => {
   app.put('/api/data/vote/:id', DataController.addVote);
   app.post('/api/data', DataController.create);
   app.delete('/api/data/:id', DataController.delete); 
+
+  app.post('/api/auth/register', AuthController.register); 
 
   app.get('*', (req, res) => {
     res.redirect('/');

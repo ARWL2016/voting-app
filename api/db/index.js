@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const mongoose = require('mongoose');
 const { mlabURI, mongoLocal } = require('../config');
 const VotingTopic = require('./models/voting-topic');
+const User = require('./models/user'); 
 
 mongoose.Promise = global.Promise;
 
@@ -16,6 +17,7 @@ mongoose.connection.on('error', (err) => {
 
 module.exports = {
   mongoose,
-  VotingTopic
+  VotingTopic, 
+  User
 }
 

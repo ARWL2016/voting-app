@@ -25,7 +25,7 @@ export class CreateTopicComponent implements OnInit {
   ngOnInit() {
     console.log('INIT: ', this.result);
     console.log('INIT: ', this.newTopic);
-    this.newTopic.author = 'Alistair Willis';
+    this.newTopic.username = 'Alistair Willis';
   }
 
   addOption(e): void {
