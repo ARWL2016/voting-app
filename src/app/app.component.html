@@ -1,7 +1,7 @@
 <div>
   <nav class="navbar navbar-default">
     <div class="container">
-      <a class="navbar-brand"><b>{{brand}}</b></a>
+      <a class="navbar-brand"><b>VOTOGO</b></a>
 
         <ul class="nav navbar-nav">
           <li><a [routerLink]="['/home']">HOME</a></li>
@@ -9,7 +9,9 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]="['/login']">LOGIN</a></li>
+        <li *ngIf="!username"><a [routerLink]="['/login']">LOGIN</a></li>
+        <li *ngIf="username"><a>Logged in as {{username}}</a></li>
+        <button *ngIf="username" class="btn btn-default navbar-btn" (click)="logout()">LOGOUT</button>
       </ul>
 
     </div>

@@ -1,4 +1,4 @@
-<form>
+<form #form = "ngForm" (submit)="submitForm(form)">
 
   <div class="panel panel-default login-form">
     <div class="panel-heading">
@@ -8,24 +8,25 @@
     <div class="panel-body">
 
         <div class="form-group">
-          <label class="control-label">Enter a unique username</label> 
+          <label class="control-label">Username</label>
           <input
+            [(ngModel)]="username"
             class="form-control"
             name="username"
-            placeholder="username"
+            placeholder="enter your username"
             type="text">
         </div>
 
         <div class="form-group">
           <label class="control-label">Password</label>
           <input
+            [(ngModel)]="password"
             class="form-control"
             name="password"
-            placeholder="password"
+            placeholder="enter your password"
             type="password">
         </div>
-
-
+        <div>{{error}}</div>
 
         <button type="submit" class="btn btn-primary">Login</button>
         <p>Not registered? <a [routerLink]="['register']">register here</a></p>

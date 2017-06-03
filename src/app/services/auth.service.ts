@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/toPromise';
 
 import { IUser } from 'app/models/user';
 
@@ -17,7 +18,29 @@ export class AuthService {
   register(user: IUser) {
     const url = `${this._authUrl}register`;
     return this._http.post(url, user);
-      // .map((response: Response) => response.json())
-      // .do(data => console.log('new registration: ', data));
+
+  }
+
+  login(user: IUser): Promise<any> {
+    const url = `${this._authUrl}login`;
+    return this._http.post(url, user)
+      .toPromise()
+      .then(res => {
+        this.currentUser = res.json();
+        console.log('CURRENT USER: ', this.currentUser);
+        return true;
+      })
+      .catch(err => {
+        console.log('err in AUTH: ', err);
+        throw err;
+      });
+  }
+
+  isValidated() {
+    if (this.currentUser) {
+      return this.currentUser.username;
+    } else {
+      return null;
+    }
   }
 }

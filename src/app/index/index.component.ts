@@ -8,12 +8,14 @@ import { DataService } from '../services/data.service';
 })
 export class IndexComponent implements OnInit {
   exampleTopics = [];
+  username: string;
 
   constructor(private _data: DataService) { }
 
   ngOnInit() {
     this._data.fetchTopicIndex()
       .subscribe(topics => this.exampleTopics = topics);
+    }
+
   }
 
-}
