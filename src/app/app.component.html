@@ -9,6 +9,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!username"><a [routerLink]="['/login/register']">SIGN UP</a></li>
         <li *ngIf="!username"><a [routerLink]="['/login']">LOGIN</a></li>
         <li *ngIf="username"><a>Logged in as <b>{{ username | uppercase }}</b></a></li>
         <button *ngIf="username" class="btn btn-default navbar-btn" (click)="logout()">LOGOUT</button>
