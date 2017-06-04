@@ -4,9 +4,9 @@
     <h2 class="panel-title">{{ topic.topicTitle }}</h2>
   </div>
   <div class="panel-body">
-    <p>Username: {{ topic.username }}</p>
-    <p>Question: {{ topic.topicQuestion }}</p>
-    <p>Total Votes: {{ totalVotes }}</p>
+    <p><b>Author:</b> {{ topic.username | uppercase }}</p>
+    <p><b>Question:</b> {{ topic.topicQuestion }}</p>
+    <p><b>Total Votes:</b> {{ totalVotes }}</p>
   </div>
 
   <table class="table">
@@ -42,7 +42,7 @@
         (click)="castVote($event)">
         {{ result.option }}
       </button>
-      <div>Has voted: {{hasVoted}}</div>
+      <span *ngIf="hasVoted" class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
     </div>
   </div>
 

@@ -4,11 +4,11 @@
   <a [routerLink]="['/topic', topic._id]">
     <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">{{ topic.topicTitle }}</h3>
+        <h3 class="panel-title">{{ topic.topicTitle | uppercase }}</h3>
       </div>
       <div class="panel-body">
-        <p>Username: {{ topic.username }}</p>
-        <p>Question: {{ topic.topicQuestion }}
+        <p><b>Author:</b> {{ topic.username | uppercase }}</p>
+        <p><b>Question:</b> {{ topic.topicQuestion }}
       </div>
     </div>
     </a>
