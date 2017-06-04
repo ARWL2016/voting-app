@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { Topic } from '../models/topic';
 import { Result } from '../models/result';
+import {AuthService} from 'app/services/auth.service';
 
 @Component({
   selector: 'app-create-topic',
@@ -19,13 +20,14 @@ export class CreateTopicComponent implements OnInit {
 
   constructor(
     private _data: DataService,
-    private _router: Router
+    private _router: Router,
+    private _auth: AuthService
     ) { }
 
   ngOnInit() {
     console.log('INIT: ', this.result);
     console.log('INIT: ', this.newTopic);
-    this.newTopic.username = 'Alistair Willis';
+    this.newTopic.username = this._auth.isValidated();
   }
 
   addOption(e): void {

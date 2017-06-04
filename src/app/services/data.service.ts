@@ -45,7 +45,7 @@ export class DataService {
 
   deleteTopic(id: string): Observable<any> {
     const url = `http://localhost:3000/api/data/${id}`;
-    return this._http.delete(url); 
+    return this._http.delete(url);
   }
 
 }

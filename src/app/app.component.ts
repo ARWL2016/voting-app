@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { AuthService } from 'app/services/auth.service';
+import { Router } from '@angular/router';
 // import { DataService } from './services/data.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,12 +11,12 @@ import { AuthService } from 'app/services/auth.service';
 export class AppComponent implements OnInit, DoCheck {
   username: string;
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService, private _router: Router) { }
 
   ngOnInit() {
-    const identity = this._auth.isValidated();
-    if (identity) {
-      this.username = identity;
+    const username = this._auth.isValidated();
+    if (username) {
+      this.username = username;
       console.log('APP COMPONENT INIT', this.username);
     }
   }
@@ -24,6 +24,13 @@ export class AppComponent implements OnInit, DoCheck {
   ngDoCheck() {
     console.log('do check');
     this.username = this._auth.isValidated();
+  }
+
+  logout() {
+    console.log('LOGOUT');
+    this._auth.logout();
+    this._router.navigate(['/login']);
+
   }
 
 }

@@ -36,6 +36,10 @@ export class AuthService {
       });
   }
 
+  logout(): void {
+    this.currentUser = undefined;
+  }
+
   isValidated() {
     if (this.currentUser) {
       return this.currentUser.username;

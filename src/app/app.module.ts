@@ -13,6 +13,7 @@ import { AuthService } from './services/auth.service';
 import { TopicComponent } from 'app/topic/topic.component';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
+import {CreateTopicGuard} from 'app/services/create-topic-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,11 +33,11 @@ import { RegistrationComponent } from './auth/registration/registration.componen
       { path: 'login', component: LoginComponent },
       { path: 'login/register', component: RegistrationComponent },
       { path: 'home', component: IndexComponent },
-      { path: 'create', component: CreateTopicComponent },
+      { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [ DataService, AuthService ],
+  providers: [ DataService, AuthService, CreateTopicGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
