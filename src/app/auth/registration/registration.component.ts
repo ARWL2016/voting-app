@@ -28,12 +28,17 @@ export class RegistrationComponent implements OnInit {
         username: this.username,
         password: this.password
       };
-      this._auth.register(this.user).subscribe(
-        res => {
-            console.log('user created');
-            this._router.navigate(['/login']);
-        },
-        err => this.error = 'username already exists');
+      this._auth.register(this.user)
+        .then(() => {
+          console.log('user created');
+          this._router.navigate(['/home']);
+        })
+        .catch(err => {
+          this.error = 'username exists';
+          console.log('username exists, or:', err);
+        });
+
+       
 
     }
 

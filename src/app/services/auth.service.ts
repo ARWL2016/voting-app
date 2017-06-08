@@ -17,8 +17,15 @@ export class AuthService {
 
   register(user: IUser) {
     const url = `${this._authUrl}register`;
-    return this._http.post(url, user);
-
+    return this._http.post(url, user)
+      .toPromise()
+      .then(response => {
+        let body = response.json();
+        let headers = response.headers.toJSON(); 
+        let token = headers['x-auth'][0];
+        this.currentUser = body;
+        localStorage.setItem('token', token);
+      });
   }
 
   login(user: IUser): Promise<any> {

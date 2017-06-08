@@ -3,18 +3,24 @@ const { User } = require('../db');
 module.exports = {
   register(req, res) {
     console.log('controller: ', req.body);
-    const newUser = req.body;
-    const username = newUser.username;
+    const body = req.body;
+    const {username} = req.body;
 
-    User.findOne({username: username})
+    User.findOne({username})
       .then(user => {
         if (user) {
           res.status(409).send("user exists");
         } else {
-          User.create(newUser)
-            .then(user => res.status(201).send('user created'));
+          const user = new User(body); 
+          user.save().then(() => {
+            return user.generateAuthToken(); 
+          }).then((token) => {
+            user.password = undefined;
+            user.tokens = undefined; 
+            res.header('x-auth', token).send(user); 
+          })
         }
-      }).catch(err => res.status(500).send(error));
+      }).catch(err => res.status(400).send(err));
   },
 
   login(req, res) {
