@@ -1,4 +1,5 @@
 const { User } = require('../db');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   register(req, res) {
@@ -24,16 +25,10 @@ module.exports = {
   },
 
   login(req, res) {
-    const payload = req.body;
     const { username, password } = req.body;
     console.log(username, password);
 
-    // find one with same username
-    // check if passwords match
-    // if wrong, send 401
-    // if correct, send 200 OK and the user object with ID
-    // if user not found, send 401
-    User.findOne({username: username})
+    User.findOne({username})
       .then(user => {
         console.log(user);
         if (user) {
@@ -48,5 +43,12 @@ module.exports = {
           res.status(401).send('User not found');
         }
       })
+  }, 
+
+  logout(req, res) {
+    req.user.removeToken(req.token).then(() => {
+      res.status(200).send(); 
+    })
+    .catch(err => res.status(400).send());
   }
 }
