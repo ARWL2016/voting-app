@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
   username: string;
   password: string;
-  passwordRepeat: string;
+  passwordConfirmation: string;
   error: string;
   user: IUser;
 
@@ -23,7 +23,15 @@ export class RegistrationComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.username && this.password === this.passwordRepeat) {
+    if (this.password.length < 3) {
+      this.error = 'Password must be at least 3 characters.';
+      return;
+    }
+    if (this.password !== this.passwordConfirmation) {
+      this.error = 'Passwords do not match. Please try again.';
+      return;
+    }
+    if (this.username) {
       this.user = {
         username: this.username,
         password: this.password
@@ -34,14 +42,9 @@ export class RegistrationComponent implements OnInit {
           this._router.navigate(['/home']);
         })
         .catch(err => {
-          this.error = 'username exists';
-          console.log('username exists, or:', err);
+          this.error = 'Username is already taken. Please try again.';
         });
-
-       
-
     }
-
 
   }
 }

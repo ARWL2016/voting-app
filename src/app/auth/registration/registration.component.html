@@ -24,19 +24,19 @@
             class="form-control"
             name="password"
             placeholder="password"
-            type="text">
+            type="password">
         </div>
 
         <div class="form-group">
-          <label class="control-label">Re-enter password</label>
+          <label class="control-label">Confirm password</label>
           <input
-            [(ngModel)]="passwordRepeat"
+            [(ngModel)]="passwordConfirmation"
             class="form-control"
             name="password"
             placeholder="password"
-            type="text">
+            type="password">
         </div>
-        <div>{{error}}</div>
+        <div class="error">{{error}}</div>
 
         <button type="submit" class="btn btn-primary">Register</button>
 

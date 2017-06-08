@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 
 import { IUser } from 'app/models/user';
@@ -15,7 +12,7 @@ export class AuthService {
 
   constructor(private _http: Http) {}
 
-  register(user: IUser) {
+  register(user: IUser): Promise<void> {
     const url = `${this._authUrl}register`;
     return this._http.post(url, user)
       .toPromise()
@@ -24,18 +21,7 @@ export class AuthService {
       });
   }
 
-  processAuthToken(response) {
-    const body = response.json();
-    const { username } = body;
-    const headers = response.headers.toJSON();
-    const token = headers['x-auth'][0];
-
-    this.currentUser = body;
-    localStorage.setItem('token', token);
-    localStorage.setItem('username', username);
-  }
-
-  login(user: IUser): Promise<any> {
+  login(user: IUser): Promise<boolean> {
     const url = `${this._authUrl}login`;
     return this._http.post(url, user)
       .toPromise()
@@ -48,7 +34,7 @@ export class AuthService {
       });
   }
 
-  logout() {
+  logout(): Promise<void> {
     const token = localStorage.getItem('token');
     const headers = new Headers({ 'x-auth': token });
     const options = new RequestOptions({ headers });
@@ -63,7 +49,7 @@ export class AuthService {
       });
   }
 
-  isValidated() {
+  isValidated(): string {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
@@ -73,5 +59,16 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  processAuthToken(response): void {
+    const body = response.json();
+    const { username } = body;
+    const headers = response.headers.toJSON();
+    const token = headers['x-auth'][0];
+
+    this.currentUser = body;
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', username);
   }
 }
