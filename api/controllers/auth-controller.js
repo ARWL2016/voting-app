@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
   register(req, res) {
-    console.log('controller: ', req.body);
     const body = req.body;
     const {username} = req.body;
 
@@ -12,13 +11,13 @@ module.exports = {
         if (user) {
           res.status(409).send("user exists");
         } else {
-          const user = new User(body); 
+          const user = new User(body);
           user.save().then(() => {
-            return user.generateAuthToken(); 
+            return user.generateAuthToken();
           }).then((token) => {
             user.password = undefined;
-            user.tokens = undefined; 
-            res.header('x-auth', token).send(user); 
+            user.tokens = undefined;
+            res.header('x-auth', token).send(user);
           })
         }
       }).catch(err => res.status(400).send(err));
@@ -26,28 +25,24 @@ module.exports = {
 
   login(req, res) {
     const { username, password } = req.body;
-    console.log(username, password);
 
-    User.findOne({username})
-      .then(user => {
-        console.log(user);
-        if (user) {
-          // check password
-          if (user.password === password) {
-            user.password = undefined;
-            res.status(200).send(user);
-          } else {
-            res.status(401).send('Password incorrect');
-          }
-        } else {
-          res.status(401).send('User not found');
-        }
-      })
-  }, 
+    User.findByCredentials(username, password).then((user) => {
+      return user.generateAuthToken()
+        .then((token) => {
+          user.password = undefined;
+          user.tokens = undefined;
+          res.header('x-auth', token).send(user);
+      });
+    }).catch((err) => {
+      res.status(400).send();
+    });
+
+
+  },
 
   logout(req, res) {
     req.user.removeToken(req.token).then(() => {
-      res.status(200).send(); 
+      res.status(200).send();
     })
     .catch(err => res.status(400).send());
   }

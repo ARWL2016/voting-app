@@ -20,35 +20,38 @@ export class AuthService {
     return this._http.post(url, user)
       .toPromise()
       .then(response => {
-        let body = response.json();
-        let { username } = body;
-        let headers = response.headers.toJSON(); 
-        let token = headers['x-auth'][0];
-        this.currentUser = body;
-        localStorage.setItem('token', token);
-        localStorage.setItem('username', username);
+        this.processAuthToken(response);
       });
+  }
+
+  processAuthToken(response) {
+    const body = response.json();
+    const { username } = body;
+    const headers = response.headers.toJSON();
+    const token = headers['x-auth'][0];
+
+    this.currentUser = body;
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', username);
   }
 
   login(user: IUser): Promise<any> {
     const url = `${this._authUrl}login`;
     return this._http.post(url, user)
       .toPromise()
-      .then(res => {
-        this.currentUser = res.json();
-        console.log('CURRENT USER: ', this.currentUser);
-        return true;
+      .then(response => {
+        this.processAuthToken(response);
+        return Promise.resolve(true);
       })
       .catch(err => {
-        console.log('err in AUTH: ', err);
-        throw err;
+        return Promise.reject(err);
       });
   }
 
   logout() {
-    let token = localStorage.getItem('token');
-    let headers = new Headers({ 'x-auth': token }); 
-    let options = new RequestOptions({ headers });
+    const token = localStorage.getItem('token');
+    const headers = new Headers({ 'x-auth': token });
+    const options = new RequestOptions({ headers });
     const url = `${this._authUrl}logout`;
 
     return this._http.delete(url, options)
@@ -57,18 +60,16 @@ export class AuthService {
         this.currentUser = undefined;
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-      }) 
-
-    // this.currentUser = undefined;
+      });
   }
 
   isValidated() {
-    let token = localStorage.getItem('token');
-    let username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
 
     if (token && username) {
-      this.currentUser = {username}; 
-      return username; 
+      this.currentUser = {username};
+      return username;
     } else {
       return null;
     }
