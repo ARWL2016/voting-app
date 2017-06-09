@@ -11,6 +11,7 @@ const exampleTopics = [
         { option: 'JQuery', votes: 12 },
         { option: 'Vue', votes: 15 },
       ],
+      voters: []
     },
     {
       topicTitle: 'Server Side Frameworks',
@@ -23,7 +24,8 @@ const exampleTopics = [
         { option: 'Python', votes: 3 },
         { option: 'PHP', votes: 15 },
         { option: 'Java / JSP', votes: 0 }
-      ]
+      ],
+      voters: []
     }
   ];
 
@@ -33,7 +35,7 @@ const exampleTopics = [
         VotingTopic.create(topic)
           .then(topic => console.log(topic));
     })
- 
+
   };
 
   seedDatabase();

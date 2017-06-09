@@ -14,7 +14,7 @@ import {AuthService} from 'app/services/auth.service';
 })
 export class CreateTopicComponent implements OnInit {
   result = new Result('', 0);
-  newTopic = new Topic('', '', '', []);
+  newTopic = new Topic('', '', '', [], []);
   options: string[] = [];
   option: '';
 
@@ -43,7 +43,7 @@ export class CreateTopicComponent implements OnInit {
 
   submitForm(): void {
     this._data.addNewTopic(this.newTopic).subscribe();
-    this.newTopic = new Topic('', '', '', []);
+    this.newTopic = new Topic('', '', '', [], []);
     this._router.navigate(['/home']);
   }
 

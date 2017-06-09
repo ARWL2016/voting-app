@@ -6,12 +6,14 @@ export class Topic {
   topicTitle: string;
   username: string;
   results: Result[];
+  voters: string[];
 
-  constructor(username, topicTitle, topicQuestion, results) {
+  constructor(username, topicTitle, topicQuestion, results, voters) {
     this.username = username;
     this.topicTitle = topicTitle;
     this.topicQuestion = topicQuestion;
     this.results = results;
+    this.voters = voters;
   }
 
 }

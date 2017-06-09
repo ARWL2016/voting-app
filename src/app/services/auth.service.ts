@@ -38,6 +38,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const headers = new Headers({ 'x-auth': token });
     const options = new RequestOptions({ headers });
+
     const url = `${this._authUrl}logout`;
 
     return this._http.delete(url, options)

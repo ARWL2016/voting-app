@@ -22,19 +22,19 @@ module.exports = {
   },
 
   addVote(req, res) {
-    const payload = req.body;
+    const body = req.body;
     const id = req.params.id;
 
-    VotingTopic.findByIdAndUpdate(id, payload)
+    VotingTopic.findByIdAndUpdate(id, body)
       .then(() => VotingTopic.findById(id))
       .then(topic => res.send(topic));
   },
 
   delete(req, res) {
-    const id = req.params.id; 
+    const id = req.params.id;
 
     VotingTopic.findByIdAndRemove(id)
-      .then(topic => res.status(202).send(topic)); 
+      .then(topic => res.status(202).send(topic));
   }
 };
 

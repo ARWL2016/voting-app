@@ -1,23 +1,27 @@
-const mongoose = require('mongoose'); 
-const ResultsSchema = require('./results'); 
+const mongoose = require('mongoose');
+const ResultsSchema = require('./results');
 
 const VotingTopicSchema = new mongoose.Schema({
   topicTitle: {
-    type: String, 
+    type: String,
     required: true
-  }, 
+  },
   topicQuestion: {
-    type: String, 
+    type: String,
     required: true
-  }, 
+  },
   username: {
-    type: String, 
+    type: String,
     required: true
-  }, 
+  },
+  voters: [{
+    type: String,
+    required: false
+  }],
   results: [ResultsSchema]
 
 });
 
-const VotingTopic = mongoose.model('voting-topic', VotingTopicSchema); 
+const VotingTopic = mongoose.model('voting-topic', VotingTopicSchema);
 
-module.exports = VotingTopic; 
+module.exports = VotingTopic;

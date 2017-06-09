@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'app/services/data.service';
 import { Topic } from '../models/topic';
-import {AuthService} from 'app/services/auth.service';
+import { Result } from '../models/result';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'app-topic',
@@ -11,14 +12,17 @@ import {AuthService} from 'app/services/auth.service';
 })
 export class TopicComponent implements OnInit {
   _id: string;
-  topic = new Topic('', '', '', []);
+  topic: Topic;
+  results: Result[];
   totalVotes: number;
   hasVoted = false;
+  currentUser: string;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _data: DataService
+    private _data: DataService,
+    private _auth: AuthService
     ) {
       console.log('snapshot' + this._route.snapshot.params['id']);
       this._id = this._route.snapshot.params['id'];
@@ -29,7 +33,15 @@ export class TopicComponent implements OnInit {
     this._data.fetchTopicById(this._id)
       .subscribe(topic => {
         this.topic = topic;
+        this.results = topic.results;
         this.totalVotes = this.getTotalVotes();
+        this.currentUser = this._auth.isValidated();
+
+        this.topic.voters.forEach(voter => {
+          if (voter === this.currentUser) {
+            this.hasVoted = true;
+          }
+        });
       });
   }
 
@@ -45,9 +57,10 @@ export class TopicComponent implements OnInit {
           result.votes += 1;
         }
       });
+      this.topic.voters.push(this.currentUser);
       this.hasVoted = true;
       this.totalVotes = this.getTotalVotes();
-      this._data.castVote(this._id, this.topic).subscribe();
+      this._data.castVote(this._id, this.topic);
     }
   }
 
