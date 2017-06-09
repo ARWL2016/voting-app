@@ -4,11 +4,13 @@ import { DataService } from 'app/services/data.service';
 import { Topic } from '../models/topic';
 import { Result } from '../models/result';
 import { AuthService } from 'app/services/auth.service';
+import { pageTransition } from '../animations';
 
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.scss']
+  styleUrls: ['./topic.component.scss'],
+  animations: [ pageTransition ]
 })
 export class TopicComponent implements OnInit {
   _id: string;

@@ -9,7 +9,6 @@
 #### Features to Add 
 
 - chart.js pie chart 
-- animations (fade ins)
 - toastr alerts 
 - my votes page / profile page
 - landing page info (and other help)

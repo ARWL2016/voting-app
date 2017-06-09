@@ -3,11 +3,13 @@ import { NgForm } from '@angular/forms';
 import { IUser } from 'app/models/user';
 import { AuthService } from 'app/services/auth.service';
 import { Router } from '@angular/router';
+import { pageTransition } from '../../animations';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+  animations: [ pageTransition ]
 })
 export class RegistrationComponent implements OnInit {
   username: string;

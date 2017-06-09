@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -13,7 +14,7 @@ import { AuthService } from './services/auth.service';
 import { TopicComponent } from 'app/topic/topic.component';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
-import {CreateTopicGuard} from 'app/services/create-topic-guard.service';
+import { CreateTopicGuard } from 'app/services/create-topic-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {CreateTopicGuard} from 'app/services/create-topic-guard.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot([

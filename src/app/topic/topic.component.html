@@ -1,14 +1,14 @@
 
-<div *ngIf="topic" class="panel panel-success voting-panel">
+<div *ngIf="topic" class="panel panel-success voting-panel" [@showPage]="'on'">
   <div class="panel-heading">
     <h2 class="panel-title">{{ topic.topicTitle }}
+      <span *ngIf="hasVoted" class="pull-right voted">voted</span>
       <span *ngIf="hasVoted" class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></span>
     </h2>
   </div>
   <div class="panel-body">
-    <p><b>Author:</b> {{ topic.username | uppercase }}</p>
-    <p><b>Question:</b> {{ topic.topicQuestion }}</p>
-    <p><b>Total Votes:</b> {{ totalVotes }}</p>
+    <p>{{ topic.topicQuestion }}</p>
+    <p><i> - {{ topic.username  }}</i></p>
   </div>
 
   <table class="table">
@@ -24,6 +24,10 @@
         <td class="option-cell">{{ result.option | titlecase }}</td>
         <td>{{ result.votes }}</td>
 
+      </tr>
+      <tr>
+        <td class="option-cell">TOTAL</td>
+        <td>{{ totalVotes }}</td>
       </tr>
     </tbody>
   </table>

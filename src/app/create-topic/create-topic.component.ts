@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { Topic } from '../models/topic';
 import { Result } from '../models/result';
 import {AuthService} from 'app/services/auth.service';
+import { pageTransition } from '../animations';
 
 @Component({
   selector: 'app-create-topic',
   templateUrl: './create-topic.component.html',
-  styleUrls: ['./create-topic.component.scss']
+  styleUrls: ['./create-topic.component.scss'],
+  animations: [ pageTransition ]
 })
 export class CreateTopicComponent implements OnInit {
   result = new Result('', 0);
