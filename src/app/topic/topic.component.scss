@@ -1,19 +1,19 @@
+
 .voting-panel {
   max-width: 800px;
   margin: 0 auto;
   margin-top: 20px;
 }
 
-.option-cell {
-  padding: 15px;
+.cell {
+  padding: 10px 0 10px 20px;
+  border-color: #777;
+  font-size: 0.9em;
+
 }
 
 .btn-default {
   margin-bottom: 5px;
-}
-
-.panel-title {
-  font-size: 24px;
 }
 
 .glyphicon {
@@ -29,6 +29,42 @@
 .voted {
   font-size: 16px;
   padding: 3px 0 3px 5px;;
+}
+
+.delete-topic-button {
+  margin-top: 20px;
+}
+
+.topic-wrapper {
+  margin-top: 30px;
+}
+
+.panel-heading {
+    background-color: #262626;
+    color: orange;
+    border-color: #666;
+}
+.panel-heading:hover {
+    background-color: #363636;
+}
+
+.panel-title {
+  font-size: 1.5em;
+  font-family: 'Roboto', sans-serif;
+  padding: 5px;
+}
+
+.panel {
+  background-color: #262626;
+  color: white;
+  font-family: 'Roboto';
+  font-size: 1.3em;
+  border: 0;
+}
+
+.topic-details {
+  font-size: 0.9em;
+  color: #888;
 }
 
 

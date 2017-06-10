@@ -12,6 +12,7 @@ import { pageTransition } from '../animations';
 })
 export class IndexComponent implements OnInit {
   topics: Topic[];
+  options = [];
   username: string;
 
   constructor(private _data: DataService, private _auth: AuthService) { }

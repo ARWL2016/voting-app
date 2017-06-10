@@ -5,6 +5,7 @@ import { Topic } from '../models/topic';
 import { Result } from '../models/result';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
+import {ToastrService} from 'app/services/toastr.service';
 
 @Component({
   selector: 'app-topic',
@@ -26,7 +27,8 @@ export class TopicComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _data: DataService,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _toastr: ToastrService
     ) {
       console.log('snapshot' + this._route.snapshot.params['id']);
       this._id = this._route.snapshot.params['id'];
@@ -71,8 +73,11 @@ export class TopicComponent implements OnInit {
   }
 
   deleteTopic(id: string) {
-    this._data.deleteTopic(id).subscribe();
-    this._router.navigate(['/home']);
+    this._data.deleteTopic(id).then(() => {
+      this._toastr.warning('Topic deleted!');
+      this._router.navigate(['/home']);
+    });
+
   }
 
   toggleDisplay() {

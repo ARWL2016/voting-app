@@ -8,9 +8,9 @@
 
 #### Features to Add 
 
-- chart.js pie chart 
 - my votes page / profile page
 - landing page info (and other help)
+- footer and about page
 
 #### Styling 
 - better background

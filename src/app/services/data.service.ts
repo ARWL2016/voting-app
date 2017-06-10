@@ -23,7 +23,6 @@ export class DataService {
   fetchTopicById(id: string) {
     return this._http.get(this._dataUrl + id)
       .map(res => res.json());
-      // .do(data => console.log(data));
   }
 
   addNewTopic(newTopic: Topic): Observable<Topic[]> {
@@ -35,18 +34,24 @@ export class DataService {
 
   castVote(id: string, topic: Topic): Promise<any> {
     const url = `http://localhost:3000/api/data/vote/${id}`;
-    const token = localStorage.getItem('token');
-    const headers = new Headers({ 'Content-Type': 'application/json', 'x-auth': token });
-    const options = new RequestOptions({ headers });
+    const options = this.addAuthTokenToHeader();
 
     return this._http.put(url, topic, options)
       .toPromise();
-
   }
 
-  deleteTopic(id: string): Observable<any> {
+  deleteTopic(id: string): Promise<Response> {
     const url = `http://localhost:3000/api/data/${id}`;
-    return this._http.delete(url);
+    const options = this.addAuthTokenToHeader();
+    return this._http.delete(url, options)
+      .toPromise();
+  }
+
+  addAuthTokenToHeader() {
+    const token = localStorage.getItem('token');
+    const headers = new Headers({ 'Content-Type': 'application/json', 'x-auth': token });
+    const options = new RequestOptions({ headers });
+    return options;
   }
 
 }

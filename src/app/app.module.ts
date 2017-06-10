@@ -41,7 +41,6 @@ import { ChartComponent } from './chart/chart.component';
       { path: 'login/register', component: RegistrationComponent },
       { path: 'home', component: IndexComponent },
       { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
-      { path: 'chart', component: ChartComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],

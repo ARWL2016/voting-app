@@ -32,9 +32,10 @@ module.exports = {
 
   delete(req, res) {
     const id = req.params.id;
-
+    console.log(id);
     VotingTopic.findByIdAndRemove(id)
-      .then(topic => res.status(202).send(topic));
+      .then(topic => res.status(202).send(topic))
+      .catch(err => res.status(400).send());
   }
 };
 

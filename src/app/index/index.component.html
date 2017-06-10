@@ -1,14 +1,16 @@
-<h2>Voting Topics</h2>
 
-<section *ngFor="let topic of topics" [@showPage]="'on'">
-  <a [routerLink]="['/topic', topic._id]">
+<section
+  *ngFor="let topic of topics"
+  class="topic-wrapper"
+  [@showPage]="'on'">
+  <a class="topic" [routerLink]="['/topic', topic._id]">
     <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">{{ topic.topicTitle | uppercase }}</h3>
+        <h3 class="panel-title">{{ topic.topicTitle }}</h3>
       </div>
       <div class="panel-body">
-        <p><b>Author:</b> {{ topic.username | uppercase }}</p>
-        <p><b>Question:</b> {{ topic.topicQuestion }}
+        <p>{{ topic.topicQuestion }}</p>
+        <p class="topic-details">by {{ topic.username }}</p>
       </div>
     </div>
     </a>

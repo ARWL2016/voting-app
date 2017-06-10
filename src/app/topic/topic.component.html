@@ -12,25 +12,25 @@
     </div>
     <div class="panel-body">
       <p>{{ topic.topicQuestion }}</p>
-      <p><i> - {{ topic.username  }}</i></p>
+      <p class="topic-details">by {{ topic.username  }}</p>
     </div>
 
     <table class="table">
-      <thead>
+      <!--<thead>
         <tr>
           <th>Option</th>
           <th>Votes</th>
         </tr>
-      </thead>
+      </thead>-->
 
       <tbody>
         <tr *ngFor="let result of results">
-          <td class="option-cell">{{ result.option | titlecase }}</td>
-          <td>{{ result.votes }}</td>
+          <td class="cell">{{ result.option | titlecase }}</td>
+          <td class="cell">{{ result.votes }}</td>
         </tr>
         <tr>
-          <td class="option-cell">TOTAL</td>
-          <td>{{ totalVotes }}</td>
+          <td class="cell">TOTAL</td>
+          <td class="cell">{{ totalVotes }}</td>
         </tr>
       </tbody>
     </table>
@@ -40,7 +40,7 @@
   <app-chart *ngIf="view === 'chart'" [_id]="_id"></app-chart>
 
 
-  <div *ngIf="!hasVoted && currentUser" class="panel panel-success voting-panel">
+  <div *ngIf="!hasVoted && currentUser && view === 'data'" class="panel panel-success voting-panel">
     <div class="panel-heading">
       <h3 class="panel-title">Cast Your Vote</h3>
     </div>
@@ -57,9 +57,19 @@
     </div>
   </div>
 
-  <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" [@showPage]="'on'">
+  <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" >
     To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.
   </div>
+
+
+  <button
+    *ngIf="topic && currentUser === topic.username && view === 'data'"
+    class="btn btn-warning delete-topic-button"
+    (click)="deleteTopic(_id)"
+    [@showPage]="'on'">
+    Delete topic
+  </button>
+
 
 </div>
 
