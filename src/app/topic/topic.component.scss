@@ -1,19 +1,27 @@
 
-.voting-panel {
-  max-width: 800px;
+.topic-wrapper {
+  max-width: 500px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.toggle-button {
+  margin: 10px 0 10px 0;
+  padding: 10px 20px 10px 20px;
 }
 
 .cell {
-  padding: 10px 0 10px 20px;
-  border-color: #777;
+  padding: 10px 20px 10px 20px;
+  border-width: 0px;
   font-size: 0.9em;
-
+  text-align: left;
 }
 
-.btn-default {
-  margin-bottom: 5px;
+.cell-result {
+  padding: 10px 20px 10px 20px;
+  border-width: 0px;
+  font-size: 0.9em;
+  text-align: right;
 }
 
 .glyphicon {
@@ -33,10 +41,6 @@
 
 .delete-topic-button {
   margin-top: 20px;
-}
-
-.topic-wrapper {
-  margin-top: 30px;
 }
 
 .panel-heading {
@@ -60,11 +64,17 @@
   font-family: 'Roboto';
   font-size: 1.3em;
   border: 0;
+  margin-top: 10px;
 }
 
 .topic-details {
   font-size: 0.9em;
   color: #888;
 }
+
+.thead {
+  border-bottom: 0;
+}
+
 
 

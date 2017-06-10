@@ -1,9 +1,7 @@
 
-<div [@showPage]="'on'">
+<div class="topic-wrapper" [@showPage]="'on'">
 
-  <button (click)="toggleDisplay()" class="btn btn-info">{{ toggleButton }}</button>
-
-  <div *ngIf="topic && view === 'data'" class="panel panel-success voting-panel" [@showPage]="'on'" >
+  <div *ngIf="topic && view === 'data'" class="panel panel-success " [@showPage]="'on'" >
     <div class="panel-heading">
       <h2 class="panel-title">{{ topic.topicTitle }}
         <span *ngIf="hasVoted" class="pull-right voted">voted</span>
@@ -16,21 +14,14 @@
     </div>
 
     <table class="table">
-      <!--<thead>
-        <tr>
-          <th>Option</th>
-          <th>Votes</th>
-        </tr>
-      </thead>-->
-
-      <tbody>
+      <tbody class="tbody">
         <tr *ngFor="let result of results">
           <td class="cell">{{ result.option | titlecase }}</td>
-          <td class="cell">{{ result.votes }}</td>
+          <td class="cell-result"><b>{{ result.votes }}</b></td>
         </tr>
         <tr>
           <td class="cell">TOTAL</td>
-          <td class="cell">{{ totalVotes }}</td>
+          <td class="cell-result"><b>{{ totalVotes }}</b></td>
         </tr>
       </tbody>
     </table>
@@ -56,6 +47,8 @@
       </div>
     </div>
   </div>
+
+    <button (click)="toggleDisplay()" class="btn btn-info toggle-button">{{ toggleButton }}</button>
 
   <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" >
     To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.

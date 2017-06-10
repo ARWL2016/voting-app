@@ -5,7 +5,7 @@ import { Topic } from '../models/topic';
 import { Result } from '../models/result';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
-import {ToastrService} from 'app/services/toastr.service';
+import { ToastrService } from 'app/services/toastr.service';
 
 @Component({
   selector: 'app-topic',
@@ -69,6 +69,7 @@ export class TopicComponent implements OnInit {
       this.hasVoted = true;
       this.totalVotes = this.getTotalVotes();
       this._data.castVote(this._id, this.topic);
+      this._toastr.success('Thanks for your vote');
     }
   }
 
