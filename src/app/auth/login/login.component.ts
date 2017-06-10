@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IUser} from 'app/models/user';
+import { IUser } from 'app/models/user';
 import { AuthService } from 'app/services/auth.service';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../animations';
+import { ToastrService } from '../../services/toastr.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,11 @@ export class LoginComponent implements OnInit {
   password: string;
   error: string;
 
-  constructor(private _auth: AuthService, private _route: Router) { }
+  constructor(
+    private _auth: AuthService,
+    private _route: Router,
+    private _toastr: ToastrService
+    ) { }
 
   ngOnInit() {
   }
@@ -27,6 +32,7 @@ export class LoginComponent implements OnInit {
       this._auth.login(this.user)
         .then(res => {
           if (res) {
+            this._toastr.success('You have been logged in.');
             this._route.navigate(['/home']);
           }
       })

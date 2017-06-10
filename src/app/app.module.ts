@@ -15,6 +15,7 @@ import { TopicComponent } from 'app/topic/topic.component';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { CreateTopicGuard } from 'app/services/create-topic-guard.service';
+import { ToastrService } from './services/toastr.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,12 @@ import { CreateTopicGuard } from 'app/services/create-topic-guard.service';
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
-  providers: [ DataService, AuthService, CreateTopicGuard ],
+  providers: [
+    DataService,
+    AuthService,
+    CreateTopicGuard,
+    ToastrService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

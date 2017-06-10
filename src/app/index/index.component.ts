@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from '../services/data.service';
+import {DataService} from '../services/data.service';
 import { Topic } from '../models/topic';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
@@ -25,6 +25,8 @@ export class IndexComponent implements OnInit {
     });
 
   }
+
+
 
 }
 

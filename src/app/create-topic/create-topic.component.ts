@@ -7,6 +7,7 @@ import { Topic } from '../models/topic';
 import { Result } from '../models/result';
 import {AuthService} from 'app/services/auth.service';
 import { pageTransition } from '../animations';
+import {ToastrService} from 'app/services/toastr.service';
 
 @Component({
   selector: 'app-create-topic',
@@ -23,7 +24,8 @@ export class CreateTopicComponent implements OnInit {
   constructor(
     private _data: DataService,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _toastr: ToastrService
     ) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class CreateTopicComponent implements OnInit {
   submitForm(): void {
     this._data.addNewTopic(this.newTopic).subscribe();
     this.newTopic = new Topic('', '', '', [], []);
+    this._toastr.success('New voting topic added');
     this._router.navigate(['/home']);
   }
 
