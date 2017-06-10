@@ -6,6 +6,7 @@
         <ul class="nav navbar-nav">
           <li><a [routerLink]="['/home']">HOME</a></li>
           <li *ngIf="username"><a [routerLink]="['/create']">NEW TOPIC</a></li>
+          <li *ngIf="username"><a [routerLink]="['/chart']">CHART</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

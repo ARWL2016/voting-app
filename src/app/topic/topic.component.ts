@@ -19,6 +19,8 @@ export class TopicComponent implements OnInit {
   totalVotes: number;
   hasVoted = false;
   currentUser: string;
+  toggleButton = 'View Chart';
+  view = 'data';
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,6 +38,8 @@ export class TopicComponent implements OnInit {
       .subscribe(topic => {
         this.topic = topic;
         this.results = topic.results;
+
+
         this.totalVotes = this.getTotalVotes();
         this.currentUser = this._auth.isValidated();
 
@@ -69,6 +73,11 @@ export class TopicComponent implements OnInit {
   deleteTopic(id: string) {
     this._data.deleteTopic(id).subscribe();
     this._router.navigate(['/home']);
+  }
+
+  toggleDisplay() {
+    this.view = (this.view === 'data') ? 'chart' : 'data';
+    this.toggleButton = (this.toggleButton === 'View Chart') ? 'View Data' : 'View Chart';
   }
 
 }

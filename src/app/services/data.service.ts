@@ -22,8 +22,8 @@ export class DataService {
 
   fetchTopicById(id: string) {
     return this._http.get(this._dataUrl + id)
-      .map(res => res.json())
-      .do(data => console.log(data));
+      .map(res => res.json());
+      // .do(data => console.log(data));
   }
 
   addNewTopic(newTopic: Topic): Observable<Topic[]> {

@@ -9,7 +9,7 @@ const pageTransition =
       animate('500ms ease-in')
     ]),
     transition('on => void', [
-      animate(300, style({ opacity: 0}))
+      animate(0, style({ opacity: 0}))
     ])
   ]);
 
