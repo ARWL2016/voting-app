@@ -4,6 +4,7 @@ import { IUser } from 'app/models/user';
 import { AuthService } from 'app/services/auth.service';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../animations';
+import { ToastrService } from 'app/services/toastr.service';
 
 @Component({
   selector: 'app-registration',
@@ -18,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   error: string;
   user: IUser;
 
-  constructor(private _auth: AuthService, private _router: Router ) {}
+  constructor(private _auth: AuthService, private _router: Router, private _toastr: ToastrService ) {}
 
   ngOnInit() {
 
@@ -41,6 +42,7 @@ export class RegistrationComponent implements OnInit {
       this._auth.register(this.user)
         .then(() => {
           console.log('user created');
+          this._toastr.success('Thanks for signing up!');
           this._router.navigate(['/home']);
         })
         .catch(err => {

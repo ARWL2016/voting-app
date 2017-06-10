@@ -39,7 +39,7 @@
       <div class="btn-group" role="group">
         <button
           *ngFor="let result of results"
-          class="btn btn-default"
+          class="btn btn-default voting-button"
           value="{{ result.option }}"
           (click)="castVote($event)">
           {{ result.option }}

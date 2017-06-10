@@ -2,11 +2,13 @@ import {Component, OnInit, Input} from '@angular/core';
 import {DataService} from 'app/services/data.service';
 import {Topic} from 'app/models/topic';
 import {Result} from 'app/models/result';
+import { pageTransition } from '../animations';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  styleUrls: ['./chart.component.scss'],
+  animations: [ pageTransition ]
 })
 export class ChartComponent implements OnInit {
   @Input() _id;

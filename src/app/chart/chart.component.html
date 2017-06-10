@@ -1,5 +1,5 @@
 
-<div *ngIf="results" class="doughnut-chart" style="display: block">
+<div *ngIf="results" class="doughnut-chart" style="display: block" [@showPage]="'on'">
   <canvas baseChart
               [data]="chartData"
               [labels]="chartLabels"
