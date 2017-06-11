@@ -1,13 +1,24 @@
 
 .topic-wrapper {
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 800px;
+  // margin: 0 auto;
   margin-top: 10px;
 }
 
-.toggle-button {
-  margin: 10px 0 10px 0;
+.button-wrapper {
+  float: left;
+  width: 200px;
+}
+
+.data-wrapper {
+  float: left;
+  width: 600px;
+}
+
+.control-button {
+  margin-bottom: 12px;
   padding: 10px 20px 10px 20px;
+  width: 150px;
 }
 
 .voting-button {
@@ -43,10 +54,6 @@
   padding: 3px 0 3px 5px;;
 }
 
-.delete-topic-button {
-  margin-top: 20px;
-}
-
 .panel-heading {
     background-color: #262626;
     color: orange;
@@ -68,7 +75,6 @@
   font-family: 'Roboto';
   font-size: 1.3em;
   border: 0;
-  margin-top: 10px;
 }
 
 .topic-details {

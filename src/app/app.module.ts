@@ -18,6 +18,7 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { CreateTopicGuard } from 'app/services/create-topic-guard.service';
 import { ToastrService } from './services/toastr.service';
 import { ChartComponent } from './chart/chart.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChartComponent } from './chart/chart.component';
     LoginComponent,
     CreateTopicComponent,
     RegistrationComponent,
-    ChartComponent
+    ChartComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { ChartComponent } from './chart/chart.component';
       { path: 'login/register', component: RegistrationComponent },
       { path: 'home', component: IndexComponent },
       { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
+      { path: 'about',  component: AboutComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],

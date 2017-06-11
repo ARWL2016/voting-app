@@ -35,32 +35,34 @@
             [(ngModel)]="option"
             class="form-control"
             name="option"
-            placeholder="enter an option"
+            placeholder="add a voting option and press enter"
             type="text">
         </div>
         <div>
           <span class="option-badge" *ngFor="let option of options">{{ option }}</span>
         </div>
+        <div class="error-message">{{error}}</div>
 
-          <button class="btn btn-default option-button" (click)="addOption($event)">
-            Add another option
+          <button class="btn btn-primary control-button" (click)="addOption($event)">
+            Add option
           </button>
-          <button class="btn btn-default option-button" (click)="removeOption($event)">
+          <button class="btn btn-primary control-button" (click)="removeOption($event)">
             Undo
           </button>
 
 
 
 
-        <button type="submit" class="btn btn-primary pull-right">Create</button>
+        <button type="submit" class="btn btn-primary pull-right control-button">Create</button>
 
 
     </div>
   </div>
 
 </form>
-<div class="output">
+
+<!--<div class="output">
 Model: {{ model | json}}
 <br>
 Angular: {{ form.value | json}}
-</div>
+</div>-->

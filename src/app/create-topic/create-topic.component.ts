@@ -20,6 +20,7 @@ export class CreateTopicComponent implements OnInit {
   newTopic = new Topic('', '', '', [], []);
   options: string[] = [];
   option: '';
+  error: string;
 
   constructor(
     private _data: DataService,
@@ -46,10 +47,16 @@ export class CreateTopicComponent implements OnInit {
   }
 
   submitForm(): void {
-    this._data.addNewTopic(this.newTopic).subscribe();
-    this.newTopic = new Topic('', '', '', [], []);
-    this._toastr.success('New voting topic added');
-    this._router.navigate(['/home']);
+    if (this.newTopic.topicQuestion && this.newTopic.topicTitle && this.newTopic.results.length > 1) {
+      this._data.addNewTopic(this.newTopic).subscribe();
+      // do we need to clean up?
+      this.newTopic = new Topic('', '', '', [], []);
+      this._toastr.success('New voting topic added');
+      this._router.navigate(['/home']);
+    } else {
+      this.error = 'Please complete all fields and provide at least two options.';
+    }
+
   }
 
   removeOption(e): void {

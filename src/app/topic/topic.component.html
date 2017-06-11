@@ -1,6 +1,20 @@
 
-<div class="topic-wrapper" [@showPage]="'on'">
+<div class="topic-wrapper" [@showPage]="'on'" >
 
+<div class="button-wrapper">
+  <button (click)="toggleDisplay()" class="btn btn-info control-button">{{ toggleButton }}</button>
+  <button class="btn btn-info control-button" [routerLink]="['/home']">Back to Index</button>
+
+  <button
+  *ngIf="topic && currentUser === topic.username && view === 'data'"
+  class="btn btn-warning control-button"
+  (click)="deleteTopic(_id)"
+  [@showPage]="'on'">
+  Delete topic
+</button>
+</div>
+
+<div class="data-wrapper">
   <div *ngIf="topic && view === 'data'" class="panel panel-success " [@showPage]="'on'" >
     <div class="panel-heading">
       <h2 class="panel-title">{{ topic.topicTitle }}
@@ -30,7 +44,6 @@
   <!--results panel end-->
   <app-chart *ngIf="view === 'chart'" [_id]="_id"></app-chart>
 
-
   <div *ngIf="!hasVoted && currentUser && view === 'data'" class="panel panel-success voting-panel">
     <div class="panel-heading">
       <h3 class="panel-title">Cast Your Vote</h3>
@@ -39,7 +52,7 @@
       <div class="btn-group" role="group">
         <button
           *ngFor="let result of results"
-          class="btn btn-default voting-button"
+          class="btn btn-success voting-button"
           value="{{ result.option }}"
           (click)="castVote($event)">
           {{ result.option }}
@@ -48,20 +61,11 @@
     </div>
   </div>
 
-    <button (click)="toggleDisplay()" class="btn btn-info toggle-button">{{ toggleButton }}</button>
-
   <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" >
     To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.
   </div>
-
-
-  <button
-    *ngIf="topic && currentUser === topic.username && view === 'data'"
-    class="btn btn-warning delete-topic-button"
-    (click)="deleteTopic(_id)"
-    [@showPage]="'on'">
-    Delete topic
-  </button>
+</div>
+<!--data wrapper-->
 
 
 </div>
