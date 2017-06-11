@@ -7,7 +7,6 @@
   },
   "scripts": {
     "ng": "ng",
-    "trial": "JWT_SECRET = hjskdfh MONGO_URI = mongodb://localhost:27017/voting-app node server.js",
     "serve": "ng serve",
     "start": "node server.js",
     "build": "ng build",
@@ -16,8 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "server": "nodemon server.js",
-    "dev": "npm-run-all --parallel start server",
-    "poststart": "node api/data/index.js"
+    "dev": "npm-run-all --parallel start server"
   },
   "private": true,
   "dependencies": {
