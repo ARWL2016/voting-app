@@ -18,9 +18,9 @@ module.exports = (app) => {
   app.post('/api/auth/login', AuthController.login);
   app.delete('/api/auth/logout', authenticate, AuthController.logout);
 
-  // app.get('*', (req, res) => {
-  //   res.redirect('/');
+  app.get('*', (req, res) => {
+    res.redirect('/');
     // res.status(404).send({message: 'Page not found'});
-  // })
+  })
 
 }

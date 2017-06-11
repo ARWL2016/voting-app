@@ -45,7 +45,7 @@ import { AboutComponent } from './about/about.component';
       { path: 'home/:id', component: IndexComponent },
       { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
       { path: 'about',  component: AboutComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
   providers: [
