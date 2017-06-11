@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Topic } from '../models/topic';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
-
 
 @Component({
   selector: 'app-index',
@@ -14,23 +13,24 @@ import { pageTransition } from '../animations';
 })
 export class IndexComponent implements OnInit {
   topics: Topic[];
-  options = [];
   username: string;
 
-  constructor(private _data: DataService, private _auth: AuthService, private _router: Router) { }
+  constructor(
+    private _data: DataService,
+    private _auth: AuthService,
+    private _router: Router,
+    private _route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.username = this._auth.isValidated();
-    this._data.fetchTopicIndex().then(response => {
-        const topics = response.json();
-        console.log(topics);
-        this.topics = topics;
-    });
-
+    this.username = this._route.snapshot.params['id'];
+    if (this.username) {
+      this._data.fetchTopicsByUser()
+        .then(topics => this.topics = topics);
+    } else {
+      this.username = this._auth.isValidated();
+      this._data.fetchTopicIndex().then(topics => this.topics = topics);
+    }
   }
-
-
-
 }
 
 

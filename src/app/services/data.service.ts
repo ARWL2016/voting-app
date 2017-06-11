@@ -15,14 +15,23 @@ export class DataService {
 
   constructor(private _http: Http) {}
 
-  fetchTopicIndex(): Promise<Response> {
+  fetchTopicIndex(): Promise<any> {
     return this._http.get(this._dataUrl)
+      .map(res => res.json())
       .toPromise();
   }
 
   fetchTopicById(id: string) {
     return this._http.get(this._dataUrl + id)
       .map(res => res.json());
+  }
+
+  fetchTopicsByUser() {
+    const url = `http://localhost:3000/api/data/current`;
+    const options = this.addAuthTokenToHeader();
+    return this._http.get(url, options)
+      .map(res => res.json())
+      .toPromise();
   }
 
   addNewTopic(newTopic: Topic): Observable<Topic[]> {

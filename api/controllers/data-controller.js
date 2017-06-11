@@ -15,6 +15,13 @@ module.exports = {
       .then(topic => res.send(topic));
   },
 
+  getTopicsByUser(req, res) {
+    const username = req.user.username;
+    console.log(username);
+    VotingTopic.find({username})
+      .then(topics => res.status(200).send(topics));
+  },
+
   create(req, res) {
     const payload = req.body;
     VotingTopic.create(payload)

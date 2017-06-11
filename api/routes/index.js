@@ -7,6 +7,7 @@ module.exports = (app) => {
     res.redirect('/');
   })
 
+  app.get('/api/data/current', authenticate, DataController.getTopicsByUser);
   app.get('/api/data', DataController.getTopicIndex);
   app.get('/api/data/:id', DataController.getTopicById);
   app.put('/api/data/vote/:id', authenticate, DataController.addVote);
