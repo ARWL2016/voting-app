@@ -6,10 +6,10 @@ const User = require('./models/user');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGODB_URI);
 // mongoose.connect(MONGO_URI);
 mongoose.connection.on('connected', () => {
-  console.log(chalk.green('mongoose connected to: ' + process.env.MONGO_URI));
+  console.log(chalk.green('mongoose connected to: ' + process.env.MONGODB_URI));
   // console.log(chalk.green('mongoose connected to: ' + MONGO_URI));
 });
 
