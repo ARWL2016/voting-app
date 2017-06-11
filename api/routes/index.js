@@ -21,6 +21,6 @@ module.exports = (app) => {
   // app.get('*', (req, res) => {
   //   res.redirect('/');
     // res.status(404).send({message: 'Page not found'});
-  })
+  // })
 
 }
