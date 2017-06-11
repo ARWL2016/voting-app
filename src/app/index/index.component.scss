@@ -1,4 +1,5 @@
 
+
 a:hover {
   text-decoration: none;
 }
@@ -34,3 +35,25 @@ a:hover {
   font-size: 0.9em;
   color: #888;
 }
+
+.welcome-panel {
+  background-color: #444;
+}
+
+.welcome-panel a {
+  color: white;
+  text-decoration: underline;
+}
+.welcome-panel:hover {
+  background-color: #444;
+}
+
+.welcome-panel div {
+  padding: 20px;
+}
+
+.welcome-panel p {
+  line-height: 30px;
+}
+
+

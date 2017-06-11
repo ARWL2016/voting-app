@@ -9,10 +9,7 @@
 #### Features to Add 
 
 - my votes page / profile page
-- landing page info (and other help)
-- footer and about page
-- add validation to create topic form
 
-#### Styling 
-- better background
+
+
 

@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {DataService} from '../services/data.service';
+import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 import { Topic } from '../models/topic';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
+
 
 @Component({
   selector: 'app-index',
@@ -15,7 +17,7 @@ export class IndexComponent implements OnInit {
   options = [];
   username: string;
 
-  constructor(private _data: DataService, private _auth: AuthService) { }
+  constructor(private _data: DataService, private _auth: AuthService, private _router: Router) { }
 
   ngOnInit() {
     this.username = this._auth.isValidated();
