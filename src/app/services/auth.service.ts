@@ -13,10 +13,12 @@ export class AuthService {
   constructor(private _http: Http) {}
 
   register(user: IUser): Promise<void> {
+    console.log('REGISTER CALL');
     const url = `${this._authUrl}register`;
     return this._http.post(url, user)
       .toPromise()
       .then(response => {
+        console.log('response', response);
         this.processAuthToken(response);
       });
   }
