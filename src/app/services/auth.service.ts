@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 import { IUser } from 'app/models/user';
 
@@ -16,27 +18,47 @@ export class AuthService {
     console.log('REGISTER CALL');
     const url = `${this._authUrl}register`;
     return this._http.post(url, user)
-      .toPromise()
-      .then(response => {
-        console.log('response', response);
+      .do((response) => console.log(response))
+      .do ((response) => {
         this.processAuthToken(response);
-      });
+      })
+      .map(response => response.json())
+      .do((json) => this.updateCurrentUser(json))
+      .toPromise();
   }
 
   login(user: IUser): Promise<boolean> {
     const url = `${this._authUrl}login`;
     return this._http.post(url, user)
-      .toPromise()
-      .then(response => {
+      .do(response => {
         this.processAuthToken(response);
-        return Promise.resolve(true);
+        
       })
-      .catch(err => {
-        return Promise.reject(err);
-      });
+      .map(response => response.json())
+      .do((json) => this.updateCurrentUser(json))
+      .toPromise();
+
+  }
+  updateCurrentUser(json) {
+    console.log('JSON', json);
+    const { username } = json;
+    this.currentUser = json;
+    window.localStorage.setItem('username', username);
   }
 
+  processAuthToken(response): void {
+    console.log('PROCESS AUTH TOKEN', response);
+    const headers = response.headers.toJSON();
+    const token = headers['x-auth'][0];
+    console.log('PROCESS AUTH TOKEN', headers);
+    console.log('PROCESS AUTH TOKEN', token);
+    window.localStorage.setItem('token', token);
+  }
+
+  
+
   logout(): Promise<void> {
+    console.log('LOGOUT');
     const token = window.localStorage.getItem('token');
     const headers = new Headers({ 'x-auth': token });
     const options = new RequestOptions({ headers });
@@ -64,15 +86,5 @@ export class AuthService {
     }
   }
 
-  processAuthToken(response): void {
-    const body = response.json();
-    const { username } = body;
-    const headers = response.headers.toJSON();
-    const token = headers['x-auth'][0];
-    console.log('PROCESS AUTH TOKEN', body);
-    console.log('PROCESS AUTH TOKEN', token);
-    this.currentUser = body;
-    window.localStorage.setItem('token', token);
-    window.localStorage.setItem('username', username);
-  }
+
 }
