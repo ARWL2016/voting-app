@@ -11,7 +11,7 @@ import { Topic } from '../models/topic';
 
 export class DataService {
 
-  private _dataUrl = 'http://localhost:3000/api/data/';
+  private _dataUrl = '/api/data/';
 
   constructor(private _http: Http) {}
 
@@ -27,7 +27,7 @@ export class DataService {
   }
 
   fetchTopicsByUser() {
-    const url = `http://localhost:3000/api/data/current`;
+    const url = `${this._dataUrl}current`;
     const options = this.addAuthTokenToHeader();
     return this._http.get(url, options)
       .map(res => res.json())
@@ -35,14 +35,13 @@ export class DataService {
   }
 
   addNewTopic(newTopic: Topic): Observable<Topic[]> {
-    console.log(newTopic);
     return this._http.post(this._dataUrl, newTopic)
       .map((res: Response) => res.json())
       .do(data => console.log(data));
   }
 
   castVote(id: string, topic: Topic): Promise<any> {
-    const url = `http://localhost:3000/api/data/vote/${id}`;
+    const url = `${this._dataUrl}vote/${id}`;
     const options = this.addAuthTokenToHeader();
 
     return this._http.put(url, topic, options)
@@ -50,7 +49,7 @@ export class DataService {
   }
 
   deleteTopic(id: string): Promise<Response> {
-    const url = `http://localhost:3000/api/data/${id}`;
+    const url = `${this._dataUrl}${id}`;
     const options = this.addAuthTokenToHeader();
     return this._http.delete(url, options)
       .toPromise();

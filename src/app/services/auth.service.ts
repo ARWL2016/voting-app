@@ -8,7 +8,7 @@ import { IUser } from 'app/models/user';
 
 export class AuthService {
   currentUser: IUser;
-  private _authUrl = 'http://localhost:3000/api/auth/';
+  private _authUrl = '/api/auth/';
 
   constructor(private _http: Http) {}
 

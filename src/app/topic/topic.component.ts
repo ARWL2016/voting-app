@@ -40,11 +40,8 @@ export class TopicComponent implements OnInit {
       .subscribe(topic => {
         this.topic = topic;
         this.results = topic.results;
-
-
         this.totalVotes = this.getTotalVotes();
         this.currentUser = this._auth.isValidated();
-
         this.topic.voters.forEach(voter => {
           if (voter === this.currentUser) {
             this.hasVoted = true;
