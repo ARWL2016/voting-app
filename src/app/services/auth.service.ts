@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
-    const token = localStorage.getItem('token');
+    const token = window.localStorage.getItem('token');
     const headers = new Headers({ 'x-auth': token });
     const options = new RequestOptions({ headers });
 
@@ -45,14 +45,14 @@ export class AuthService {
       .toPromise()
       .then(() => {
         this.currentUser = undefined;
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('username');
       });
   }
 
   isValidated(): string {
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const token = window.localStorage.getItem('token');
+    const username = window.localStorage.getItem('username');
 
     if (token && username) {
       this.currentUser = {username};
@@ -67,9 +67,10 @@ export class AuthService {
     const { username } = body;
     const headers = response.headers.toJSON();
     const token = headers['x-auth'][0];
-
+    console.log('PROCESS AUTH TOKEN', body);
+    console.log('PROCESS AUTH TOKEN', token);
     this.currentUser = body;
-    localStorage.setItem('token', token);
-    localStorage.setItem('username', username);
+    window.localStorage.setItem('token', token);
+    window.localStorage.setItem('username', username);
   }
 }

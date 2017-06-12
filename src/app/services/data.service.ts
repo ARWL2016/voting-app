@@ -56,7 +56,7 @@ export class DataService {
   }
 
   addAuthTokenToHeader() {
-    const token = localStorage.getItem('token');
+    const token = window.localStorage.getItem('token');
     const headers = new Headers({ 'Content-Type': 'application/json', 'x-auth': token });
     const options = new RequestOptions({ headers });
     return options;
