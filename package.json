@@ -16,7 +16,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "seed": "node api/data/index"
+    "seed": "node api/data/index",
+    "deploy": "git push heroku",
+    "postdeploy": "heroku open"
   },
   "dependencies": {
     "@angular/animations": "^4.1.3",

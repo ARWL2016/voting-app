@@ -30,7 +30,7 @@ export class AuthService {
 
   processAuthToken(response): void {
     const headers = response.headers.toJSON();
-    const token = headers['x-auth'][0];
+    const token = headers['X-Auth'][0];
     console.log('HEADERS', headers);
     console.log('TOKEN', token);
     window.localStorage.setItem('token', token);
@@ -59,7 +59,7 @@ export class AuthService {
   logout(): Promise<void> {
     console.log('LOGOUT');
     const token = window.localStorage.getItem('token');
-    const headers = new Headers({ 'x-auth': token });
+    const headers = new Headers({ 'X-Auth': token });
     const options = new RequestOptions({ headers });
 
     const url = `${this._authUrl}logout`;
