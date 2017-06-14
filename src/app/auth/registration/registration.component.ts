@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
         })
         .catch(err => {
           console.log(err);
-          this.error = 'LOGIN FAILED';
+          this.error = 'Username already taken.';
         });
     }
 

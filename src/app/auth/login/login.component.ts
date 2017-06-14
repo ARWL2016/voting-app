@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         })
         .catch(e => {
           console.log(e);
-          this.error = 'LOGIN FAILED';
+          this.error = 'Your login details were incorrect. Please try again.';
         });
     }
   }
