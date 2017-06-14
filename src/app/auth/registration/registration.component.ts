@@ -40,13 +40,14 @@ export class RegistrationComponent implements OnInit {
         password: this.password
       };
       this._auth.register(this.user)
-        .then(() => {
-          console.log('user created');
+        .then((res) => {
+          console.log('user created', res);
           this._toastr.success('Thanks for signing up!');
           this._router.navigate(['/home']);
         })
         .catch(err => {
-          this.error = 'Username is already taken. Please try again.';
+          console.log(err);
+          this.error = 'LOGIN FAILED';
         });
     }
 

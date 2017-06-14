@@ -17,9 +17,10 @@ export class AuthService {
   register(user: IUser): Promise<void> {
     console.log('REGISTER CALL');
     const url = `${this._authUrl}register`;
+
     return this._http.post(url, user)
       .do((response) => console.log(response))
-      .do ((response) => {
+      .do (response => {
         this.processAuthToken(response);
       })
       .map(response => response.json())
@@ -27,12 +28,19 @@ export class AuthService {
       .toPromise();
   }
 
+  processAuthToken(response): void {
+    const headers = response.headers.toJSON();
+    const token = headers['x-auth'][0];
+    console.log('HEADERS', headers);
+    console.log('TOKEN', token);
+    window.localStorage.setItem('token', token);
+  }
+
   login(user: IUser): Promise<boolean> {
     const url = `${this._authUrl}login`;
     return this._http.post(url, user)
       .do(response => {
         this.processAuthToken(response);
-        
       })
       .map(response => response.json())
       .do((json) => this.updateCurrentUser(json))
@@ -46,16 +54,7 @@ export class AuthService {
     window.localStorage.setItem('username', username);
   }
 
-  processAuthToken(response): void {
-    console.log('PROCESS AUTH TOKEN', response);
-    const headers = response.headers.toJSON();
-    const token = headers['x-auth'][0];
-    console.log('PROCESS AUTH TOKEN', headers);
-    console.log('PROCESS AUTH TOKEN', token);
-    window.localStorage.setItem('token', token);
-  }
 
-  
 
   logout(): Promise<void> {
     console.log('LOGOUT');

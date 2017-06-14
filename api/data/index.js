@@ -1,3 +1,4 @@
+require('../config');
 const { VotingTopic } = require('../db');
 
 const exampleTopics = [

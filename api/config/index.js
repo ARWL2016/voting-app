@@ -7,6 +7,6 @@ if (env === 'development') {
   console.log(config);
   process.env.JWT_SECRET = config.JWT_SECRET;
   process.env.MONGODB_URI = config.MONGODB_URI;
-  console.log(process.env.MONGO_URI);
+  console.log(process.env.MONGODB_URI);
 }
 

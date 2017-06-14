@@ -12,10 +12,11 @@
     "start": "node server.js",
     "build": "ng build",
     "build:watch": "ng build --watch",
-    "build:prod": "ng build --no-aot --prod",
+    "build:prod": "ng build --no-aot --prod --sourcemaps",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "seed": "node api/data/index"
   },
   "dependencies": {
     "@angular/animations": "^4.1.3",
