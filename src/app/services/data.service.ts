@@ -6,6 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 
 import { Topic } from '../models/topic';
+import { HelperService } from './helper.service';
 
 @Injectable()
 
@@ -13,53 +14,44 @@ export class DataService {
 
   private _dataUrl = '/api/data/';
 
-  constructor(private _http: Http) {}
+  constructor(
+    private _http: Http, 
+    private _helper: HelperService
+    ) {}
 
   fetchTopicIndex(): Promise<any> {
-    return this._http.get(this._dataUrl)
+    return this._http.get('/api/data/')
       .map(res => res.json())
       .toPromise();
   }
 
   fetchTopicById(id: string) {
-    return this._http.get(this._dataUrl + id)
+    return this._http.get(`/api/data/${id}`)
       .map(res => res.json());
   }
 
-  fetchTopicsByUser() {
-    const url = `${this._dataUrl}current`;
-    const options = this.addAuthTokenToHeader();
-    return this._http.get(url, options)
+  fetchTopicsByUser(): Promise<any> {
+    const options = this._helper.addAuthTokenToHeader();
+    return this._http.get('/api/data/current', options)
       .map(res => res.json())
       .toPromise();
   }
 
   addNewTopic(newTopic: Topic): Observable<Topic[]> {
     return this._http.post(this._dataUrl, newTopic)
-      .map((res: Response) => res.json())
-      .do(data => console.log(data));
+      .map((res: Response) => res.json());
   }
 
   castVote(id: string, topic: Topic): Promise<any> {
-    const url = `${this._dataUrl}vote/${id}`;
-    const options = this.addAuthTokenToHeader();
-
-    return this._http.put(url, topic, options)
+    const options = this._helper.addAuthTokenToHeader();
+    return this._http.put(`/api/data/vote/${id}`, topic, options)
       .toPromise();
   }
 
   deleteTopic(id: string): Promise<Response> {
-    const url = `${this._dataUrl}${id}`;
-    const options = this.addAuthTokenToHeader();
-    return this._http.delete(url, options)
+    const options = this._helper.addAuthTokenToHeader();
+    return this._http.delete(`/api/data/${id}`, options)
       .toPromise();
-  }
-
-  addAuthTokenToHeader() {
-    const token = window.localStorage.getItem('token');
-    const headers = new Headers({ 'Content-Type': 'application/json', 'x-auth': token });
-    const options = new RequestOptions({ headers });
-    return options;
   }
 
 }

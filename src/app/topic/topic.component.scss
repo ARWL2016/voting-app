@@ -1,6 +1,6 @@
 
 .topic-wrapper {
-  max-width: 800px;
+  max-width: 960px;
   // margin: 0 auto;
   margin-top: 10px;
 }
@@ -15,6 +15,12 @@
   width: 500px;
 }
 
+.vote-wrapper {
+  float: left;
+  width: 200px;
+  margin-left:30px;
+}
+
 .control-button {
   margin-bottom: 12px;
   padding: 10px 20px 10px 20px;
@@ -22,7 +28,9 @@
 }
 
 .voting-button {
-  margin: 5px;
+  // margin: 5px;
+  // display: block;
+  padding: 15px 15px 15px 15px;
 }
 
 .cell {

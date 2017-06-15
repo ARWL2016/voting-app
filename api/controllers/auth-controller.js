@@ -17,7 +17,7 @@ module.exports = {
           }).then((token) => {
             user.password = undefined;
             user.tokens = undefined;
-            res.header('x-auth', token).send(user);
+            res.header('X-Auth', token).send(user);
           })
         }
       }).catch(err => res.status(400).send(err));
@@ -31,7 +31,7 @@ module.exports = {
         .then((token) => {
           user.password = undefined;
           user.tokens = undefined;
-          res.header('x-auth', token).send(user);
+          res.header('X-Auth', token).send(user);
       });
     }).catch((err) => {
       res.status(400).send();

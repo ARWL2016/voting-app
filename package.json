@@ -11,7 +11,7 @@
     "server": "nodemon server.js",
     "start": "node server.js",
     "build": "ng build",
-    "build:watch": "ng build --watch",
+    "build:watch": "ng build --watch --sourcemaps",
     "build:prod": "ng build --no-aot --prod --sourcemaps",
     "test": "ng test",
     "lint": "ng lint",

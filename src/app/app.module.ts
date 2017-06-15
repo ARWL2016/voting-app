@@ -9,16 +9,17 @@ import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './auth/login/login.component';
+import { TopicComponent } from 'app/topic/topic.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { AboutComponent } from './about/about.component';
+import { ChartComponent } from './chart/chart.component';
 
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
-import { TopicComponent } from 'app/topic/topic.component';
+import { HelperService } from './services/helper.service';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
-import { RegistrationComponent } from './auth/registration/registration.component';
 import { CreateTopicGuard } from 'app/services/create-topic-guard.service';
 import { ToastrService } from './services/toastr.service';
-import { ChartComponent } from './chart/chart.component';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AboutComponent } from './about/about.component';
   providers: [
     DataService,
     AuthService,
+    HelperService,
     CreateTopicGuard,
     ToastrService
     ],
