@@ -1,12 +1,14 @@
 require('./api/config');
 
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const https = require('https');
 const bodyParser = require('body-parser');
 const routes = require('./api/routes');
 
 const app = express();
+app.use(compression());
 
 let port = process.env.PORT || 3000;
 
