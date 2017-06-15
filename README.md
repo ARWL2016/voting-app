@@ -16,6 +16,7 @@
 #### Possible Features 
 2.	add a recent button and a most popular button to the home page (this will mean changing the data structure 
 3.	add paging
+4. username availability check
 
 
 
