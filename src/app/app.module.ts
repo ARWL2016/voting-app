@@ -20,6 +20,7 @@ import { HelperService } from './services/helper.service';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
 import { CreateTopicGuard } from 'app/services/create-topic-guard.service';
 import { ToastrService } from './services/toastr.service';
+import { TopicFilterPipe } from './index/topic-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToastrService } from './services/toastr.service';
     CreateTopicComponent,
     RegistrationComponent,
     ChartComponent,
-    AboutComponent
+    AboutComponent, 
+    TopicFilterPipe
   ],
   imports: [
     BrowserModule,

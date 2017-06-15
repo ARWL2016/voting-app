@@ -2,6 +2,7 @@ require('./api/config');
 
 const express = require('express');
 const path = require('path');
+const https = require('https');
 const bodyParser = require('body-parser');
 const routes = require('./api/routes');
 
@@ -18,3 +19,7 @@ routes(app);
 app.listen(port, () => {
   console.log('API Running on Port ' + port);
 })
+
+setInterval(function() {
+  https.get("https://votogo.herokuapp.com/home");
+}, 180000);

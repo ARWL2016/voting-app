@@ -14,6 +14,8 @@ import { pageTransition } from '../animations';
 export class IndexComponent implements OnInit {
   topics: Topic[];
   username: string;
+  isTopicListEmpty: boolean;
+  listFilter: string;
 
   constructor(
     private _data: DataService,
@@ -25,7 +27,13 @@ export class IndexComponent implements OnInit {
     this.username = this._route.snapshot.params['id'];
     if (this.username) {
       this._data.fetchTopicsByUser()
-        .then(topics => this.topics = topics);
+        .then(topics => {
+          this.topics = topics; 
+          if (topics.length === 0) {
+            this.isTopicListEmpty = true; 
+          }
+        })
+        .catch(e => console.log(e));
     } else {
       this.username = this._auth.isValidated();
       this._data.fetchTopicIndex().then(topics => this.topics = topics);

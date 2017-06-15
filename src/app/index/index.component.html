@@ -1,4 +1,3 @@
-
 <section
   *ngIf="!username"
   class="topic-wrapper "
@@ -13,11 +12,38 @@
 
       </div>
     </div>
+</section>
 
+<section class="search-wrapper"> 
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>Search Topics</b></span>
+    <input 
+      type="text" 
+      class="form-control" 
+      [(ngModel)]="listFilter" />
+</div>
 </section>
 
 <section
-  *ngFor="let topic of topics"
+  *ngIf="username && isTopicListEmpty"
+  class="topic-wrapper "
+  [@showPage]="'on'">
+    <div class="panel panel-success welcome-panel">
+      <div class="panel-heading welcome-panel">
+        <h2 class="panel-title">Your Topics</h2>
+      </div>
+      <div class="panel-body">
+        <p class="info">You haven't created any voting topics yet. To get started, go the the 
+          <a [routerLink]="['/create']">New Topic</a> page.</p>
+
+      </div>
+    </div>
+</section>
+
+
+
+<section
+  *ngFor="let topic of topics | topicFilter:listFilter"
   class="topic-wrapper"
   [@showPage]="'on'">
   <a class="topic" [routerLink]="['/topic', topic._id]">

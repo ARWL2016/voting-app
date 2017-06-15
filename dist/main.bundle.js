@@ -397,6 +397,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__create_topic_create_topic_component__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_app_services_create_topic_guard_service__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_toastr_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__index_topic_filter_pipe__ = __webpack_require__(408);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -404,6 +405,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -439,7 +441,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_17__create_topic_create_topic_component__["a" /* CreateTopicComponent */],
             __WEBPACK_IMPORTED_MODULE_11__auth_registration_registration_component__["a" /* RegistrationComponent */],
             __WEBPACK_IMPORTED_MODULE_13__chart_chart_component__["a" /* ChartComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__about_about_component__["a" /* AboutComponent */]
+            __WEBPACK_IMPORTED_MODULE_12__about_about_component__["a" /* AboutComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__index_topic_filter_pipe__["a" /* TopicFilterPipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -801,7 +804,13 @@ var IndexComponent = (function () {
         this.username = this._route.snapshot.params['id'];
         if (this.username) {
             this._data.fetchTopicsByUser()
-                .then(function (topics) { return _this.topics = topics; });
+                .then(function (topics) {
+                _this.topics = topics;
+                if (topics.length === 0) {
+                    _this.isTopicListEmpty = true;
+                }
+            })
+                .catch(function (e) { return console.log(e); });
         }
         else {
             this.username = this._auth.isValidated();
@@ -1135,7 +1144,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "a:hover {\n  text-decoration: none; }\n\n.topic-wrapper {\n  margin-top: 30px; }\n\n.panel-heading {\n  background-color: #262626;\n  color: orange;\n  border-color: #666; }\n\n.panel-heading:hover {\n  background-color: #363636; }\n\n.panel-title {\n  font-size: 1.5em;\n  font-family: 'Roboto', sans-serif;\n  padding: 5px; }\n\n.panel {\n  background-color: #262626;\n  color: white;\n  font-family: 'Roboto';\n  font-size: 1.3em;\n  border: 0; }\n\n.topic-details {\n  font-size: 0.9em;\n  color: #888; }\n\n.welcome-panel {\n  background-color: #444; }\n\n.welcome-panel a {\n  color: white;\n  text-decoration: underline; }\n\n.welcome-panel:hover {\n  background-color: #444; }\n\n.welcome-panel div {\n  padding: 20px; }\n\n.welcome-panel p {\n  line-height: 30px;\n  letter-spacing: 1.5px; }\n\n.welcome-panel h2 {\n  font-weight: bold;\n  letter-spacing: 2px; }\n", ""]);
+exports.push([module.i, ".input-group {\n  width: 50%; }\n\n.search-wrapper {\n  background-color: #262626;\n  padding: 15px; }\n\na:hover {\n  text-decoration: none; }\n\n.topic-wrapper {\n  margin-top: 30px; }\n\n.panel-heading {\n  background-color: #262626;\n  color: orange;\n  border-color: #666; }\n\n.panel-heading:hover {\n  background-color: #363636; }\n\n.panel-title {\n  font-size: 1.5em;\n  font-family: 'Roboto', sans-serif;\n  padding: 5px; }\n\n.panel {\n  background-color: #262626;\n  color: white;\n  font-family: 'Roboto';\n  font-size: 1.3em;\n  border: 0; }\n\n.topic-details {\n  font-size: 0.9em;\n  color: #888; }\n\n.welcome-panel {\n  background-color: #444; }\n\n.welcome-panel a {\n  color: white;\n  text-decoration: underline; }\n\n.welcome-panel:hover {\n  background-color: #444; }\n\n.welcome-panel div {\n  padding: 20px; }\n\n.welcome-panel p {\n  line-height: 30px;\n  letter-spacing: 1.5px; }\n\n.welcome-panel h2 {\n  font-weight: bold;\n  letter-spacing: 2px; }\n", ""]);
 
 // exports
 
@@ -1153,7 +1162,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, ".topic-wrapper {\n  max-width: 960px;\n  margin-top: 10px; }\n\n.button-wrapper {\n  float: left;\n  width: 200px; }\n\n.data-wrapper {\n  float: left;\n  width: 500px; }\n\n.vote-wrapper {\n  float: left;\n  width: 200px;\n  margin-left: 30px; }\n\n.control-button {\n  margin-bottom: 12px;\n  padding: 10px 20px 10px 20px;\n  width: 150px; }\n\n.voting-button {\n  padding: 15px 15px 15px 15px; }\n\n.cell {\n  padding: 10px 20px 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: left; }\n\n.cell-result {\n  padding: 10px 20px 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: right; }\n\n.glyphicon {\n  color: green;\n  font-size: 22px;\n  margin-left: 10px; }\n\n.alert {\n  margin-top: 25px; }\n\n.voted {\n  font-size: 16px;\n  padding: 3px 0 3px 5px; }\n\n.panel-heading {\n  background-color: #262626;\n  color: orange;\n  border-color: #666; }\n\n.panel-heading:hover {\n  background-color: #363636; }\n\n.panel-title {\n  font-size: 1.5em;\n  font-family: 'Roboto', sans-serif;\n  padding: 5px; }\n\n.panel {\n  background-color: #262626;\n  color: white;\n  font-family: 'Roboto';\n  font-size: 1.3em;\n  border: 0; }\n\n.topic-details {\n  font-size: 0.9em;\n  color: #888; }\n\n.thead {\n  border-bottom: 0; }\n", ""]);
+exports.push([module.i, ".topic-wrapper {\n  max-width: 960px;\n  margin-top: 10px; }\n\n.button-wrapper {\n  float: left;\n  width: 200px; }\n\n.data-wrapper {\n  float: left;\n  width: 500px; }\n\n.vote-wrapper {\n  float: left;\n  width: 200px;\n  margin-left: 30px; }\n\n.button-group-vertical {\n  width: 100%; }\n\n.control-button {\n  margin-bottom: 12px;\n  padding: 10px 20px 10px 20px;\n  width: 150px; }\n\n.voting-button {\n  padding: 15px 15px 15px 15px; }\n\n.cell {\n  padding: 10px 20px 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: left; }\n\n.cell-result {\n  padding: 10px 20px 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: right; }\n\n.glyphicon {\n  color: green;\n  font-size: 22px;\n  margin-left: 10px; }\n\n.alert {\n  margin-top: 25px; }\n\n.voted {\n  font-size: 16px;\n  padding: 3px 0 3px 5px; }\n\n.panel-heading {\n  background-color: #262626;\n  color: orange;\n  border-color: #666; }\n\n.panel-heading:hover {\n  background-color: #363636; }\n\n.panel-title {\n  font-size: 1.5em;\n  font-family: 'Roboto', sans-serif;\n  padding: 5px; }\n\n.panel {\n  background-color: #262626;\n  color: white;\n  font-family: 'Roboto';\n  font-size: 1.3em;\n  border: 0; }\n\n.topic-details {\n  font-size: 0.9em;\n  color: #888; }\n\n.thead {\n  border-bottom: 0; }\n", ""]);
 
 // exports
 
@@ -1462,7 +1471,7 @@ module.exports = "<form #form=\"ngForm\" (submit)=\"submitForm(form)\" [@showPag
 /***/ 365:
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<section\r\n  *ngIf=\"!username\"\r\n  class=\"topic-wrapper \"\r\n  [@showPage]=\"'on'\">\r\n    <div class=\"panel panel-success welcome-panel\">\r\n      <div class=\"panel-heading welcome-panel\">\r\n        <h2 class=\"panel-title\">Welcome to Votogo</h2>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p class=\"info\">Votogo is a free voting app which allows users to create, share and view the results of surveys.To view survey results, click on a topic below.</p>\r\n        <p class=\"info\">To vote and create your own topics, please <a [routerLink]=\"['/login/register']\">register</a> or <a [routerLink]=\"['/login']\">login</a>.</p>\r\n\r\n      </div>\r\n    </div>\r\n\r\n</section>\r\n\r\n<section\r\n  *ngFor=\"let topic of topics\"\r\n  class=\"topic-wrapper\"\r\n  [@showPage]=\"'on'\">\r\n  <a class=\"topic\" [routerLink]=\"['/topic', topic._id]\">\r\n    <div class=\"panel panel-success\">\r\n      <div class=\"panel-heading\">\r\n        <h3 class=\"panel-title\">{{ topic.topicTitle }}</h3>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>{{ topic.topicQuestion }}</p>\r\n        <p class=\"topic-details\">by {{ topic.username }}</p>\r\n      </div>\r\n    </div>\r\n    </a>\r\n</section>\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<section\r\n  *ngIf=\"!username\"\r\n  class=\"topic-wrapper \"\r\n  [@showPage]=\"'on'\">\r\n    <div class=\"panel panel-success welcome-panel\">\r\n      <div class=\"panel-heading welcome-panel\">\r\n        <h2 class=\"panel-title\">Welcome to Votogo</h2>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p class=\"info\">Votogo is a free voting app which allows users to create, share and view the results of surveys.To view survey results, click on a topic below.</p>\r\n        <p class=\"info\">To vote and create your own topics, please <a [routerLink]=\"['/login/register']\">register</a> or <a [routerLink]=\"['/login']\">login</a>.</p>\r\n\r\n      </div>\r\n    </div>\r\n</section>\r\n\r\n<section class=\"search-wrapper\"> \r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-addon\" id=\"sizing-addon2\"><b>Search Topics</b></span>\r\n    <input \r\n      type=\"text\" \r\n      class=\"form-control\" \r\n      [(ngModel)]=\"listFilter\" />\r\n</div>\r\n</section>\r\n\r\n<section\r\n  *ngIf=\"username && isTopicListEmpty\"\r\n  class=\"topic-wrapper \"\r\n  [@showPage]=\"'on'\">\r\n    <div class=\"panel panel-success welcome-panel\">\r\n      <div class=\"panel-heading welcome-panel\">\r\n        <h2 class=\"panel-title\">Your Topics</h2>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p class=\"info\">You haven't created any voting topics yet. To get started, go the the \r\n          <a [routerLink]=\"['/create']\">New Topic</a> page.</p>\r\n\r\n      </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n\r\n<section\r\n  *ngFor=\"let topic of topics | topicFilter:listFilter\"\r\n  class=\"topic-wrapper\"\r\n  [@showPage]=\"'on'\">\r\n  <a class=\"topic\" [routerLink]=\"['/topic', topic._id]\">\r\n    <div class=\"panel panel-success\">\r\n      <div class=\"panel-heading\">\r\n        <h3 class=\"panel-title\">{{ topic.topicTitle }}</h3>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>{{ topic.topicQuestion }}</p>\r\n        <p class=\"topic-details\">by {{ topic.username }}</p>\r\n      </div>\r\n    </div>\r\n    </a>\r\n</section>\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1520,6 +1529,40 @@ HelperService = __decorate([
 ], HelperService);
 
 //# sourceMappingURL=helper.service.js.map
+
+/***/ }),
+
+/***/ 408:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TopicFilterPipe; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var TopicFilterPipe = (function () {
+    function TopicFilterPipe() {
+    }
+    TopicFilterPipe.prototype.transform = function (value, filterBy) {
+        filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
+        return filterBy ? value.filter(function (topic) {
+            return topic.topicTitle.toLocaleLowerCase().indexOf(filterBy) !== -1;
+        }) : value;
+    };
+    return TopicFilterPipe;
+}());
+TopicFilterPipe = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+        name: 'topicFilter'
+    })
+], TopicFilterPipe);
+
+//# sourceMappingURL=topic-filter.pipe.js.map
 
 /***/ })
 
