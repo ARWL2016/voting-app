@@ -9,8 +9,10 @@ export class HelperService {
    getAuthTokenFromHeader(response: Response): string {
     const headers = response.headers.toJSON();
     if (headers['X-Auth']) {
+      console.log(headers['X-Auth']);
       return headers['X-Auth'][0];
     } else {
+      console.log(headers['x-auth']);
       return headers['x-auth'][0];
     }
   }
