@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'app/services/data.service';
 import { Topic } from '../models/topic';
-import { Result } from '../models/result';
+// import { Result } from '../models/result';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
 import { ToastrService } from 'app/services/toastr.service';
@@ -23,7 +23,7 @@ import { ToastrService } from 'app/services/toastr.service';
 export class TopicComponent implements OnInit {
   _id: string;
   topic: Topic;
-  results: Result[];
+  // results: Result[];
   totalVotes: number;
   hasVoted = false;
   currentUser: string;
@@ -46,7 +46,7 @@ export class TopicComponent implements OnInit {
     this._data.fetchTopicById(this._id)
       .subscribe(topic => {
         this.topic = topic;
-        this.results = topic.results;
+        // this.results = topic.results;
         this.totalVotes = this.getTotalVotes();
         this.currentUser = this._auth.isValidated();
         this.topic.voters.forEach(voter => {

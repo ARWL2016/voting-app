@@ -35,7 +35,7 @@
 
       <table>
         <tbody>
-          <tr *ngFor="let result of results">
+          <tr *ngFor="let result of topic.results">
             <td>{{ result.option | titlecase }}</td>
             <td><b>{{ result.votes }}</b></td>
           </tr>
@@ -72,7 +72,7 @@
       <div class="panel-body">
         <div class="btn-group-vertical" role="group">
           <button
-            *ngFor="let result of results"
+            *ngFor="let result of topic.results"
             class="btn btn-success btn-lg voting-button"
             value="{{ result.option }}"
             (click)="castVote($event)">

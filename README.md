@@ -11,6 +11,7 @@
 - push to github and heroku 
 
 #### To do  
+- move vote buttons into table
 - front end checklist
 - add proper error handling to the API 
 - tidy up the CSS
