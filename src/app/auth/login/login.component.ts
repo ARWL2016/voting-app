@@ -8,7 +8,7 @@ import { ToastrService } from '../../services/toastr.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['../auth-styles.scss'],
   animations: [ pageTransition ]
 })
 export class LoginComponent implements OnInit {

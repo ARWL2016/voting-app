@@ -9,7 +9,7 @@ import { ToastrService } from 'app/services/toastr.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  styleUrls: ['../auth-styles.scss'],
   animations: [ pageTransition ]
 })
 export class RegistrationComponent implements OnInit {
