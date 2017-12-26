@@ -1,3 +1,12 @@
+/**
+ *  This component renders a list of voting topics, displaying the title and question
+ *  of each voting topic in a Bootstrap panel.
+ *
+ *  If the component is rendered on the path 'home', all voting topics will display.
+ *  If the user is authenticated, this comp can also be accessed on the route
+ *  'home/username'. In this case, only the user's own topics will be displayed.
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -24,13 +33,13 @@ export class IndexComponent implements OnInit {
     private _route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.username = this._route.snapshot.params['id'];
+    this.username = this._route.snapshot.params['username'];
     if (this.username) {
       this._data.fetchTopicsByUser()
         .then(topics => {
-          this.topics = topics; 
+          this.topics = topics;
           if (topics.length === 0) {
-            this.isTopicListEmpty = true; 
+            this.isTopicListEmpty = true;
           }
         })
         .catch(e => console.log(e));

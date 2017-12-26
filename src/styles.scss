@@ -1,5 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables';
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  // font-family: 'Times New Roman', Times, serif
+}
 
 .body {
   background: url('./assets/images/zwartevilt.png');
 }
+
+// Use element and class to override Bootstrap rules
+
+div.panel {
+  // background-color: $darkGrey;
+  background-color: #262626;
+  color: white;
+  font-size: 1.2em;
+  border: 0;
+  line-height: 1.6em;
+}
+
+div.panel-heading {
+  background-color: inherit;
+  border-color: #666;
+}
+
+h1.panel-title {
+  color: orange;
+  padding: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+p.topic-author {
+  font-size: 0.9em;
+  color: #888;
+}
+
+
+

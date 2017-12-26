@@ -1,3 +1,10 @@
+/**
+ *  This component displays the results of a single voting topic,
+ *  either as a table or a pie chart. The chart is rendered as a
+ *  child component.
+ *  For authenticated users, a voting widget is displayed.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'app/services/data.service';

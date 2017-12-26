@@ -31,7 +31,7 @@ import { TopicFilterPipe } from './index/topic-filter.pipe';
     CreateTopicComponent,
     RegistrationComponent,
     ChartComponent,
-    AboutComponent, 
+    AboutComponent,
     TopicFilterPipe
   ],
   imports: [
@@ -45,7 +45,7 @@ import { TopicFilterPipe } from './index/topic-filter.pipe';
       { path: 'login', component: LoginComponent },
       { path: 'login/register', component: RegistrationComponent },
       { path: 'home', component: IndexComponent },
-      { path: 'home/:id', component: IndexComponent },
+      { path: 'home/:username', component: IndexComponent },
       { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
       { path: 'about',  component: AboutComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }

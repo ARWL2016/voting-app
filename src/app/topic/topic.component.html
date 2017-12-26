@@ -1,74 +1,87 @@
+<div class="page-wrapper" [@showPage]="'on'" >
 
-<div class="topic-wrapper" [@showPage]="'on'" >
 
-<div class="button-wrapper">
-  <button (click)="toggleDisplay()" class="btn btn-info control-button">{{ toggleButton }}</button>
-  <button class="btn btn-info control-button" [routerLink]="['/home']">Back to Index</button>
+  <!-- NAVIGATION SECTION -->
 
-  <button
-  *ngIf="topic && currentUser === topic.username && view === 'data'"
-  class="btn btn-warning control-button"
-  (click)="deleteTopic(_id)"
-  [@showPage]="'on'">
-  Delete topic
-</button>
-</div>
+  <section class="nav-wrapper">
+    <button (click)="toggleDisplay()" class="btn btn-info control-button">{{ toggleButton }}</button>
+    <button class="btn btn-info control-button" [routerLink]="['/home']">Back to Index</button>
+    <button
+      *ngIf="topic && currentUser === topic.username && view === 'data'"
+      class="btn btn-warning control-button"
+      (click)="deleteTopic(_id)"
+      [@showPage]="'on'">
+      Delete topic
+    </button>
+  </section>
 
-<div class="data-wrapper">
-  <div *ngIf="topic && view === 'data'" class="panel panel-success " [@showPage]="'on'" >
-    <div class="panel-heading">
-      <h2 class="panel-title">{{ topic.topicTitle }}
-        <span *ngIf="hasVoted" class="pull-right voted">voted</span>
-        <span *ngIf="hasVoted" class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></span>
-      </h2>
+
+  <!-- RESULTS SECTION -->
+
+  <section class="results-wrapper">
+    <div *ngIf="topic && view === 'data'" class="panel" [@showPage]="'on'" >
+      <div class="panel-heading">
+        <h1 class="panel-title">{{ topic.topicTitle }}
+          <span *ngIf="hasVoted">
+            <span class="pull-right voted">voted</span>
+            <span class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></span>
+          </span>
+        </h1>
+      </div>
+      <div class="panel-body">
+        <p>{{ topic.topicQuestion }}</p>
+        <p class="topic-author">by {{ topic.username  }}</p>
+      </div>
+
+      <table>
+        <tbody>
+          <tr *ngFor="let result of results">
+            <td>{{ result.option | titlecase }}</td>
+            <td><b>{{ result.votes }}</b></td>
+          </tr>
+          <tr>
+            <td>TOTAL</td>
+            <td><b>{{ totalVotes }}</b></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="panel-body">
-      <p>{{ topic.topicQuestion }}</p>
-      <p class="topic-details">by {{ topic.username  }}</p>
+
+
+    <!-- CHART COMPONENT -->
+
+    <app-chart *ngIf="view === 'chart'" [_id]="_id"></app-chart>
+
+
+    <!-- HELP PANEL -->
+
+    <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" >
+      To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.
     </div>
+  </section>
 
-    <table class="table">
-      <tbody class="tbody">
-        <tr *ngFor="let result of results">
-          <td class="cell">{{ result.option | titlecase }}</td>
-          <td class="cell-result"><b>{{ result.votes }}</b></td>
-        </tr>
-        <tr>
-          <td class="cell">TOTAL</td>
-          <td class="cell-result"><b>{{ totalVotes }}</b></td>
-        </tr>
-      </tbody>
-    </table>
 
-  </div>
-  <!--results panel end-->
-  <app-chart *ngIf="view === 'chart'" [_id]="_id"></app-chart>
 
-  <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" >
-    To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.
-  </div>
-</div>
-<!--data wrapper-->
+  <!-- CAST A VOTE SECTION -->
 
-<div class="vote-wrapper">
-    <div *ngIf="!hasVoted && currentUser && view === 'data'" class="panel panel-success voting-panel">
-    <div class="panel-heading">
-      <h3 class="panel-title">Vote</h3>
-    </div>
-    <div class="panel-body">
-      <div class="btn-group-vertical" role="group">
-        <button
-          *ngFor="let result of results"
-          class="btn btn-success btn-lg voting-button"
-          value="{{ result.option }}"
-          (click)="castVote($event)">
-          {{ result.option }}
-        </button>
+  <section class="vote-wrapper">
+      <div *ngIf="!hasVoted && currentUser && view === 'data'" class="panel">
+      <div class="panel-heading">
+        <h1 class="panel-title">Vote</h1>
+      </div>
+      <div class="panel-body">
+        <div class="btn-group-vertical" role="group">
+          <button
+            *ngFor="let result of results"
+            class="btn btn-success btn-lg voting-button"
+            value="{{ result.option }}"
+            (click)="castVote($event)">
+            {{ result.option }}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
+  </section>
 
 </div>
 

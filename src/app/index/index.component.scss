@@ -1,3 +1,20 @@
+@import '../../variables';
+
+a:hover {
+  text-decoration: none;
+}
+
+.panel:hover {
+  background-color: #363636;
+}
+
+// SEARCH SECTION STYLES
+
+.search-wrapper {
+  background-color: $darkGrey;
+  padding: 15px;
+}
+
 .input-group {
   width: 50%;
 }
@@ -7,71 +24,39 @@
   height: 40px;
 }
 
-.search-wrapper {
-  background-color: #262626;
-  padding: 15px;
-}
 
-a:hover {
-  text-decoration: none;
-}
+// VOTING TOPIC STYLES
 
 .topic-wrapper {
   margin-top: 30px;
 }
 
-.panel-heading {
-    background-color: #262626;
-    color: orange;
-    border-color: #666;
-}
-.panel-heading:hover {
-    background-color: #363636;
-}
+// INFORMATION PANEL STYLES
 
-.panel-title {
-  font-size: 1.5em;
-  font-family: 'Roboto', sans-serif;
-  padding: 5px;
-}
-
-.panel {
-  background-color: #262626;
-  color: white;
-  font-family: 'Roboto';
-  font-size: 1.3em;
-  border: 0;
-}
-
-.topic-details {
-  font-size: 0.9em;
-  color: #888;
-}
-
-.welcome-panel {
+.info-panel {
   background-color: #444;
+  &:hover {
+    background-color: #444;
+  }
 }
 
-.welcome-panel a {
-  color: white;
-  text-decoration: underline;
-}
-.welcome-panel:hover {
-  background-color: #444;
-}
-
-.welcome-panel div {
+.info-panel div {
   padding: 20px;
 }
 
-.welcome-panel p {
+.info-panel h2 {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.info-panel p {
   line-height: 30px;
   letter-spacing: 1.5px;
 }
 
-.welcome-panel h2 {
-  font-weight: bold;
-  letter-spacing: 2px;
+.info-panel a {
+  color: white;
+  text-decoration: underline;
 }
 
 

@@ -1,10 +1,12 @@
+<!-- WELCOME SECTION - DISPLAYS IF USER NOT AUTHENTICATED -->
+
 <section
   *ngIf="!username"
   class="topic-wrapper "
   [@showPage]="'on'">
-    <div class="panel panel-success welcome-panel">
-      <div class="panel-heading welcome-panel">
-        <h2 class="panel-title">Welcome to Votogo</h2>
+    <div class="panel info-panel">
+      <div class="panel-heading info-panel">
+        <h1 class="panel-title">Welcome to Votogo</h1>
       </div>
       <div class="panel-body">
         <p class="info">Votogo is a free voting app which allows users to create, share and view the results of surveys.To view survey results, click on a topic below.</p>
@@ -14,6 +16,9 @@
     </div>
 </section>
 
+
+<!-- SEARCH INPUT SECTION -->
+
 <section class="search-wrapper">
   <div class="input-group">
     <span class="input-group-addon"><b>Search Topics</b></span>
@@ -21,42 +26,45 @@
       type="text"
       class="form-control search-input"
       [(ngModel)]="listFilter" />
-</div>
-</section>
-
-<section
-  *ngIf="username && isTopicListEmpty"
-  class="topic-wrapper "
-  [@showPage]="'on'">
-    <div class="panel panel-success welcome-panel">
-      <div class="panel-heading welcome-panel">
-        <h2 class="panel-title">Your Topics</h2>
-      </div>
-      <div class="panel-body">
-        <p class="info">You haven't created any voting topics yet. To get started, go the the
-          <a [routerLink]="['/create']">New Topic</a> page.</p>
-
-      </div>
-    </div>
+  </div>
 </section>
 
 
+<!-- TOPIC SECTION - DISPLAYS ONCE FOR EACH TOPIC -->
 
 <section
   *ngFor="let topic of topics | topicFilter:listFilter"
   class="topic-wrapper"
   [@showPage]="'on'">
   <a class="topic" [routerLink]="['/topic', topic._id]">
-    <div class="panel panel-success">
+    <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">{{ topic.topicTitle }}</h3>
+        <h1 class="panel-title">{{ topic.topicTitle }}</h1>
       </div>
       <div class="panel-body">
         <p>{{ topic.topicQuestion }}</p>
-        <p class="topic-details">by {{ topic.username }}</p>
+        <p class="topic-author">by {{ topic.username }}</p>
       </div>
     </div>
     </a>
+</section>
+
+
+<!-- HELP SECTION - DISPLAYS IF USER IS LOGGED IN BUT HAS CREATED NO VOTING TOPICS -->
+
+<section
+*ngIf="username && isTopicListEmpty"
+class="topic-wrapper "
+[@showPage]="'on'">
+  <div class="panel info-panel">
+    <div class="panel-heading info-panel">
+      <h1 class="panel-title">Your Topics</h1>
+    </div>
+    <div class="panel-body">
+      <p class="info">You haven't created any voting topics yet. To get started, go the the
+        <a [routerLink]="['/create']">New Topic</a> page.</p>
+    </div>
+  </div>
 </section>
 
 
