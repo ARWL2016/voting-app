@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "engines": {
-    "node": "6.11.2"
+    "node": "8.9.1"
   },
   "scripts": {
     "ng": "ng",
@@ -13,6 +13,7 @@
     "build": "ng build",
     "build:watch": "ng build --watch --sourcemaps",
     "build:prod": "ng build --no-aot --prod",
+    "dev": "concurrently \"npm run build:watch\" \"npm run server\" ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

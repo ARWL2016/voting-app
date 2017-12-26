@@ -4,12 +4,14 @@ const { VotingTopic } = require('../db');
 module.exports = {
 
   getTopicIndex(req, res) {
-    VotingTopic.find()
-      .then(topics => res.send(topics));
+    VotingTopic
+      .find()
+        .then(topics => res.send(topics))
+        .catch(e => res.status(500).send());
   },
 
   getTopicById(req, res) {
-    const id = req.params.id;
+    const {id} = req.params;
 
     VotingTopic.findById(id)
       .then(topic => res.send(topic));

@@ -20,8 +20,6 @@ routes(app);
 
 app.listen(port, () => {
   console.log('API Running on Port ' + port);
-})
+});
 
-// setInterval(function() {
-//   https.get("https://votogo.herokuapp.com/home");
-// }, 180000);
+
