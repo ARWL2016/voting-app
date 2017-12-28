@@ -1,8 +1,72 @@
 
+nav.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  font-weight: bold;
 
-// bootstrap
-.container {
-  max-width: 960px;
+  .container {
+    max-width: 960px;
+
+    .navbar-brand {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    ul, li,  a {
+      display: inline-block;
+    }
+  }
+}
+
+#nav-toggle {
+  display: none;
+}
+
+div.dropdown {
+  background-color: white;
+  color: black;
+  transition: all 500ms ease-in;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+      li {
+        list-style-type: none;
+        border-bottom: 1px solid grey;
+        padding: 4px;
+        text-align: center;
+        &:hover {
+          background-color: lightgrey;
+        }
+
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          font-weight: bold;
+        }
+      }
+  }
+}
+
+@media screen and (max-width: 780px) {
+
+  #nav-toggle {
+    display: block;
+    float: right;
+    margin-right: 0;
+    margin-top: 0;
+  }
+
+  #nav-menu-left, #nav-menu-right {
+    display: none;
+  }
+
+  .navbar-brand {
+    font-size: 1.5em;
+    padding-left: 0;
+  }
+
 }
 
 

@@ -11,6 +11,7 @@ import {ToastrService} from 'app/services/toastr.service';
 })
 export class AppComponent implements OnInit, DoCheck {
   username: string;
+  showDropdown = false;
 
   constructor(private _auth: AuthService, private _router: Router, private _toastr: ToastrService) { }
 
@@ -18,22 +19,29 @@ export class AppComponent implements OnInit, DoCheck {
     const username = this._auth.isValidated();
     if (username) {
       this.username = username;
-      console.log('APP COMPONENT INIT', this.username);
     }
   }
 
   ngDoCheck() {
-    console.log('do check');
     this.username = this._auth.isValidated();
   }
 
   logout() {
-    console.log('LOGOUT');
     // needs error handling
     this._auth.logout();
     this._toastr.success('You have been logged out.');
     this._router.navigate(['/login']);
+  }
 
+  toggleDropdown() {
+    this.showDropdown = this.showDropdown === true ? false : true;
+  }
+
+  hideDropdown(e) {
+    console.log(e.target.className);
+    if (e.target.className !== 'glyphicon glyphicon-menu-hamburger') {
+      this.showDropdown = false;
+    }
   }
 
 }

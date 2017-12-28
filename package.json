@@ -19,7 +19,8 @@
     "e2e": "ng e2e",
     "seed": "node api/data/index",
     "deploy": "git push heroku",
-    "postdeploy": "heroku open"
+    "postdeploy": "heroku open",
+    "kill": "taskkill /f /im node.exe"
   },
   "dependencies": {
     "@angular/animations": "^4.1.3",

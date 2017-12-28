@@ -13,15 +13,16 @@ a:hover {
 .search-wrapper {
   background-color: $darkGrey;
   padding: 15px;
-}
+  margin-top: 30px;
 
-.input-group {
-  width: 50%;
-}
+  .input-group {
+    width: 50%;
+  }
 
-.input-group-addon,
-.search-input {
-  height: 40px;
+  .input-group-addon,
+  .search-input {
+    height: 40px;
+  }
 }
 
 

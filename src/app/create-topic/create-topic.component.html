@@ -1,8 +1,8 @@
 <form #form="ngForm" (submit)="submitForm(form)" [@showPage]="'on'">
 
-  <div class="panel panel-default login-form">
+  <div class="panel login-form">
     <div class="panel-heading">
-      <h3 class="panel-title">Create Topic</h3>
+      <h1 class="panel-title">Create Topic</h1>
     </div>
 
     <div class="panel-body">
@@ -11,10 +11,9 @@
           <label class="control-label">Topic Title</label>
           <input
             [(ngModel)]="newTopic.topicTitle"
-
             class="form-control"
             name="topicTitle"
-            placeholder="enter a title for your voting topic"
+            placeholder="e.g. 2017 Films"
             type="text">
         </div>
 
@@ -22,38 +21,34 @@
           <label class="control-label">Topic Question</label>
           <input
             [(ngModel)]="newTopic.topicQuestion"
-
             class="form-control"
             name="topicQuestion"
-            placeholder="enter a question for your voting topic"
+            placeholder="e.g. What was the best film of 2017?"
             type="text">
         </div>
 
         <div class="form-group">
-          <label class="control-label">Options</label>
+          <label class="control-label">Response Options</label>
           <input
             [(ngModel)]="option"
             class="form-control"
             name="option"
-            placeholder="add a voting option and press enter"
+            placeholder="e.g. Bladerunner"
             type="text">
         </div>
         <div>
           <span class="option-badge" *ngFor="let option of options">{{ option }}</span>
         </div>
         <div class="error-message">{{error}}</div>
-
-          <button class="btn btn-primary control-button" (click)="addOption($event)">
+        <div class="options-help">Enter an answer and click 'Add Option'. When you are finished, click 'Create'.</div>
+          <button class="btn btn-primary" (click)="addOption($event)">
             Add option
           </button>
-          <button class="btn btn-primary control-button" (click)="removeOption($event)">
+          <button class="btn btn-primary" (click)="removeOption($event)">
             Undo
           </button>
 
-
-
-
-        <button type="submit" class="btn btn-primary pull-right control-button">Create</button>
+        <button type="submit" class="btn btn-primary pull-right">Create</button>
 
 
     </div>

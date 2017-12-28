@@ -11,10 +11,10 @@
 - push to github and heroku 
 
 #### To do  
+- make design responsive 
 - move vote buttons into table
 - front end checklist
 - add proper error handling to the API 
-- tidy up the CSS
 - prepare code base for AOT compilation 
 - add tests
 - add logger
@@ -26,7 +26,6 @@
 - Make sure the error messaging is appropriate for all of the forms 
 - add better validation to the username field (max length) 
 - add a modal to the delete topic function
-- add responsiveness – especially to the navbar 
 - don't show chart if there is no data
 
 #### Possible Features 

@@ -2,19 +2,22 @@
   max-width: 400px;
   margin: 0 auto;
   margin-top: 100px;
+
+  label {
+    font-weight: 500;
+  }
+
+  input {
+    font-size: 0.9em;
+    height: 38px;
+    font-weight: bold;
+  }
+
+  button.btn.btn-primary {
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
 }
 
-.form-control {
-  font-size: 0.9em;
-  height: 38px;
-  font-weight: bold;
-}
 
-.control-label {
-  font-weight: 500;
-}
-
-.control-button {
-  margin-top: 10px;
-  font-size: 1.0em;
-}
