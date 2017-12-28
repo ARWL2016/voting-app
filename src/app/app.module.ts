@@ -48,7 +48,7 @@ import { TopicFilterPipe } from './index/topic-filter.pipe';
       { path: 'home/:username', component: IndexComponent },
       { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
       { path: 'about',  component: AboutComponent },
-      { path: '**', redirectTo: 'create', pathMatch: 'full' }
+      { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
   ],
   providers: [

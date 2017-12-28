@@ -61,3 +61,11 @@ a:hover {
 }
 
 
+// MEDIA QUERIES
+
+@media screen and (max-width: 780px) {
+  .search-wrapper > .input-group {
+    width: 100%;
+  }
+}
+

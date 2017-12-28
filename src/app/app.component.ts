@@ -38,8 +38,8 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   hideDropdown(e) {
-    console.log(e.target.className);
-    if (e.target.className !== 'glyphicon glyphicon-menu-hamburger') {
+
+    if (e.target.id !== 'toggleBtn') {
       this.showDropdown = false;
     }
   }

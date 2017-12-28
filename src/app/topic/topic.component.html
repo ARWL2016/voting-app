@@ -1,10 +1,10 @@
-<div class="page-wrapper" [@showPage]="'on'" >
+<div id="responsive-container" [@showPage]="'on'" >
 
 
   <!-- NAVIGATION SECTION -->
 
   <section class="nav-wrapper">
-    <button (click)="toggleDisplay()" class="btn btn-info control-button">{{ toggleButton }}</button>
+    <button (click)="toggleDisplay()" class="btn btn-info control-button" [disabled]="!results">{{ toggleButton }}</button>
     <button class="btn btn-info control-button" [routerLink]="['/home']">Back to Index</button>
     <button
       *ngIf="topic && currentUser === topic.username && view === 'data'"
@@ -38,10 +38,12 @@
           <tr *ngFor="let result of topic.results">
             <td>{{ result.option | titlecase }}</td>
             <td><b>{{ result.votes }}</b></td>
+            <td><button class="btn btn-success" (click)="castVote(result)" [disabled]="hasVoted || !currentUser">Vote</button></td>
           </tr>
           <tr>
             <td>TOTAL</td>
             <td><b>{{ totalVotes }}</b></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -55,31 +57,8 @@
 
     <!-- HELP PANEL -->
 
-    <div *ngIf="!currentUser && view === 'data'" class="alert alert-warning" role="alert" >
+    <div *ngIf="!currentUser && view === 'data'" class="alert" role="alert" >
       To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.
-    </div>
-  </section>
-
-
-
-  <!-- CAST A VOTE SECTION -->
-
-  <section class="vote-wrapper">
-      <div *ngIf="!hasVoted && currentUser && view === 'data'" class="panel">
-      <div class="panel-heading">
-        <h1 class="panel-title">Vote</h1>
-      </div>
-      <div class="panel-body">
-        <div class="btn-group-vertical" role="group">
-          <button
-            *ngFor="let result of topic.results"
-            class="btn btn-success btn-lg voting-button"
-            value="{{ result.option }}"
-            (click)="castVote($event)">
-            {{ result.option }}
-          </button>
-        </div>
-      </div>
     </div>
   </section>
 

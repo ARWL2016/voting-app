@@ -1,7 +1,7 @@
 <div (click)="hideDropdown($event)">
   <div>
     <nav class="navbar navbar-default">
-      <div class="container">
+      <div id="responsive-container">
         <a class="navbar-brand" [routerLink]="['/home']">Votoro</a>
 
         <ul class="nav navbar-nav" id="nav-menu-left">
@@ -11,11 +11,6 @@
           <li><a [routerLink]="['/about']">ABOUT</a></li>
         </ul>
 
-        <!-- Two navbar-right uls - the first will display to the right - Thanks BS -->
-        <ul class="nav navbar-nav navbar-right" id="nav-toggle">
-          <li><button class="btn btn-default navbar-btn" (click)="toggleDropdown()"><span class="glyphicon glyphicon-menu-hamburger"></span></button></li>
-          <li></li>
-        </ul>
 
         <ul class="nav navbar-nav navbar-right" id="nav-menu-right">
           <li *ngIf="!username"><a [routerLink]="['/login/register']">SIGN UP</a></li>
@@ -24,6 +19,7 @@
           <li><button *ngIf="username" class="btn btn-default navbar-btn" (click)="logout()">LOGOUT</button></li>
         </ul>
 
+        <button class="btn btn-default navbar-btn pull-right" id="toggleBtn" (click)="toggleDropdown()">MENU</button>
       </div>
     </nav>
 
@@ -41,7 +37,7 @@
     </div>
   </div>
 
-    <div class="container">
+    <div class="x-container">
       <router-outlet></router-outlet>
     </div>
 

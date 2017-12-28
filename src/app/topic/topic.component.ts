@@ -37,7 +37,6 @@ export class TopicComponent implements OnInit {
     private _auth: AuthService,
     private _toastr: ToastrService
     ) {
-      console.log('snapshot' + this._route.snapshot.params['id']);
       this._id = this._route.snapshot.params['id'];
 
     }
@@ -62,13 +61,15 @@ export class TopicComponent implements OnInit {
       .reduce((a, b) => a + b);
   }
 
-  castVote(event) {
+  castVote(res): void {
     if (!this.hasVoted) {
       this.topic.results.forEach(result => {
-        if (result.option === event.target.value) {
+        if (result.option === res.option) {
           result.votes += 1;
         }
       });
+      // This code accepts vote client side before writing to the server - questionable
+      // TODO - refactor UI feedback into Promise return
       this.topic.voters.push(this.currentUser);
       this.hasVoted = true;
       this.totalVotes = this.getTotalVotes();

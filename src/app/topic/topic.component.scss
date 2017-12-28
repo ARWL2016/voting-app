@@ -1,38 +1,29 @@
 // LAYOUT STYLES
 
-div.page-wrapper {
-  max-width: 960px;
-  // margin: 0 auto;
-  margin-top: 10px;
-}
-
 section.nav-wrapper {
   float: left;
   width: 200px;
+  margin-top: 30px;
+  margin-bottom: 12px;
+
+  .control-button {
+    margin: 0 5px 10px 0;
+    padding: 10px 20px;
+    width: 150px;
+  }
 }
 
 section.results-wrapper {
   float: left;
-  width: 500px;
+  width: 60%;
+  max-width: 800px;
 }
 
-section.vote-wrapper {
-  float: left;
-  width: 200px;
-  margin-left:30px;
-}
-
-
-// NAV BUTTON STYLES
-
-.button-group-vertical {
-  width: 100%;
-}
-
-.control-button {
-  margin-bottom: 12px;
-  padding: 10px 20px;
-  width: 150px;
+// clearfix prevents container collapsing due to floated elements
+#responsive-container:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 
@@ -75,12 +66,49 @@ td:last-child{
   text-align: right;
 }
 
+// ALERT
 
-// CAST VOTE BUTTON GROUP
+.alert {
+  background-color: rgb(255, 70, 70);
+  color: white;
+  margin-top: 12px;
 
-.voting-button {
-  padding: 15px;
+  a {
+    color: inherit;
+    font-weight: bold;
+  }
 }
 
+// MEDIA QUERIES
 
+@media screen and (max-width: 700px) {
+  section.nav-wrapper {
+    float: none;
+    width: 100%;
+
+    .control-button {
+      display: inline-block;
+      width: 30%;
+      min-width: 130px;
+    }
+  }
+
+  section.results-wrapper {
+    float: none;
+    width: 100%;
+    // margin: 0 auto !important;
+  }
+
+  div.panel {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  section.nav-wrapper > .control-button {
+    display: block;
+    width: 100%;
+  }
+}
 

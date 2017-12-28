@@ -1,17 +1,10 @@
 @import "../../variables";
 
-// .panel {
-//   @include panelDefault();
-//   margin-top: 30px;
-// }
-
-// .panel-heading {
-//   @include panelHeading();
-// }
-
-// .panel-title {
-//   @include panelTitle();
-// }
+.panel {
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto;
+}
 
 .panel-body {
   padding: 25px;

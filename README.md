@@ -11,27 +11,26 @@
 - push to github and heroku 
 
 #### To do  
-- make design responsive 
-- move vote buttons into table
 - front end checklist
+- add a modal to the delete topic function
 - add proper error handling to the API 
 - prepare code base for AOT compilation 
-- add tests
-- add logger
-- debounce the search box
 - add documentation 
 - time out requests that take too long
+- add active class to nav links
 
-#### UI Improvements 
+#### Enhancements
 - Make sure the error messaging is appropriate for all of the forms 
 - add better validation to the username field (max length) 
-- add a modal to the delete topic function
-- don't show chart if there is no data
+- add animation to dropdown  
+- debounce the search box
+- add tests
+- add logger
 
 #### Possible Features 
-2.	add a recent button and a most popular button to the home page (this will mean changing the data structure 
-3.	add paging
-4. username availability check
+- add a recent button and a most popular button to the home page (this will mean changing the data structure 
+- add paging
+- username availability check
 
 
 
