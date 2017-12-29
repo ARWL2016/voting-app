@@ -20,7 +20,6 @@ export class ChartComponent implements OnInit {
   constructor (private _data: DataService) {}
 
   ngOnInit(): void {
-    console.log('chart component', this._id);
       this._data.fetchTopicById(this._id)
         .subscribe(topic => {
           this.results = topic.results;
@@ -29,8 +28,7 @@ export class ChartComponent implements OnInit {
             this.chartLabels.push(result.option);
 
           });
-        console.log(this.chartLabels);
-        console.log(this.chartData);
+
       });
 
   }

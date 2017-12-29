@@ -1,5 +1,7 @@
 <div (click)="hideDropdown($event)">
   <div>
+
+<!-- NAVIGATION -->
     <nav class="navbar navbar-default">
       <div id="responsive-container">
         <a class="navbar-brand" [routerLink]="['/home']">Votoro</a>
@@ -10,7 +12,6 @@
           <li *ngIf="username"><a [routerLink]="['/create']">NEW TOPIC</a></li>
           <li><a [routerLink]="['/about']">ABOUT</a></li>
         </ul>
-
 
         <ul class="nav navbar-nav navbar-right" id="nav-menu-right">
           <li *ngIf="!username"><a [routerLink]="['/login/register']">SIGN UP</a></li>
@@ -23,8 +24,8 @@
       </div>
     </nav>
 
-    <!-- RESPONSIVE NAV DROPDOWN -->
-    <div *ngIf="showDropdown" class="dropdown">
+    <!-- NAV DROPDOWN FOR SMALL SCREENS -->
+    <div *ngIf="showDropdown" class="dropdown" [@showPage]="'on'">
       <ul>
         <li><a [routerLink]="['/home']">HOME</a></li>
         <li *ngIf="username"><a [routerLink]="['/home', username]">MY TOPICS</a></li>
@@ -37,9 +38,10 @@
     </div>
   </div>
 
-    <div class="x-container">
-      <router-outlet></router-outlet>
-    </div>
+<!-- ROUTER OUTLET -->
+  <div class="x-container">
+    <router-outlet></router-outlet>
+  </div>
 
 </div>
 

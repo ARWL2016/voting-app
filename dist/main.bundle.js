@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section\r\n  class=\"about-wrapper\"\r\n  [@showPage]=\"'on'\">\r\n\r\n    <div class=\"panel v-panel\">\r\n      <div class=\"panel-heading\">\r\n        <h1 class=\"panel-title\">About Votogo</h1>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>VOTOGO is a voting app which allows users to create, share and view the results of surveys,\r\n          and vote on other people's topics. It was created as a\r\n          <a href=\"https://www.freecodecamp.com/challenges/build-a-voting-app\" target=\"_blank\">Free Code Camp</a>\r\n          project.\r\n        </p>\r\n        <p>This application was built using the MEAN Stack:</p>\r\n        <ul>\r\n          <li>The front end is an Angular 4 / Typescript project created with the excellent Angular-CLI.</li>\r\n          <li>The back end uses Node v.6.9.2 and Express.</li>\r\n          <li>Data is hosted in the cloud at MLab, using MongoDB and Mongoose.</li>\r\n          <li>The authentication module uses Bcrypt.js for password encryption and JSON Web Tokens for maintaining secure sessions.</li>\r\n          <li>UI components are based on Bootstrap and animated with the Angular animations module.</li>\r\n          <li>The doughnut chart was created using Chart.js.</li>\r\n        </ul>\r\n        <p>The complete project repo can be viewed at <a href=\"https://github.com/ARWL2016/voting-app\" target=\"_blank\">Github</a>.</p>\r\n        <p><b>Alistair Willis</b></p>\r\n      </div>\r\n    </div>\r\n</section>\r\n"
+module.exports = "<section\r\n  class=\"about-wrapper\"\r\n  [@showPage]=\"'on'\">\r\n\r\n    <div class=\"panel v-panel\">\r\n      <div class=\"panel-heading\">\r\n        <h1 class=\"panel-title\">About Votogo</h1>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>VOTOGO is a voting app which allows users to create, share and view the results of surveys,\r\n          and vote on other people's topics. It was created as a\r\n          <a href=\"https://www.freecodecamp.com/challenges/build-a-voting-app\" target=\"_blank\" rel=\"noopener noreferrer\">Free Code Camp</a>\r\n          project.\r\n        </p>\r\n        <p>This application was built using the MEAN Stack:</p>\r\n        <ul>\r\n          <li>The front end is an Angular 4 / Typescript project created with the excellent Angular-CLI.</li>\r\n          <li>The back end uses Node v.6.9.2 and Express.</li>\r\n          <li>Data is hosted in the cloud at MLab, using MongoDB and Mongoose.</li>\r\n          <li>The authentication module uses Bcrypt.js for password encryption and JSON Web Tokens for maintaining secure sessions.</li>\r\n          <li>UI components are based on Bootstrap and animated with the Angular animations module.</li>\r\n          <li>The doughnut chart was created using Chart.js.</li>\r\n        </ul>\r\n        <p>The complete project repo can be viewed at <a href=\"https://github.com/ARWL2016/voting-app\" target=\"_blank\" rel=\"noopener noreferrer\">Github</a>.</p>\r\n        <p><b>Alistair Willis</b></p>\r\n      </div>\r\n    </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -103,7 +103,7 @@ exports.pageTransition = pageTransition;
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div (click)=\"hideDropdown($event)\">\r\n  <div>\r\n    <nav class=\"navbar navbar-default\">\r\n      <div id=\"responsive-container\">\r\n        <a class=\"navbar-brand\" [routerLink]=\"['/home']\">Votoro</a>\r\n\r\n        <ul class=\"nav navbar-nav\" id=\"nav-menu-left\">\r\n          <li><a [routerLink]=\"['/home']\">HOME</a></li>\r\n          <li *ngIf=\"username\"><a [routerLink]=\"['/home', username]\">MY TOPICS</a></li>\r\n          <li *ngIf=\"username\"><a [routerLink]=\"['/create']\">NEW TOPIC</a></li>\r\n          <li><a [routerLink]=\"['/about']\">ABOUT</a></li>\r\n        </ul>\r\n\r\n\r\n        <ul class=\"nav navbar-nav navbar-right\" id=\"nav-menu-right\">\r\n          <li *ngIf=\"!username\"><a [routerLink]=\"['/login/register']\">SIGN UP</a></li>\r\n          <li *ngIf=\"!username\"><a [routerLink]=\"['/login']\">LOGIN</a></li>\r\n          <li *ngIf=\"username\"><a>Logged in as <b>{{ username | uppercase }}</b></a></li>\r\n          <li><button *ngIf=\"username\" class=\"btn btn-default navbar-btn\" (click)=\"logout()\">LOGOUT</button></li>\r\n        </ul>\r\n\r\n        <button class=\"btn btn-default navbar-btn pull-right\" id=\"toggleBtn\" (click)=\"toggleDropdown()\">MENU</button>\r\n      </div>\r\n    </nav>\r\n\r\n    <!-- RESPONSIVE NAV DROPDOWN -->\r\n    <div *ngIf=\"showDropdown\" class=\"dropdown\">\r\n      <ul>\r\n        <li><a [routerLink]=\"['/home']\">HOME</a></li>\r\n        <li *ngIf=\"username\"><a [routerLink]=\"['/home', username]\">MY TOPICS</a></li>\r\n        <li *ngIf=\"username\"><a [routerLink]=\"['/create']\">NEW TOPIC</a></li>\r\n        <li *ngIf=\"!username\"><a [routerLink]=\"['/login/register']\">SIGN UP</a></li>\r\n        <li *ngIf=\"!username\"><a [routerLink]=\"['/login']\">LOGIN</a></li>\r\n        <li *ngIf=\"username\"><a (click)=\"logout()\">LOGOUT</a></li>\r\n        <li><a [routerLink]=\"['/about']\">ABOUT</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n    <div class=\"x-container\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<div (click)=\"hideDropdown($event)\">\r\n  <div>\r\n\r\n<!-- NAVIGATION -->\r\n    <nav class=\"navbar navbar-default\">\r\n      <div id=\"responsive-container\">\r\n        <a class=\"navbar-brand\" [routerLink]=\"['/home']\">Votoro</a>\r\n\r\n        <ul class=\"nav navbar-nav\" id=\"nav-menu-left\">\r\n          <li><a [routerLink]=\"['/home']\">HOME</a></li>\r\n          <li *ngIf=\"username\"><a [routerLink]=\"['/home', username]\">MY TOPICS</a></li>\r\n          <li *ngIf=\"username\"><a [routerLink]=\"['/create']\">NEW TOPIC</a></li>\r\n          <li><a [routerLink]=\"['/about']\">ABOUT</a></li>\r\n        </ul>\r\n\r\n        <ul class=\"nav navbar-nav navbar-right\" id=\"nav-menu-right\">\r\n          <li *ngIf=\"!username\"><a [routerLink]=\"['/login/register']\">SIGN UP</a></li>\r\n          <li *ngIf=\"!username\"><a [routerLink]=\"['/login']\">LOGIN</a></li>\r\n          <li *ngIf=\"username\"><a>Logged in as <b>{{ username | uppercase }}</b></a></li>\r\n          <li><button *ngIf=\"username\" class=\"btn btn-default navbar-btn\" (click)=\"logout()\">LOGOUT</button></li>\r\n        </ul>\r\n\r\n        <button class=\"btn btn-default navbar-btn pull-right\" id=\"toggleBtn\" (click)=\"toggleDropdown()\">MENU</button>\r\n      </div>\r\n    </nav>\r\n\r\n    <!-- NAV DROPDOWN FOR SMALL SCREENS -->\r\n    <div *ngIf=\"showDropdown\" class=\"dropdown\" [@showPage]=\"'on'\">\r\n      <ul>\r\n        <li><a [routerLink]=\"['/home']\">HOME</a></li>\r\n        <li *ngIf=\"username\"><a [routerLink]=\"['/home', username]\">MY TOPICS</a></li>\r\n        <li *ngIf=\"username\"><a [routerLink]=\"['/create']\">NEW TOPIC</a></li>\r\n        <li *ngIf=\"!username\"><a [routerLink]=\"['/login/register']\">SIGN UP</a></li>\r\n        <li *ngIf=\"!username\"><a [routerLink]=\"['/login']\">LOGIN</a></li>\r\n        <li *ngIf=\"username\"><a (click)=\"logout()\">LOGOUT</a></li>\r\n        <li><a [routerLink]=\"['/about']\">ABOUT</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n<!-- ROUTER OUTLET -->\r\n  <div class=\"x-container\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -115,7 +115,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "nav.navbar {\n  margin-bottom: 0;\n  border-radius: 0;\n  font-weight: bold; }\n  nav.navbar .container {\n    max-width: 960px;\n    margin: 0 auto; }\n    nav.navbar .container .navbar-brand {\n      font-size: 1.2em;\n      font-weight: bold; }\n    nav.navbar .container ul, nav.navbar .container li, nav.navbar .container a {\n      display: inline-block; }\n      nav.navbar .container ul span.glyphicon.glyphicon-menu-hamburger, nav.navbar .container li span.glyphicon.glyphicon-menu-hamburger, nav.navbar .container a span.glyphicon.glyphicon-menu-hamburger {\n        font-size: 1.4em; }\n\n#toggleBtn {\n  display: none;\n  margin-top: 8px; }\n\ndiv.dropdown {\n  background-color: white;\n  color: black;\n  transition: all 500ms ease-in; }\n  div.dropdown ul {\n    margin: 0;\n    padding: 0; }\n    div.dropdown ul li {\n      list-style-type: none;\n      border-bottom: 1px solid lightgrey;\n      padding: 4px;\n      text-align: center; }\n      div.dropdown ul li:hover {\n        background-color: lightgrey; }\n      div.dropdown ul li a {\n        text-decoration: none;\n        cursor: pointer;\n        font-weight: bold; }\n\n@media screen and (max-width: 780px) {\n  #toggleBtn {\n    display: block;\n    float: right;\n    margin-right: 20px; }\n  #nav-menu-left, #nav-menu-right {\n    display: none; }\n  .navbar-brand {\n    font-size: 1.5em;\n    padding-left: 20px; } }\n", ""]);
+exports.push([module.i, "nav.navbar {\n  margin-bottom: 0;\n  border-radius: 0;\n  font-weight: bold; }\n  nav.navbar .container {\n    max-width: 960px;\n    margin: 0 auto; }\n    nav.navbar .container .navbar-brand {\n      font-size: 1.2em;\n      font-weight: bold; }\n    nav.navbar .container ul, nav.navbar .container li, nav.navbar .container a {\n      display: inline-block; }\n      nav.navbar .container ul span.glyphicon.glyphicon-menu-hamburger, nav.navbar .container li span.glyphicon.glyphicon-menu-hamburger, nav.navbar .container a span.glyphicon.glyphicon-menu-hamburger {\n        font-size: 1.4em; }\n\n#toggleBtn {\n  display: none;\n  margin-top: 8px; }\n\ndiv.dropdown {\n  background-color: white;\n  color: black;\n  transition: all 500ms ease-in; }\n  div.dropdown ul {\n    margin: 0;\n    padding: 0; }\n    div.dropdown ul li {\n      list-style-type: none;\n      border-bottom: 1px solid lightgrey;\n      padding: 4px;\n      text-align: center; }\n      div.dropdown ul li:hover {\n        background-color: lightgrey; }\n      div.dropdown ul li a {\n        text-decoration: none;\n        cursor: pointer;\n        font-weight: bold;\n        color: darkgrey; }\n\n@media screen and (max-width: 780px) {\n  #toggleBtn {\n    display: block;\n    float: right;\n    margin-right: 20px; }\n  #nav-menu-left, #nav-menu-right {\n    display: none; }\n  .navbar-brand {\n    font-size: 1.5em;\n    padding-left: 20px; } }\n", ""]);
 
 // exports
 
@@ -129,6 +129,18 @@ module.exports = module.exports.toString();
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/**
+ *  This is a container component which renders the navigation and
+ *  contains the router outlet. Component guide:
+ *
+ *  index (/home) - displays all voting topics from all users (searchable)
+ *  index (/home/:username) - displays all voting topics created by a logged in user
+ *  topic (/topic/:id) - display the results of a voting topic and the voting function (for authenticated users)
+ *  create (/create) - displays a form to create a new topic (for authenticated users)
+ *  login (/login) - displays login form
+ *  registration (/login/registration) - displays registration form
+ *
+ */
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -144,6 +156,7 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var toastr_service_1 = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+var animations_1 = __webpack_require__("../../../../../src/app/animations.ts");
 var AppComponent = (function () {
     function AppComponent(_auth, _router, _toastr) {
         this._auth = _auth;
@@ -180,7 +193,8 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
+        styles: [__webpack_require__("../../../../../src/app/app.component.scss")],
+        animations: [animations_1.pageTransition]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof toastr_service_1.ToastrService !== "undefined" && toastr_service_1.ToastrService) === "function" && _c || Object])
 ], AppComponent);
@@ -248,12 +262,12 @@ AppModule = __decorate([
             http_1.HttpModule,
             ng2_charts_1.ChartsModule,
             router_1.RouterModule.forRoot([
+                { path: 'home', component: index_component_1.IndexComponent },
+                { path: 'home/:username', canActivate: [create_topic_guard_service_1.CreateTopicGuard], component: index_component_1.IndexComponent },
                 { path: 'topic/:id', component: topic_component_1.TopicComponent },
+                { path: 'create', canActivate: [create_topic_guard_service_1.CreateTopicGuard], component: create_topic_component_1.CreateTopicComponent },
                 { path: 'login', component: login_component_1.LoginComponent },
                 { path: 'login/register', component: registration_component_1.RegistrationComponent },
-                { path: 'home', component: index_component_1.IndexComponent },
-                { path: 'home/:username', component: index_component_1.IndexComponent },
-                { path: 'create', canActivate: [create_topic_guard_service_1.CreateTopicGuard], component: create_topic_component_1.CreateTopicComponent },
                 { path: 'about', component: about_component_1.AboutComponent },
                 { path: '**', redirectTo: 'home', pathMatch: 'full' }
             ])
@@ -453,7 +467,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".doughnut-chart {\n  max-width: 500px;\n  margin: 0 auto;\n  margin-top: 30px; }\n", ""]);
+exports.push([module.i, ".doughnut-chart {\n  height: 500px;\n  width: 500px;\n  margin: 0 auto;\n  margin-top: 30px; }\n", ""]);
 
 // exports
 
@@ -490,7 +504,6 @@ var ChartComponent = (function () {
     }
     ChartComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log('chart component', this._id);
         this._data.fetchTopicById(this._id)
             .subscribe(function (topic) {
             _this.results = topic.results;
@@ -498,8 +511,6 @@ var ChartComponent = (function () {
                 _this.chartData.push(result.votes);
                 _this.chartLabels.push(result.option);
             });
-            console.log(_this.chartLabels);
-            console.log(_this.chartData);
         });
     };
     return ChartComponent;
@@ -1088,7 +1099,7 @@ exports.ToastrService = ToastrService;
 /***/ "../../../../../src/app/topic/topic.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"responsive-container\" [@showPage]=\"'on'\" >\r\n\r\n\r\n  <!-- NAVIGATION SECTION -->\r\n\r\n  <section class=\"nav-wrapper\">\r\n    <button (click)=\"toggleDisplay()\" class=\"btn btn-info control-button\" [disabled]=\"!totalVotes\">{{ toggleButton }}</button>\r\n    <button class=\"btn btn-info control-button\" [routerLink]=\"['/home']\">Back to Index</button>\r\n    <button\r\n      *ngIf=\"topic && currentUser === topic.username && view === 'data'\"\r\n      class=\"btn btn-warning control-button\"\r\n      (click)=\"deleteTopic(_id)\"\r\n      [@showPage]=\"'on'\">\r\n      Delete topic\r\n    </button>\r\n  </section>\r\n\r\n\r\n  <!-- RESULTS SECTION -->\r\n\r\n  <section class=\"results-wrapper\">\r\n    <div *ngIf=\"topic && view === 'data'\" class=\"panel\" [@showPage]=\"'on'\" >\r\n      <div class=\"panel-heading\">\r\n        <h1 class=\"panel-title\">{{ topic.topicTitle }}</h1>\r\n        <div *ngIf=\"hasVoted\" class=\"has-voted-wrapper\">\r\n            <span class=\"pull-right voted\">voted</span>\r\n            <span class=\"glyphicon glyphicon-ok-sign pull-right\" aria-hidden=\"true\"></span>\r\n        </div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>{{ topic.topicQuestion }}</p>\r\n        <p class=\"topic-author\">by {{ topic.username  }}</p>\r\n      </div>\r\n\r\n      <table>\r\n        <tbody>\r\n          <tr *ngFor=\"let result of topic.results\">\r\n            <td>{{ result.option | titlecase }}</td>\r\n            <td><b>{{ result.votes }}</b></td>\r\n            <td><button class=\"btn btn-success\" (click)=\"castVote(result)\" [disabled]=\"hasVoted || !currentUser\">Vote</button></td>\r\n          </tr>\r\n          <tr>\r\n            <td>TOTAL</td>\r\n            <td><b>{{ totalVotes }}</b></td>\r\n            <td></td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n\r\n\r\n    <!-- CHART COMPONENT -->\r\n\r\n    <app-chart *ngIf=\"view === 'chart'\" [_id]=\"_id\"></app-chart>\r\n\r\n\r\n    <!-- HELP PANEL -->\r\n\r\n    <div *ngIf=\"!currentUser && view === 'data'\" class=\"alert\" role=\"alert\" >\r\n      To vote, please <a [routerLink]=\"['/login/register']\">register</a> or <a [routerLink]=\"['/login']\">login</a>.\r\n    </div>\r\n  </section>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<div id=\"responsive-container\" [@showPage]=\"'on'\" >\r\n\r\n\r\n  <!-- NAVIGATION SECTION -->\r\n\r\n  <section class=\"nav-wrapper\">\r\n    <button (click)=\"toggleDisplay()\" class=\"btn btn-info control-button\" [disabled]=\"!totalVotes\">{{ toggleButton }}</button>\r\n    <button class=\"btn btn-info control-button\" [routerLink]=\"['/home']\">Back to Index</button>\r\n    <button\r\n      *ngIf=\"topic && currentUser === topic.username && view === 'data'\"\r\n      class=\"btn btn-warning control-button\"\r\n      (click)=\"deleteTopic(_id)\"\r\n      [@showPage]=\"'on'\">\r\n      Delete topic\r\n    </button>\r\n  </section>\r\n\r\n\r\n  <!-- RESULTS SECTION -->\r\n\r\n  <section class=\"results-wrapper\">\r\n    <div *ngIf=\"topic && view === 'data'\" class=\"panel\" [@showPage]=\"'on'\" >\r\n      <div class=\"panel-heading\">\r\n        <h1 class=\"panel-title\">{{ topic.topicTitle }}</h1>\r\n        <div *ngIf=\"hasVoted\" class=\"has-voted-wrapper\">\r\n            <span class=\"pull-right voted\">voted</span>\r\n            <span class=\"glyphicon glyphicon-ok-sign pull-right\" aria-hidden=\"true\"></span>\r\n        </div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>{{ topic.topicQuestion }}</p>\r\n        <p class=\"topic-author\">by {{ topic.username  }}</p>\r\n      </div>\r\n\r\n      <table>\r\n        <tbody>\r\n          <tr *ngFor=\"let result of topic.results\">\r\n            <td>{{ result.option | titlecase }}</td>\r\n            <td><b>{{ result.votes }}</b></td>\r\n            <td><button class=\"btn btn-success\" (click)=\"castVote(result)\" [disabled]=\"hasVoted || !currentUser\">Vote</button></td>\r\n          </tr>\r\n          <tr>\r\n            <td>TOTAL</td>\r\n            <td><b>{{ totalVotes }}</b></td>\r\n            <td></td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n\r\n\r\n    <!-- CHART COMPONENT -->\r\n\r\n    <app-chart *ngIf=\"view === 'chart'\" [_id]=\"_id\"></app-chart>\r\n\r\n\r\n    <!-- HELP PANEL -->\r\n\r\n    <div *ngIf=\"!currentUser && view === 'data'\" class=\"alert\" role=\"alert\" [@showPage]=\"'on'\">\r\n      To vote, please <a [routerLink]=\"['/login/register']\">register</a> or <a [routerLink]=\"['/login']\">login</a>.\r\n    </div>\r\n  </section>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1100,7 +1111,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "section.nav-wrapper {\n  float: left;\n  width: 200px;\n  margin-top: 30px;\n  margin-bottom: 12px; }\n  section.nav-wrapper .control-button {\n    margin: 0 5px 10px 0;\n    padding: 10px 20px;\n    width: 150px; }\n\nsection.results-wrapper {\n  float: left;\n  width: 60%;\n  max-width: 800px; }\n\n#responsive-container:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\ndiv.panel-heading:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\nh1.panel-title {\n  display: inline-block; }\n\ndiv.has-voted-wrapper {\n  float: right; }\n  div.has-voted-wrapper span.glyphicon {\n    color: green;\n    font-size: 22px;\n    margin-left: 10px;\n    padding: 6px; }\n  div.has-voted-wrapper span.voted {\n    font-size: 16px;\n    padding: 3px 0 3px 5px; }\n\ntable {\n  width: 100%; }\n\n.thead {\n  border-bottom: 0; }\n\ntd:first-child {\n  padding: 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: left; }\n\ntd:last-child {\n  padding: 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: right; }\n\n.alert {\n  background-color: #ff4646;\n  color: white;\n  margin-top: 12px; }\n  .alert a {\n    color: inherit;\n    font-weight: bold; }\n\n@media screen and (max-width: 700px) {\n  section.nav-wrapper {\n    float: none;\n    width: 100%; }\n    section.nav-wrapper .control-button {\n      display: inline-block;\n      width: 30%;\n      min-width: 130px; }\n  section.results-wrapper {\n    float: none;\n    width: 100%; }\n  div.panel {\n    width: 100%;\n    margin: 0 auto; } }\n\n@media screen and (max-width: 460px) {\n  section.nav-wrapper > .control-button {\n    display: block;\n    width: 100%; } }\n", ""]);
+exports.push([module.i, "section.nav-wrapper {\n  float: left;\n  width: 200px;\n  margin-top: 30px;\n  margin-bottom: 12px; }\n  section.nav-wrapper .control-button {\n    margin: 0 5px 10px 0;\n    padding: 10px 20px;\n    width: 150px; }\n\nsection.results-wrapper {\n  float: left;\n  width: 60%;\n  max-width: 800px; }\n\n#responsive-container:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\ndiv.panel-heading:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\nh1.panel-title {\n  display: inline-block; }\n\ndiv.has-voted-wrapper {\n  float: right; }\n  div.has-voted-wrapper span.glyphicon {\n    color: green;\n    font-size: 22px;\n    margin-left: 10px;\n    padding: 6px; }\n  div.has-voted-wrapper span.voted {\n    font-size: 16px;\n    padding: 3px 0 3px 5px; }\n\ntable {\n  width: 100%; }\n\n.thead {\n  border-bottom: 0; }\n\ntd:first-child {\n  padding: 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: left; }\n\ntd:last-child {\n  padding: 10px 20px;\n  border-width: 0px;\n  font-size: 0.9em;\n  text-align: right; }\n\n.alert {\n  background-color: #ff4646;\n  color: white;\n  margin-top: 30px; }\n  .alert a {\n    color: inherit;\n    font-weight: bold; }\n\n@media screen and (max-width: 700px) {\n  section.nav-wrapper {\n    float: none;\n    width: 100%; }\n    section.nav-wrapper .control-button {\n      display: inline-block;\n      width: 30%;\n      min-width: 130px; }\n  section.results-wrapper {\n    float: none;\n    width: 100%; }\n  div.panel {\n    width: 100%;\n    margin: 0 auto; } }\n\n@media screen and (max-width: 460px) {\n  section.nav-wrapper > .control-button {\n    display: block;\n    width: 100%; } }\n", ""]);
 
 // exports
 

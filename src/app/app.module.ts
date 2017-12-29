@@ -41,12 +41,12 @@ import { TopicFilterPipe } from './index/topic-filter.pipe';
     HttpModule,
     ChartsModule,
     RouterModule.forRoot([
+      { path: 'home', component: IndexComponent },
+      { path: 'home/:username', canActivate: [CreateTopicGuard], component: IndexComponent },
       { path: 'topic/:id', component: TopicComponent },
+      { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
       { path: 'login', component: LoginComponent },
       { path: 'login/register', component: RegistrationComponent },
-      { path: 'home', component: IndexComponent },
-      { path: 'home/:username', component: IndexComponent },
-      { path: 'create', canActivate: [CreateTopicGuard],  component: CreateTopicComponent },
       { path: 'about',  component: AboutComponent },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])

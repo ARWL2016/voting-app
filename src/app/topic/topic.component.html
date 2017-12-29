@@ -56,7 +56,7 @@
 
     <!-- HELP PANEL -->
 
-    <div *ngIf="!currentUser && view === 'data'" class="alert" role="alert" >
+    <div *ngIf="!currentUser && view === 'data'" class="alert" role="alert" [@showPage]="'on'">
       To vote, please <a [routerLink]="['/login/register']">register</a> or <a [routerLink]="['/login']">login</a>.
     </div>
   </section>
