@@ -19,6 +19,7 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - Deployment: Heroku and Mlab (MongoDB cloud host)
 
 #### Features 
+- Single Page Application
 - user authentication 
 - responsive design 
 - toastr notifications 
