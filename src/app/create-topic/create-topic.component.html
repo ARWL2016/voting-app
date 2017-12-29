@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label">Response Options</label>
+          <label class="control-label">Answers</label>
           <input
             [(ngModel)]="option"
             class="form-control"
@@ -40,7 +40,7 @@
           <span class="option-badge" *ngFor="let option of options">{{ option }}</span>
         </div>
         <div class="error-message">{{error}}</div>
-        <div class="options-help">Enter an answer and click 'Add Option'. When you are finished, click 'Create'.</div>
+        <div class="options-help">Enter an answer and click <i>Add Option</i>. You must add at least two. When you are finished, click <i>'Create'</i>.</div>
           <button class="btn btn-primary" (click)="addOption($event)">
             Add option
           </button>

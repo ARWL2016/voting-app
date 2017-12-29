@@ -21,7 +21,6 @@ module.exports = {
     const username = req.user.username;
     VotingTopic.find({username})
       .then(topics => res.status(200).send(topics))
-      // .then(()=> res.sendStatus(500))
       .catch(e => sendError(e));
   },
 
@@ -29,6 +28,16 @@ module.exports = {
     const payload = req.body;
     VotingTopic.create(payload)
       .then(topic => res.send(topic))
+      .catch(e => sendError(e));
+  },
+
+  delete(req, res) {
+    const id = req.params.id;
+
+    VotingTopic.findByIdAndRemove(id)
+      .then(topic => res.status(202).send(topic))
+      .catch(e => sendError(e));
+
   },
 
   addVote(req, res) {
@@ -36,16 +45,8 @@ module.exports = {
     const id = req.params.id;
 
     VotingTopic.findByIdAndUpdate(id, body)
-      .then(() => VotingTopic.findById(id))
-      .then(topic => res.send(topic));
-  },
-
-  delete(req, res) {
-    const id = req.params.id;
-    console.log(id);
-    VotingTopic.findByIdAndRemove(id)
-      .then(topic => res.status(202).send(topic))
-      .catch(err => res.status(400).send());
+      .then(() => res.send(200))
+      .catch(e => sendError(e));
   },
 
   sendError() {

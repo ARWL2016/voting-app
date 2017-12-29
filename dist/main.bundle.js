@@ -495,9 +495,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var data_service_1 = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var animations_1 = __webpack_require__("../../../../../src/app/animations.ts");
+var helper_service_1 = __webpack_require__("../../../../../src/app/services/helper.service.ts");
 var ChartComponent = (function () {
-    function ChartComponent(_data) {
+    function ChartComponent(_data, _helper) {
         this._data = _data;
+        this._helper = _helper;
         this.chartLabels = [];
         this.chartData = [];
         this.chartType = 'doughnut';
@@ -505,13 +507,14 @@ var ChartComponent = (function () {
     ChartComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._data.fetchTopicById(this._id)
-            .subscribe(function (topic) {
+            .then(function (topic) {
             _this.results = topic.results;
             _this.results.forEach(function (result) {
                 _this.chartData.push(result.votes);
                 _this.chartLabels.push(result.option);
             });
-        });
+        })
+            .catch(function (e) { return _this._helper.logError(e); });
     };
     return ChartComponent;
 }());
@@ -526,10 +529,10 @@ ChartComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/chart/chart.component.scss")],
         animations: [animations_1.pageTransition]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object, typeof (_b = typeof helper_service_1.HelperService !== "undefined" && helper_service_1.HelperService) === "function" && _b || Object])
 ], ChartComponent);
 exports.ChartComponent = ChartComponent;
-var _a;
+var _a, _b;
 //# sourceMappingURL=chart.component.js.map
 
 /***/ }),
@@ -537,7 +540,7 @@ var _a;
 /***/ "../../../../../src/app/create-topic/create-topic.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form #form=\"ngForm\" (submit)=\"submitForm(form)\" [@showPage]=\"'on'\">\r\n\r\n  <div class=\"panel login-form\">\r\n    <div class=\"panel-heading\">\r\n      <h1 class=\"panel-title\">Create Topic</h1>\r\n    </div>\r\n\r\n    <div class=\"panel-body\">\r\n\r\n        <div class=\"form-group\">\r\n          <label class=\"control-label\">Topic Title</label>\r\n          <input\r\n            [(ngModel)]=\"newTopic.topicTitle\"\r\n            class=\"form-control\"\r\n            name=\"topicTitle\"\r\n            placeholder=\"e.g. 2017 Films\"\r\n            type=\"text\">\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label class=\"control-label\">Topic Question</label>\r\n          <input\r\n            [(ngModel)]=\"newTopic.topicQuestion\"\r\n            class=\"form-control\"\r\n            name=\"topicQuestion\"\r\n            placeholder=\"e.g. What was the best film of 2017?\"\r\n            type=\"text\">\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label class=\"control-label\">Response Options</label>\r\n          <input\r\n            [(ngModel)]=\"option\"\r\n            class=\"form-control\"\r\n            name=\"option\"\r\n            placeholder=\"e.g. Bladerunner\"\r\n            type=\"text\">\r\n        </div>\r\n        <div>\r\n          <span class=\"option-badge\" *ngFor=\"let option of options\">{{ option }}</span>\r\n        </div>\r\n        <div class=\"error-message\">{{error}}</div>\r\n        <div class=\"options-help\">Enter an answer and click 'Add Option'. When you are finished, click 'Create'.</div>\r\n          <button class=\"btn btn-primary\" (click)=\"addOption($event)\">\r\n            Add option\r\n          </button>\r\n          <button class=\"btn btn-primary\" (click)=\"removeOption($event)\">\r\n            Undo\r\n          </button>\r\n\r\n        <button type=\"submit\" class=\"btn btn-primary pull-right\">Create</button>\r\n\r\n\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n\r\n<!--<div class=\"output\">\r\nModel: {{ model | json}}\r\n<br>\r\nAngular: {{ form.value | json}}\r\n</div>-->\r\n"
+module.exports = "<form #form=\"ngForm\" (submit)=\"submitForm(form)\" [@showPage]=\"'on'\">\r\n\r\n  <div class=\"panel login-form\">\r\n    <div class=\"panel-heading\">\r\n      <h1 class=\"panel-title\">Create Topic</h1>\r\n    </div>\r\n\r\n    <div class=\"panel-body\">\r\n\r\n        <div class=\"form-group\">\r\n          <label class=\"control-label\">Topic Title</label>\r\n          <input\r\n            [(ngModel)]=\"newTopic.topicTitle\"\r\n            class=\"form-control\"\r\n            name=\"topicTitle\"\r\n            placeholder=\"e.g. 2017 Films\"\r\n            type=\"text\">\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label class=\"control-label\">Topic Question</label>\r\n          <input\r\n            [(ngModel)]=\"newTopic.topicQuestion\"\r\n            class=\"form-control\"\r\n            name=\"topicQuestion\"\r\n            placeholder=\"e.g. What was the best film of 2017?\"\r\n            type=\"text\">\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label class=\"control-label\">Answers</label>\r\n          <input\r\n            [(ngModel)]=\"option\"\r\n            class=\"form-control\"\r\n            name=\"option\"\r\n            placeholder=\"e.g. Bladerunner\"\r\n            type=\"text\">\r\n        </div>\r\n        <div>\r\n          <span class=\"option-badge\" *ngFor=\"let option of options\">{{ option }}</span>\r\n        </div>\r\n        <div class=\"error-message\">{{error}}</div>\r\n        <div class=\"options-help\">Enter an answer and click <i>Add Option</i>. You must add at least two. When you are finished, click <i>'Create'</i>.</div>\r\n          <button class=\"btn btn-primary\" (click)=\"addOption($event)\">\r\n            Add option\r\n          </button>\r\n          <button class=\"btn btn-primary\" (click)=\"removeOption($event)\">\r\n            Undo\r\n          </button>\r\n\r\n        <button type=\"submit\" class=\"btn btn-primary pull-right\">Create</button>\r\n\r\n\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n\r\n<!--<div class=\"output\">\r\nModel: {{ model | json}}\r\n<br>\r\nAngular: {{ form.value | json}}\r\n</div>-->\r\n"
 
 /***/ }),
 
@@ -563,6 +566,13 @@ module.exports = module.exports.toString();
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/**
+ *  This component renders a template-based form for logged in users to create a new voting topic.
+ *
+ *  @property newTopic - top level object that is sent to the server
+ *  @property result - an object containing a vote option and the number of votes cast - initialized here to 0
+ *  @property options - an array of strings; each string represents an vote answer
+ */
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -582,24 +592,27 @@ var result_1 = __webpack_require__("../../../../../src/app/models/result.ts");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var animations_1 = __webpack_require__("../../../../../src/app/animations.ts");
 var toastr_service_1 = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+var helper_service_1 = __webpack_require__("../../../../../src/app/services/helper.service.ts");
 var CreateTopicComponent = (function () {
-    function CreateTopicComponent(_data, _router, _auth, _toastr) {
+    function CreateTopicComponent(_data, _router, _auth, _toastr, _helper) {
         this._data = _data;
         this._router = _router;
         this._auth = _auth;
         this._toastr = _toastr;
-        this.result = new result_1.Result('', 0);
-        this.newTopic = new topic_1.Topic('', '', '', [], []);
+        this._helper = _helper;
         this.options = [];
     }
     CreateTopicComponent.prototype.ngOnInit = function () {
-        console.log('INIT: ', this.result);
-        console.log('INIT: ', this.newTopic);
+        this.newTopic = new topic_1.Topic('', '', '', [], []);
         this.newTopic.username = this._auth.isValidated();
     };
     CreateTopicComponent.prototype.addOption = function (e) {
+        var _this = this;
         e.preventDefault();
-        if (this.option) {
+        if (this.options && this.options.find(function (opt) { return opt === _this.option; })) {
+            return;
+        }
+        else {
             var result = new result_1.Result(this.option, 0);
             this.newTopic.results.push(result);
             this.options.push(this.option);
@@ -608,12 +621,18 @@ var CreateTopicComponent = (function () {
         }
     };
     CreateTopicComponent.prototype.submitForm = function () {
+        var _this = this;
         if (this.newTopic.topicQuestion && this.newTopic.topicTitle && this.newTopic.results.length > 1) {
-            this._data.addNewTopic(this.newTopic).subscribe();
-            // do we need to clean up?
-            this.newTopic = new topic_1.Topic('', '', '', [], []);
-            this._toastr.success('New voting topic added');
-            this._router.navigate(['/home']);
+            this._data.addNewTopic(this.newTopic)
+                .then(function (topic) {
+                _this._toastr.success('New voting topic added');
+                _this._router.navigate(['/home']);
+            })
+                .catch(function (e) {
+                _this._helper.logError(e);
+                _this._toastr.error('Sorry. Topic could not be added');
+                _this._router.navigate(['/home']);
+            });
         }
         else {
             this.error = 'Please complete all fields and provide at least two options.';
@@ -633,10 +652,10 @@ CreateTopicComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/create-topic/create-topic.component.scss")],
         animations: [animations_1.pageTransition]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof toastr_service_1.ToastrService !== "undefined" && toastr_service_1.ToastrService) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof toastr_service_1.ToastrService !== "undefined" && toastr_service_1.ToastrService) === "function" && _d || Object, typeof (_e = typeof helper_service_1.HelperService !== "undefined" && helper_service_1.HelperService) === "function" && _e || Object])
 ], CreateTopicComponent);
 exports.CreateTopicComponent = CreateTopicComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=create-topic.component.js.map
 
 /***/ }),
@@ -694,9 +713,11 @@ var data_service_1 = __webpack_require__("../../../../../src/app/services/data.s
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var animations_1 = __webpack_require__("../../../../../src/app/animations.ts");
+var helper_service_1 = __webpack_require__("../../../../../src/app/services/helper.service.ts");
 var IndexComponent = (function () {
-    function IndexComponent(_data, _auth, _router, _route) {
+    function IndexComponent(_data, _helper, _auth, _router, _route) {
         this._data = _data;
+        this._helper = _helper;
         this._auth = _auth;
         this._router = _router;
         this._route = _route;
@@ -712,18 +733,14 @@ var IndexComponent = (function () {
                     _this.isTopicListEmpty = true;
                 }
             })
-                .catch(function (e) { return _this.logError(e); });
+                .catch(function (e) { return _this._helper.logError(e); });
         }
         else {
             this.username = this._auth.isValidated();
             this._data.fetchTopicIndex()
                 .then(function (topics) { return _this.topics = topics; })
-                .catch(function (e) { return _this.logError(e); });
+                .catch(function (e) { return _this._helper.logError(e); });
         }
-    };
-    IndexComponent.prototype.logError = function (e) {
-        console.log(e);
-        this.error = 'Oops! Something went wrong.';
     };
     return IndexComponent;
 }());
@@ -734,10 +751,10 @@ IndexComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/index/index.component.scss")],
         animations: [animations_1.pageTransition]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object, typeof (_b = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _b || Object, typeof (_c = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _c || Object, typeof (_d = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object, typeof (_b = typeof helper_service_1.HelperService !== "undefined" && helper_service_1.HelperService) === "function" && _b || Object, typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _d || Object, typeof (_e = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _e || Object])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=index.component.js.map
 
 /***/ }),
@@ -976,42 +993,53 @@ var DataService = (function () {
         this._helper = _helper;
         this._dataUrl = '/api/data/';
     }
+    // TODO What is TS type for Promise error?
     DataService.prototype.fetchTopicIndex = function () {
+        var _this = this;
         return this._http.get('/api/data/')
             .map(function (res) { return res.json(); })
             .toPromise()
-            .catch(function (e) {
-            console.log(e);
-            return Promise.reject(e);
-        });
+            .catch(function (e) { return _this.errorHandler(e); });
     };
     DataService.prototype.fetchTopicById = function (id) {
+        var _this = this;
         return this._http.get("/api/data/" + id)
-            .map(function (res) { return res.json(); });
+            .map(function (res) { return res.json(); })
+            .toPromise()
+            .catch(function (e) { return _this.errorHandler(e); });
     };
     DataService.prototype.fetchTopicsByUser = function () {
+        var _this = this;
         var options = this._helper.addAuthTokenToHeader();
         return this._http.get('/api/data/current', options)
             .map(function (res) { return res.json(); })
             .toPromise()
-            .catch(function (e) {
-            console.log(e);
-            return Promise.reject(e);
-        });
+            .catch(function (e) { return _this.errorHandler(e); });
     };
     DataService.prototype.addNewTopic = function (newTopic) {
+        var _this = this;
         return this._http.post(this._dataUrl, newTopic)
-            .map(function (res) { return res.json(); });
-    };
-    DataService.prototype.castVote = function (id, topic) {
-        var options = this._helper.addAuthTokenToHeader();
-        return this._http.put("/api/data/vote/" + id, topic, options)
-            .toPromise();
+            .map(function (res) { return res.json(); })
+            .toPromise()
+            .catch(function (e) { return _this.errorHandler(e); });
     };
     DataService.prototype.deleteTopic = function (id) {
+        var _this = this;
         var options = this._helper.addAuthTokenToHeader();
         return this._http.delete("/api/data/" + id, options)
-            .toPromise();
+            .toPromise()
+            .catch(function (e) { return _this.errorHandler(e); });
+    };
+    DataService.prototype.castVote = function (id, topic) {
+        var _this = this;
+        var options = this._helper.addAuthTokenToHeader();
+        return this._http.put("/api/data/vote/" + id, topic, options)
+            .toPromise()
+            .catch(function (e) { return _this.errorHandler(e); });
+    };
+    DataService.prototype.errorHandler = function (e) {
+        console.log(e);
+        return Promise.reject(e);
     };
     return DataService;
 }());
@@ -1061,6 +1089,11 @@ var HelperService = (function () {
         var headers = new http_1.Headers({ 'X-Auth': token, 'Content-Type': 'application/json', });
         var options = new http_1.RequestOptions({ headers: headers });
         return options;
+    };
+    HelperService.prototype.logError = function (e, message) {
+        if (message === void 0) { message = 'Oops! Something went wrong...'; }
+        console.log(e);
+        return message;
     };
     return HelperService;
 }());
@@ -1167,12 +1200,14 @@ var data_service_1 = __webpack_require__("../../../../../src/app/services/data.s
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var animations_1 = __webpack_require__("../../../../../src/app/animations.ts");
 var toastr_service_1 = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+var helper_service_1 = __webpack_require__("../../../../../src/app/services/helper.service.ts");
 var TopicComponent = (function () {
-    function TopicComponent(_route, _router, _data, _auth, _toastr) {
+    function TopicComponent(_route, _router, _data, _auth, _helper, _toastr) {
         this._route = _route;
         this._router = _router;
         this._data = _data;
         this._auth = _auth;
+        this._helper = _helper;
         this._toastr = _toastr;
         // totalVotes: number;
         this.hasVoted = false;
@@ -1195,44 +1230,64 @@ var TopicComponent = (function () {
     TopicComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._data.fetchTopicById(this._id)
-            .subscribe(function (topic) {
-            console.log(_this.totalVotes);
+            .then(function (topic) {
             _this.topic = topic;
-            console.log(_this.totalVotes);
             _this.currentUser = _this._auth.isValidated();
             _this.topic.voters.forEach(function (voter) {
                 if (voter === _this.currentUser) {
                     _this.hasVoted = true;
                 }
             });
-        });
+        })
+            .catch(function (e) { return _this._helper.logError(e); });
     };
     // getTotalVotes(): number {
     //   return this.topic.results.map(result => result.votes)
     //     .reduce((a, b) => a + b);
     // }
     TopicComponent.prototype.castVote = function (res) {
-        if (!this.hasVoted) {
-            this.topic.results.forEach(function (result) {
-                if (result.option === res.option) {
-                    result.votes += 1;
-                }
-            });
-            // This code accepts vote client side before writing to the server - questionable
-            // TODO - refactor UI feedback into Promise return
-            this.topic.voters.push(this.currentUser);
-            this.hasVoted = true;
-            // this.totalVotes = this.getTotalVotes();
-            this._data.castVote(this._id, this.topic);
-            this._toastr.success('Thanks for your vote');
+        var _this = this;
+        if (this.hasVoted) {
+            return;
         }
+        else {
+            // add vote indicators locally for quick UI
+            this.incrementVote(res.option);
+            this.hasVoted = true;
+            this._data.castVote(this._id, this.topic)
+                .then(function () {
+                _this.topic.voters.push(_this.currentUser);
+                _this._toastr.success('Thanks for your vote');
+            })
+                .catch(function (e) {
+                // if the vote cannot be saved, revert the UI
+                _this._helper.logError(e);
+                _this._toastr.error('Vote could not be registered. Try again later.');
+                _this.hasVoted = false;
+                _this.topic.voters.pop();
+                _this.incrementVote(res.option, -1);
+            });
+        }
+    };
+    TopicComponent.prototype.incrementVote = function (option, num) {
+        if (num === void 0) { num = 1; }
+        this.topic.results.forEach(function (result) {
+            if (result.option === option) {
+                result.votes += num;
+            }
+        });
     };
     TopicComponent.prototype.deleteTopic = function (id) {
         var _this = this;
         if (window.confirm('Are you sure you want to permanently delete this topic and its data?')) {
-            this._data.deleteTopic(id).then(function () {
+            this._data.deleteTopic(id)
+                .then(function () {
                 _this._toastr.warning('Topic deleted!');
                 _this._router.navigate(['/home']);
+            })
+                .catch(function (e) {
+                _this._helper.logError(e);
+                _this._toastr.warning('Topic could not be deleted. Try again later.');
             });
         }
     };
@@ -1249,10 +1304,10 @@ TopicComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/topic/topic.component.scss")],
         animations: [animations_1.pageTransition]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _c || Object, typeof (_d = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _d || Object, typeof (_e = typeof toastr_service_1.ToastrService !== "undefined" && toastr_service_1.ToastrService) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _c || Object, typeof (_d = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _d || Object, typeof (_e = typeof helper_service_1.HelperService !== "undefined" && helper_service_1.HelperService) === "function" && _e || Object, typeof (_f = typeof toastr_service_1.ToastrService !== "undefined" && toastr_service_1.ToastrService) === "function" && _f || Object])
 ], TopicComponent);
 exports.TopicComponent = TopicComponent;
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=topic.component.js.map
 
 /***/ }),

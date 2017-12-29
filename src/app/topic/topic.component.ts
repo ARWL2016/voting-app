@@ -47,7 +47,6 @@ export class TopicComponent implements OnInit {
     private _toastr: ToastrService
     ) {
       this._id = this._route.snapshot.params['id'];
-
     }
 
   ngOnInit(): void {
@@ -71,28 +70,48 @@ export class TopicComponent implements OnInit {
   // }
 
   castVote(res): void {
-    if (!this.hasVoted) {
-      this.topic.results.forEach(result => {
-        if (result.option === res.option) {
-          result.votes += 1;
-        }
-      });
-      // This code accepts vote client side before writing to the server - questionable
-      // TODO - refactor UI feedback into Promise return
-      this.topic.voters.push(this.currentUser);
+    if (this.hasVoted) {
+      return;
+    } else {
+      // add vote indicators locally for quick UI
+      this.incrementVote(res.option);
       this.hasVoted = true;
-      // this.totalVotes = this.getTotalVotes();
-      this._data.castVote(this._id, this.topic);
-      this._toastr.success('Thanks for your vote');
+
+      this._data.castVote(this._id, this.topic)
+        .then(() => {
+          this.topic.voters.push(this.currentUser);
+          this._toastr.success('Thanks for your vote');
+        })
+        .catch(e => {
+          // if the vote cannot be saved, revert the UI
+          this._helper.logError(e);
+          this._toastr.error('Vote could not be registered. Try again later.');
+          this.hasVoted = false;
+          this.topic.voters.pop();
+          this.incrementVote(res.option, -1);
+        })
     }
+  }
+
+  incrementVote(option, num = 1) {
+    this.topic.results.forEach(result => {
+      if (result.option === option) {
+        result.votes += num;
+      }
+    });
   }
 
   deleteTopic(id: string): void {
     if (window.confirm('Are you sure you want to permanently delete this topic and its data?')) {
-      this._data.deleteTopic(id).then(() => {
-        this._toastr.warning('Topic deleted!');
-        this._router.navigate(['/home']);
-      });
+      this._data.deleteTopic(id)
+        .then(() => {
+          this._toastr.warning('Topic deleted!');
+          this._router.navigate(['/home']);
+        })
+        .catch(e => {
+          this._helper.logError(e);
+          this._toastr.warning('Topic could not be deleted. Try again later.');
+        });
     }
   }
 

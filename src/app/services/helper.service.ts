@@ -24,9 +24,9 @@ export class HelperService {
     return options;
   }
 
-  logError(e) {
+  logError(e, message = 'Oops! Something went wrong...') {
     console.log(e);
-    return 'Oops! Something went wrong.'
+    return message;
   }
 
 
