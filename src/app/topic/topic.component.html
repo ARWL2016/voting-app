@@ -4,7 +4,7 @@
   <!-- NAVIGATION SECTION -->
 
   <section class="nav-wrapper">
-    <button (click)="toggleDisplay()" class="btn btn-info control-button" [disabled]="!results">{{ toggleButton }}</button>
+    <button (click)="toggleDisplay()" class="btn btn-info control-button" [disabled]="!totalVotes">{{ toggleButton }}</button>
     <button class="btn btn-info control-button" [routerLink]="['/home']">Back to Index</button>
     <button
       *ngIf="topic && currentUser === topic.username && view === 'data'"
@@ -21,12 +21,11 @@
   <section class="results-wrapper">
     <div *ngIf="topic && view === 'data'" class="panel" [@showPage]="'on'" >
       <div class="panel-heading">
-        <h1 class="panel-title">{{ topic.topicTitle }}
-          <span *ngIf="hasVoted">
+        <h1 class="panel-title">{{ topic.topicTitle }}</h1>
+        <div *ngIf="hasVoted" class="has-voted-wrapper">
             <span class="pull-right voted">voted</span>
             <span class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></span>
-          </span>
-        </h1>
+        </div>
       </div>
       <div class="panel-body">
         <p>{{ topic.topicQuestion }}</p>
