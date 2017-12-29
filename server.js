@@ -26,6 +26,7 @@ app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 //   }
 // }));
 app.use(compression());
+
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'dist'), {maxAge: ms('1y')}));
