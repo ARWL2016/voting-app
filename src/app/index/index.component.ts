@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Topic } from '../models/topic';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
+import { HelperService } from 'app/services/helper.service';
 
 @Component({
   selector: 'app-index',
@@ -25,9 +26,11 @@ export class IndexComponent implements OnInit {
   username: string;
   isTopicListEmpty: boolean;
   listFilter: string;
+  error: string;
 
   constructor(
     private _data: DataService,
+    private _helper: HelperService,
     private _auth: AuthService,
     private _router: Router,
     private _route: ActivatedRoute) { }
@@ -42,12 +45,16 @@ export class IndexComponent implements OnInit {
             this.isTopicListEmpty = true;
           }
         })
-        .catch(e => console.log(e));
+        .catch(e => this._helper.logError(e));
     } else {
       this.username = this._auth.isValidated();
-      this._data.fetchTopicIndex().then(topics => this.topics = topics);
+      this._data.fetchTopicIndex()
+        .then(topics => this.topics = topics)
+        .catch(e => this._helper.logError(e));
     }
   }
+
+
 }
 
 

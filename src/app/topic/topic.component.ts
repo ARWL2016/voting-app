@@ -12,6 +12,7 @@ import { Topic } from '../models/topic';
 import { AuthService } from 'app/services/auth.service';
 import { pageTransition } from '../animations';
 import { ToastrService } from 'app/services/toastr.service';
+import { HelperService } from 'app/services/helper.service';
 
 @Component({
   selector: 'app-topic',
@@ -42,6 +43,7 @@ export class TopicComponent implements OnInit {
     private _router: Router,
     private _data: DataService,
     private _auth: AuthService,
+    private _helper: HelperService,
     private _toastr: ToastrService
     ) {
       this._id = this._route.snapshot.params['id'];
@@ -50,18 +52,17 @@ export class TopicComponent implements OnInit {
 
   ngOnInit(): void {
     this._data.fetchTopicById(this._id)
-      .subscribe(topic => {
-        console.log(this.totalVotes);
+      .then(topic => {
+
         this.topic = topic;
-        console.log(this.totalVotes);
-        // this.totalVotes = this.getTotalVotes();
         this.currentUser = this._auth.isValidated();
         this.topic.voters.forEach(voter => {
           if (voter === this.currentUser) {
             this.hasVoted = true;
           }
         });
-      });
+      })
+      .catch(e => this._helper.logError(e));
   }
 
   // getTotalVotes(): number {

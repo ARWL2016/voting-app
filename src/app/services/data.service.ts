@@ -15,26 +15,31 @@ export class DataService {
   private _dataUrl = '/api/data/';
 
   constructor(
-    private _http: Http, 
+    private _http: Http,
     private _helper: HelperService
     ) {}
 
-  fetchTopicIndex(): Promise<any> {
+  // TODO What is TS type for Promise error?
+  public fetchTopicIndex(): Promise<Topic[]> {
     return this._http.get('/api/data/')
       .map(res => res.json())
-      .toPromise();
+      .toPromise()
+        .catch(e => this.errorHandler(e));
   }
 
-  fetchTopicById(id: string) {
+  public fetchTopicById(id: string): Promise<Topic> {
     return this._http.get(`/api/data/${id}`)
-      .map(res => res.json());
+      .map(res => res.json())
+      .toPromise()
+        .catch(e => this.errorHandler(e));
   }
 
-  fetchTopicsByUser(): Promise<any> {
+  public fetchTopicsByUser(): Promise<any> {
     const options = this._helper.addAuthTokenToHeader();
     return this._http.get('/api/data/current', options)
       .map(res => res.json())
-      .toPromise();
+      .toPromise()
+        .catch(e => this.errorHandler(e));
   }
 
   addNewTopic(newTopic: Topic): Observable<Topic[]> {
@@ -52,6 +57,11 @@ export class DataService {
     const options = this._helper.addAuthTokenToHeader();
     return this._http.delete(`/api/data/${id}`, options)
       .toPromise();
+  }
+
+  private errorHandler(e) {
+    console.log(e);
+    return Promise.reject(e);
   }
 
 

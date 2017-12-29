@@ -644,7 +644,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/index/index.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"responsive-container\">\r\n\r\n<!-- WELCOME SECTION - DISPLAYS IF USER NOT AUTHENTICATED -->\r\n\r\n<section\r\n  *ngIf=\"!username\"\r\n  class=\"topic-wrapper \"\r\n  [@showPage]=\"'on'\">\r\n    <div class=\"panel info-panel\">\r\n      <div class=\"panel-heading info-panel\">\r\n        <h1 class=\"panel-title\">Welcome to Votogo</h1>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p class=\"info\">Votogo is a free voting app which allows users to create, share and view the results of surveys.To view survey results, click on a topic below.</p>\r\n        <p class=\"info\">To vote and create your own topics, please <a [routerLink]=\"['/login/register']\">register</a> or <a [routerLink]=\"['/login']\">login</a>.</p>\r\n\r\n      </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n<!-- SEARCH INPUT SECTION -->\r\n\r\n<section class=\"search-wrapper\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-addon\"><b>Search Topics</b></span>\r\n    <input\r\n      type=\"text\"\r\n      class=\"form-control search-input\"\r\n      [(ngModel)]=\"listFilter\" />\r\n  </div>\r\n</section>\r\n\r\n\r\n<!-- TOPIC SECTION - DISPLAYS ONCE FOR EACH TOPIC -->\r\n\r\n<section\r\n  *ngFor=\"let topic of topics | topicFilter:listFilter\"\r\n  class=\"topic-wrapper\"\r\n  [@showPage]=\"'on'\">\r\n  <a class=\"topic\" [routerLink]=\"['/topic', topic._id]\">\r\n    <div class=\"panel\">\r\n      <div class=\"panel-heading\">\r\n        <h1 class=\"panel-title\">{{ topic.topicTitle }}</h1>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>{{ topic.topicQuestion }}</p>\r\n        <p class=\"topic-author\">by {{ topic.username }}</p>\r\n      </div>\r\n    </div>\r\n    </a>\r\n</section>\r\n\r\n\r\n<!-- HELP SECTION - DISPLAYS IF USER IS LOGGED IN BUT HAS CREATED NO VOTING TOPICS -->\r\n\r\n<section\r\n*ngIf=\"username && isTopicListEmpty\"\r\nclass=\"topic-wrapper \"\r\n[@showPage]=\"'on'\">\r\n  <div class=\"panel info-panel\">\r\n    <div class=\"panel-heading info-panel\">\r\n      <h1 class=\"panel-title\">Your Topics</h1>\r\n    </div>\r\n    <div class=\"panel-body\">\r\n      <p class=\"info\">You haven't created any voting topics yet. To get started, go the the\r\n        <a [routerLink]=\"['/create']\">New Topic</a> page.</p>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n\r\n</div>\r\n\r\n\r\n"
+module.exports = "<div id=\"responsive-container\">\r\n\r\n<!-- WELCOME SECTION - DISPLAYS IF USER NOT AUTHENTICATED -->\r\n\r\n<section\r\n  *ngIf=\"!username\"\r\n  class=\"topic-wrapper \"\r\n  [@showPage]=\"'on'\">\r\n    <div class=\"panel info-panel\">\r\n      <div class=\"panel-heading info-panel\">\r\n        <h1 class=\"panel-title\">Welcome to Votogo</h1>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p class=\"info\">Votogo is a free voting app which allows users to create, share and view the results of surveys.To view survey results, click on a topic below.</p>\r\n        <p class=\"info\">To vote and create your own topics, please <a [routerLink]=\"['/login/register']\">register</a> or <a [routerLink]=\"['/login']\">login</a>.</p>\r\n\r\n      </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n<!-- SEARCH INPUT SECTION -->\r\n\r\n<section *ngIf=\"!error\" class=\"search-wrapper\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-addon\"><b>Search Topics</b></span>\r\n    <input\r\n      type=\"text\"\r\n      class=\"form-control search-input\"\r\n      [(ngModel)]=\"listFilter\" />\r\n  </div>\r\n</section>\r\n<div *ngIf=\"error\" class=\"data-error\">{{error}}</div>\r\n\r\n\r\n<!-- TOPIC SECTION - DISPLAYS ONCE FOR EACH TOPIC -->\r\n\r\n<section\r\n  *ngFor=\"let topic of topics | topicFilter:listFilter\"\r\n  class=\"topic-wrapper\"\r\n  [@showPage]=\"'on'\">\r\n  <a class=\"topic\" [routerLink]=\"['/topic', topic._id]\">\r\n    <div class=\"panel\">\r\n      <div class=\"panel-heading\">\r\n        <h1 class=\"panel-title\">{{ topic.topicTitle }}</h1>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <p>{{ topic.topicQuestion }}</p>\r\n        <p class=\"topic-author\">by {{ topic.username }}</p>\r\n      </div>\r\n    </div>\r\n    </a>\r\n</section>\r\n\r\n\r\n<!-- HELP SECTION - DISPLAYS IF USER IS LOGGED IN BUT HAS CREATED NO VOTING TOPICS -->\r\n\r\n<section\r\n*ngIf=\"username && isTopicListEmpty\"\r\nclass=\"topic-wrapper \"\r\n[@showPage]=\"'on'\">\r\n  <div class=\"panel info-panel\">\r\n    <div class=\"panel-heading info-panel\">\r\n      <h1 class=\"panel-title\">Your Topics</h1>\r\n    </div>\r\n    <div class=\"panel-body\">\r\n      <p class=\"info\">You haven't created any voting topics yet. To get started, go the the\r\n        <a [routerLink]=\"['/create']\">New Topic</a> page.</p>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -656,7 +656,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a:hover {\n  text-decoration: none; }\n\n.panel:hover {\n  background-color: #363636; }\n\n.search-wrapper {\n  background-color: #262626;\n  padding: 15px;\n  margin-top: 30px; }\n  .search-wrapper .input-group {\n    width: 50%; }\n  .search-wrapper .input-group-addon,\n  .search-wrapper .search-input {\n    height: 40px; }\n\n.topic-wrapper {\n  margin-top: 30px; }\n\n.info-panel {\n  background-color: #444; }\n  .info-panel:hover {\n    background-color: #444; }\n\n.info-panel div {\n  padding: 20px; }\n\n.info-panel h2 {\n  font-weight: bold;\n  letter-spacing: 2px; }\n\n.info-panel p {\n  line-height: 30px;\n  letter-spacing: 1.5px; }\n\n.info-panel a {\n  color: white;\n  text-decoration: underline; }\n\n@media screen and (max-width: 780px) {\n  .search-wrapper > .input-group {\n    width: 100%; } }\n", ""]);
+exports.push([module.i, "a:hover {\n  text-decoration: none; }\n\n.panel:hover {\n  background-color: #363636; }\n\n.search-wrapper {\n  background-color: #262626;\n  padding: 15px;\n  margin-top: 30px; }\n  .search-wrapper .input-group {\n    width: 50%; }\n  .search-wrapper .input-group-addon,\n  .search-wrapper .search-input {\n    height: 40px; }\n\n.data-error {\n  color: white;\n  padding: 20px; }\n\n.topic-wrapper {\n  margin-top: 30px; }\n\n.info-panel {\n  background-color: #444; }\n  .info-panel:hover {\n    background-color: #444; }\n\n.info-panel div {\n  padding: 20px; }\n\n.info-panel h2 {\n  font-weight: bold;\n  letter-spacing: 2px; }\n\n.info-panel p {\n  line-height: 30px;\n  letter-spacing: 1.5px; }\n\n.info-panel a {\n  color: white;\n  text-decoration: underline; }\n\n@media screen and (max-width: 780px) {\n  .search-wrapper > .input-group {\n    width: 100%; } }\n", ""]);
 
 // exports
 
@@ -712,12 +712,18 @@ var IndexComponent = (function () {
                     _this.isTopicListEmpty = true;
                 }
             })
-                .catch(function (e) { return console.log(e); });
+                .catch(function (e) { return _this.logError(e); });
         }
         else {
             this.username = this._auth.isValidated();
-            this._data.fetchTopicIndex().then(function (topics) { return _this.topics = topics; });
+            this._data.fetchTopicIndex()
+                .then(function (topics) { return _this.topics = topics; })
+                .catch(function (e) { return _this.logError(e); });
         }
+    };
+    IndexComponent.prototype.logError = function (e) {
+        console.log(e);
+        this.error = 'Oops! Something went wrong.';
     };
     return IndexComponent;
 }());
@@ -753,10 +759,15 @@ var TopicFilterPipe = (function () {
     function TopicFilterPipe() {
     }
     TopicFilterPipe.prototype.transform = function (value, filterBy) {
-        filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
-        return filterBy ? value.filter(function (topic) {
-            return topic.topicTitle.toLocaleLowerCase().indexOf(filterBy) !== -1;
-        }) : value;
+        if (value) {
+            filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
+            return filterBy ? value.filter(function (topic) {
+                return topic.topicTitle.toLocaleLowerCase().indexOf(filterBy) !== -1;
+            }) : value;
+        }
+        else {
+            return [];
+        }
     };
     return TopicFilterPipe;
 }());
@@ -968,7 +979,11 @@ var DataService = (function () {
     DataService.prototype.fetchTopicIndex = function () {
         return this._http.get('/api/data/')
             .map(function (res) { return res.json(); })
-            .toPromise();
+            .toPromise()
+            .catch(function (e) {
+            console.log(e);
+            return Promise.reject(e);
+        });
     };
     DataService.prototype.fetchTopicById = function (id) {
         return this._http.get("/api/data/" + id)
@@ -978,7 +993,11 @@ var DataService = (function () {
         var options = this._helper.addAuthTokenToHeader();
         return this._http.get('/api/data/current', options)
             .map(function (res) { return res.json(); })
-            .toPromise();
+            .toPromise()
+            .catch(function (e) {
+            console.log(e);
+            return Promise.reject(e);
+        });
     };
     DataService.prototype.addNewTopic = function (newTopic) {
         return this._http.post(this._dataUrl, newTopic)
@@ -1180,7 +1199,6 @@ var TopicComponent = (function () {
             console.log(_this.totalVotes);
             _this.topic = topic;
             console.log(_this.totalVotes);
-            // this.totalVotes = this.getTotalVotes();
             _this.currentUser = _this._auth.isValidated();
             _this.topic.voters.forEach(function (voter) {
                 if (voter === _this.currentUser) {

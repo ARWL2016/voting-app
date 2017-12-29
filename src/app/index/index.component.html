@@ -21,7 +21,7 @@
 
 <!-- SEARCH INPUT SECTION -->
 
-<section class="search-wrapper">
+<section *ngIf="!error" class="search-wrapper">
   <div class="input-group">
     <span class="input-group-addon"><b>Search Topics</b></span>
     <input
@@ -30,6 +30,7 @@
       [(ngModel)]="listFilter" />
   </div>
 </section>
+<div *ngIf="error" class="data-error">{{error}}</div>
 
 
 <!-- TOPIC SECTION - DISPLAYS ONCE FOR EACH TOPIC -->

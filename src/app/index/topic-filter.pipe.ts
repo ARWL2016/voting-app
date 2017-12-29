@@ -7,8 +7,13 @@ import { Topic } from '../models/topic';
 export class TopicFilterPipe implements PipeTransform {
 
     transform(value: Topic[], filterBy: string): Topic[] {
+      if (value) {
         filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
         return filterBy ? value.filter((topic: Topic) =>
-            topic.topicTitle.toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
+          topic.topicTitle.toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
+      } else {
+        return [];
+      }
+
     }
 }

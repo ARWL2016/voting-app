@@ -7,21 +7,22 @@ module.exports = {
     VotingTopic
       .find()
         .then(topics => res.send(topics))
-        .catch(e => res.status(500).send());
+        .catch(e => sendError(e));
   },
 
   getTopicById(req, res) {
     const {id} = req.params;
-
     VotingTopic.findById(id)
-      .then(topic => res.send(topic));
+      .then(topic => res.send(topic))
+      .catch(e => sendError(e));
   },
 
   getTopicsByUser(req, res) {
     const username = req.user.username;
-    console.log(username);
     VotingTopic.find({username})
-      .then(topics => res.status(200).send(topics));
+      .then(topics => res.status(200).send(topics))
+      // .then(()=> res.sendStatus(500))
+      .catch(e => sendError(e));
   },
 
   create(req, res) {
@@ -45,6 +46,10 @@ module.exports = {
     VotingTopic.findByIdAndRemove(id)
       .then(topic => res.status(202).send(topic))
       .catch(err => res.status(400).send());
+  },
+
+  sendError() {
+    res.status(500).send(e);
   }
 };
 
