@@ -33,6 +33,11 @@ app.use(express.static(path.join(__dirname, 'dist'), {maxAge: ms('1y')}));
 
 routes(app);
 
+app.get('*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+})
+
 app.listen(port, () => {
   console.log('API Running on Port ' + port);
 });
