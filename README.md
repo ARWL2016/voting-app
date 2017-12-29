@@ -17,6 +17,7 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - Authentication: bcryptjs, jsonwebtoken
 - Chart: chart.js and ng-charts
 - Deployment: Heroku and Mlab (MongoDB cloud host)
+- Tested on Chrome 63, Edge, IE11, Opera
 
 #### Features 
 - Single Page Application
@@ -24,7 +25,7 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - responsive design 
 - toastr notifications 
 - angular animations
-- data display with donut chart 
+- data display with doughnut chart 
 
 #### Handlebars security issue 
 - delete node modules
@@ -43,14 +44,13 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - push to github and heroku 
 
 #### To do  
-- prepare code base for AOT compilation  
-- security and performance checks
+- Figure out why CSP headers are failing in prod
 
 #### Enhancements
 - add a loader
 - add active class to nav links
 - Make sure the error messaging is appropriate for all of the forms 
-- add better validation to the username field (max length)   
+- add better validation to the username field  
 - debounce the search box
 - add tests
 - add logger
