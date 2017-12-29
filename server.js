@@ -14,17 +14,17 @@ const port = process.env.PORT || 3000;
 
 app.use(helmet());
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", "'unsafe-eval'"],
-    styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
-    imgSrc: ["'self'"],
-    fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-    formAction: ["'self'"],
-    frameAncestors: ["'none'"]
-  }
-}));
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     scriptSrc: ["'self'", "'unsafe-eval'"],
+//     styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
+//     imgSrc: ["'self'"],
+//     fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+//     formAction: ["'self'"],
+//     frameAncestors: ["'none'"]
+//   }
+// }));
 app.use(compression());
 app.use(bodyParser.json());
 
