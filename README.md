@@ -36,6 +36,7 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - push to github and heroku 
 
 #### To do  
+- add error paths to auth service
 - prepare code base for AOT compilation  
 - resolve handlebars vulnerability 
 - security and performance checks
