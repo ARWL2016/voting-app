@@ -17,8 +17,10 @@ app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
-    styleSrc: ["'self'", 'https://fonts.googleapis.com'],
-    fontSrc: ['https://fonts.gstatic.com'],
+    scriptSrc: ["'self'", "'unsafe-eval'"],
+    styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
+    imgSrc: ["'self'"],
+    fontSrc: ["'self'", 'https://fonts.gstatic.com'],
     formAction: ["'self'"],
     frameAncestors: ["'none'"]
   }
