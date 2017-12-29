@@ -25,6 +25,12 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - angular animations
 - data display with donut chart 
 
+#### Handlebars security issue 
+- delete node modules
+- npm i @angular/cli@1.5.3 
+- delete package-lock.json 
+- npm i
+
 #### Run in dev mode
 - `npm run build:watch` - compile Angular app with webpack 
 - `npm run server` - run node backend
@@ -36,9 +42,7 @@ VOTOGO is a voting app which allows users to create, share and view the results 
 - push to github and heroku 
 
 #### To do  
-- add error paths to auth service
 - prepare code base for AOT compilation  
-- resolve handlebars vulnerability 
 - security and performance checks
 
 #### Enhancements

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from 'app/models/user';
+import { User } from 'app/models/user';
 import { AuthService } from 'app/services/auth.service';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../animations';
@@ -12,7 +12,7 @@ import { ToastrService } from '../../services/toastr.service';
   animations: [ pageTransition ]
 })
 export class LoginComponent implements OnInit {
-  user: IUser;
+  user: User;
   username: string;
   password: string;
   error: string;
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
+    this.error = '';
     if (this.username && this.password) {
       this.user = { username: this.username, password: this.password };
       this._auth.login(this.user)
@@ -36,8 +37,12 @@ export class LoginComponent implements OnInit {
             this._route.navigate(['/home']);
         })
         .catch(e => {
-          console.log(e);
-          this.error = 'Your login details were incorrect. Please try again.';
+          if (e === 401) {
+            this.error = 'Your login details were incorrect. Please try again.';
+          } else {
+            this.error = 'There was a problem logging in. Pleas try again later.'
+          }
+
         });
     }
   }

@@ -20,30 +20,34 @@ module.exports = {
             res.header('X-Auth', token).send(user);
           })
         }
-      }).catch(err => res.status(400).send(err));
+      }).catch(e => res.status(500).send(e));
   },
 
   login(req, res) {
     const { username, password } = req.body;
 
-    User.findByCredentials(username, password).then((user) => {
-      return user.generateAuthToken()
-        .then((token) => {
-          user.password = undefined;
-          user.tokens = undefined;
-          res.header('X-Auth', token).send(user);
+    User.findByCredentials(username, password)
+      .then(user => {
+        return user.generateAuthToken()
+          .then(token => {
+            user.password = undefined;
+            user.tokens = undefined;
+            res.header('X-Auth', token).send(user);
+          });
+      })
+      .catch(e => {
+        if (e === false) {
+          res.send(401);
+        } else {
+          res.send(500);
+        }
       });
-    }).catch((err) => {
-      res.status(400).send();
-    });
-
-
   },
 
   logout(req, res) {
     req.user.removeToken(req.token).then(() => {
       res.status(200).send();
     })
-    .catch(err => res.status(400).send());
+    .catch(err => res.send(500));
   }
 }

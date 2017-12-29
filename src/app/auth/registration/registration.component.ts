@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IUser } from 'app/models/user';
+import { User } from 'app/models/user';
 import { AuthService } from 'app/services/auth.service';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../animations';
@@ -12,20 +12,21 @@ import { ToastrService } from 'app/services/toastr.service';
   styleUrls: ['../auth-styles.scss'],
   animations: [ pageTransition ]
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   username: string;
   password: string;
   passwordConfirmation: string;
   error: string;
-  user: IUser;
+  user: User;
 
-  constructor(private _auth: AuthService, private _router: Router, private _toastr: ToastrService ) {}
-
-  ngOnInit() {
-
-  }
+  constructor(
+    private _auth: AuthService,
+    private _router: Router,
+    private _toastr: ToastrService
+  ) {}
 
   submitForm() {
+    this.error = '';
     if (this.password.length < 3) {
       this.error = 'Password must be at least 3 characters.';
       return;
@@ -41,13 +42,15 @@ export class RegistrationComponent implements OnInit {
       };
       this._auth.register(this.user)
         .then((res) => {
-          console.log('user created', res);
           this._toastr.success('Thanks for signing up!');
           this._router.navigate(['/home']);
         })
-        .catch(err => {
-          console.log(err);
-          this.error = 'Username already taken.';
+        .catch(e => {
+          if (e === 409) {
+            this.error = 'Username already taken.';
+          } else if (e === 500) {
+            this.error = 'Could not register new user. Please try again later';
+          }
         });
     }
 

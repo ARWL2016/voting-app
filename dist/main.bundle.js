@@ -174,10 +174,15 @@ var AppComponent = (function () {
         this.username = this._auth.isValidated();
     };
     AppComponent.prototype.logout = function () {
-        // needs error handling
-        this._auth.logout();
-        this._toastr.success('You have been logged out.');
-        this._router.navigate(['/login']);
+        var _this = this;
+        this._auth.logout()
+            .then(function () {
+            _this._toastr.success('You have been logged out.');
+            _this._router.navigate(['/login']);
+        })
+            .catch(function (e) {
+            _this._toastr.error('Could not log you out.');
+        });
     };
     AppComponent.prototype.toggleDropdown = function () {
         this.showDropdown = this.showDropdown === true ? false : true;
@@ -342,6 +347,7 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.submitForm = function () {
         var _this = this;
+        this.error = '';
         if (this.username && this.password) {
             this.user = { username: this.username, password: this.password };
             this._auth.login(this.user)
@@ -351,8 +357,12 @@ var LoginComponent = (function () {
                 _this._route.navigate(['/home']);
             })
                 .catch(function (e) {
-                console.log(e);
-                _this.error = 'Your login details were incorrect. Please try again.';
+                if (e === 401) {
+                    _this.error = 'Your login details were incorrect. Please try again.';
+                }
+                else {
+                    _this.error = 'There was a problem logging in. Pleas try again later.';
+                }
             });
         }
     };
@@ -406,10 +416,9 @@ var RegistrationComponent = (function () {
         this._router = _router;
         this._toastr = _toastr;
     }
-    RegistrationComponent.prototype.ngOnInit = function () {
-    };
     RegistrationComponent.prototype.submitForm = function () {
         var _this = this;
+        this.error = '';
         if (this.password.length < 3) {
             this.error = 'Password must be at least 3 characters.';
             return;
@@ -425,13 +434,16 @@ var RegistrationComponent = (function () {
             };
             this._auth.register(this.user)
                 .then(function (res) {
-                console.log('user created', res);
                 _this._toastr.success('Thanks for signing up!');
                 _this._router.navigate(['/home']);
             })
-                .catch(function (err) {
-                console.log(err);
-                _this.error = 'Username already taken.';
+                .catch(function (e) {
+                if (e === 409) {
+                    _this.error = 'Username already taken.';
+                }
+                else if (e === 500) {
+                    _this.error = 'Could not register new user. Please try again later';
+                }
             });
         }
     };
@@ -873,7 +885,11 @@ var AuthService = (function () {
         })
             .map(function (response) { return response.json(); })
             .do(function (json) { return _this.updateCurrentUser(json); })
-            .toPromise();
+            .toPromise()
+            .catch(function (e) {
+            _this._helper.logError(e);
+            return Promise.reject(e.status);
+        });
     };
     AuthService.prototype.login = function (user) {
         var _this = this;
@@ -885,7 +901,11 @@ var AuthService = (function () {
         })
             .map(function (response) { return response.json(); })
             .do(function (authorizedUser) { return _this.updateCurrentUser(authorizedUser); })
-            .toPromise();
+            .toPromise()
+            .catch(function (e) {
+            _this._helper.logError(e);
+            return Promise.reject(e.status);
+        });
     };
     AuthService.prototype.logout = function () {
         var _this = this;
@@ -898,10 +918,12 @@ var AuthService = (function () {
             window.localStorage.removeItem('token');
             window.localStorage.removeItem('username');
         })
-            .catch(function (e) { return console.log(e); });
+            .catch(function (e) {
+            _this._helper.logError(e);
+            return Promise.reject(e);
+        });
     };
     AuthService.prototype.updateCurrentUser = function (user) {
-        console.log('USER', user);
         var username = user.username;
         this.currentUser = user;
         window.localStorage.setItem('username', username);

@@ -70,14 +70,14 @@ UserSchema.statics.findByCredentials = function (username, password) {
 
   return User.findOne({username}).then((user) => {
     if (!user) {
-      return Promise.reject();
+      return Promise.reject(false);
     }
 
     return bcrypt.compare(password, user.password).then((res) => {
       if (res) {
         return Promise.resolve(user);
       } else {
-        return Promise.reject();
+        return Promise.reject(false);
       }
     });
   });

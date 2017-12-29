@@ -41,10 +41,15 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   logout() {
-    // needs error handling
-    this._auth.logout();
-    this._toastr.success('You have been logged out.');
-    this._router.navigate(['/login']);
+    this._auth.logout()
+      .then(() => {
+        this._toastr.success('You have been logged out.');
+        this._router.navigate(['/login']);
+      })
+      .catch(e => {
+        this._toastr.error('Could not log you out.');
+      });
+
   }
 
   toggleDropdown() {

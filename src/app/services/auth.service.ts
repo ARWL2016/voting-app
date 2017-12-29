@@ -4,21 +4,21 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { IUser } from 'app/models/user';
+import { User } from 'app/models/user';
 import { HelperService } from "./helper.service";
 import { DataService } from "app/services/data.service";
 
 @Injectable()
 
 export class AuthService {
-  currentUser: IUser;
+  currentUser: User;
 
   constructor(
     private _http: Http,
     private _helper: HelperService
     ) {}
 
-  register(user: IUser): Promise<void> {
+  public register(user: User): Promise<any> {
     const url = `/api/auth/register`;
     return this._http.post(url, user)
       .do (response => {
@@ -26,11 +26,15 @@ export class AuthService {
         window.localStorage.setItem('token', token);
       })
       .map(response => response.json())
-      .do((json) => this.updateCurrentUser(json))
-      .toPromise();
+      .do(json => this.updateCurrentUser(json))
+      .toPromise()
+      .catch(e => {
+        this._helper.logError(e);
+        return Promise.reject(e.status);
+      });
   }
 
-  login(user: IUser): Promise<boolean> {
+  public login(user: User): Promise<any> {
     const url = `/api/auth/login`;
     return this._http.post(url, user)
       .do(response => {
@@ -39,10 +43,14 @@ export class AuthService {
       })
       .map(response => response.json())
       .do(authorizedUser => this.updateCurrentUser(authorizedUser))
-      .toPromise();
+      .toPromise()
+      .catch(e => {
+        this._helper.logError(e);
+        return Promise.reject(e.status);
+      });
   }
 
-  logout(): Promise<void> {
+  public logout(): Promise<any> {
     const options = this._helper.addAuthTokenToHeader();
     const url = `/api/auth/logout`;
 
@@ -53,17 +61,19 @@ export class AuthService {
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('username');
       })
-      .catch(e => console.log(e));
+      .catch(e => {
+        this._helper.logError(e);
+        return Promise.reject(e);
+      });
   }
 
-  updateCurrentUser(user: IUser) {
-    console.log('USER', user);
+  public updateCurrentUser(user: User) {
     const { username } = user;
     this.currentUser = user;
     window.localStorage.setItem('username', username);
   }
 
-  isValidated(): string {
+  public isValidated(): string {
     const token = window.localStorage.getItem('token');
     const username = window.localStorage.getItem('username');
 
