@@ -32,19 +32,16 @@ export class LoginComponent implements OnInit {
       this.user = { username: this.username, password: this.password };
       this._auth.login(this.user)
         .then((res) => {
-          console.log(res);
             this._toastr.success('You have been logged in.');
             this._route.navigate(['/home']);
         })
         .catch(e => {
           if (e === 401) {
-            this.error = 'Your login details were incorrect. Please try again.';
+            this.error = 'Your login details were incorrect.';
           } else {
-            this.error = 'There was a problem logging in. Pleas try again later.'
+            this.error = 'There was a problem logging in. Try again later.';
           }
-
         });
     }
   }
-
 }
